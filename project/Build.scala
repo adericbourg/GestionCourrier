@@ -11,11 +11,19 @@ object ApplicationBuild extends Build {
     // Add your project dependencies here,
     javaCore,
     javaJdbc,
-    javaEbean
+    javaEbean,
+
+    "org.webjars" % "webjars-play" % "2.1.0-1",
+    "org.webjars" % "html5shiv" % "3.6.2",
+
+    // UI
+    "org.webjars" % "angularjs" % "1.1.5",
+    "org.webjars" % "angular-ui" % "0.4.0-1",
+    "org.webjars" % "angular-ui-bootstrap" % "0.3.0"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
-    // Add your own project settings here      
+
   )
 
 }

@@ -1,7 +1,76 @@
-@(message: String)
+<!DOCTYPE html>
 
-@main("Welcome to Play 2.1") {
-    
-    @play20.welcome(message, style = "Java")
-    
-}
+<html>
+    <head>
+        <title>Gestion courrier</title>
+        <link rel="stylesheet" media="screen" href='@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap.min.css"))'>
+
+        <style type="text/css">
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+            .sidebar-nav {
+                padding: 9px 0;
+            }
+            @@media (max-width: 980px) {
+                /* Enable use of floated navbar text */
+                .navbar-text.pull-right {
+                    float: none;
+                    padding-left: 5px;
+                    padding-right: 5px;
+                }
+            }
+        </style>
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+    </head>
+    <body>
+
+        <!-- Navbar -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <!-- TODO Ajouter ici le logo -->
+                    <a class="brand" href="#">Gestion courrier</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <!-- Sidebar -->
+                <div class="span3">
+                    <div class="well sidebar-nav">
+                        <ul class="nav nav-list">
+                            <li class="nav-header">Navigation</li>
+                            <li class="active"><a href="#">Domiciliés</a></li>
+                            <li><a href="#">Enregistrement courrier</a></li>
+                            <li><a href="#">Distribution courrier</a></li>
+                        </ul>
+                    </div><!--/.well -->
+                </div><!--/span-->
+                <!-- Contenu -->
+                <div class="span9">
+                    <h1>Lorem ipsum</h1>
+                    Contenu ici
+                </div><!--/span-->
+            </div><!--/row-->
+
+            <hr>
+
+            <footer>
+                <p>&copy; Company 2013 Tout ça tout ça</p>
+            </footer>
+
+        </div><!--/.fluid-container-->
+
+        <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("angular.min.js"))'></script>
+        <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("anguar-ui.min.js"))'></script>
+        <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("ui-bootstrap.min.js"))'></script>
+        <!--[if lt IE 9]>
+            <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("html5shiv.min.js"))'></script>
+        <![endif]-->
+
+    </body>
+</html>
