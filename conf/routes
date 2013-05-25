@@ -5,6 +5,9 @@
 # Home page
 GET     /                           controllers.Application.index()
 
+GET     /residents                  controllers.Residents.allResidents()
+POST    /resident/create            controllers.Residents.create()
+
 # Static assets from webjars
 GET /webjars/*file controllers.WebJarAssets.at(file)
 
