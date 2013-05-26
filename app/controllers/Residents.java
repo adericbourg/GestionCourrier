@@ -1,6 +1,6 @@
 package controllers;
 
-import models.Resident;
+import models.residence.Resident;
 
 import org.codehaus.jackson.JsonNode;
 
