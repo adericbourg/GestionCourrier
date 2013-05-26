@@ -1,0 +1,41 @@
+<h1>Domiciliés</h1>
+<div ng-repeat="message in messages">
+    <div class="alert alert-success">
+        {{message.value}}
+    </div>
+</div>
+<div ng-repeat="error in errors">
+    <div class="alert alert-error">
+        {{error.value}}
+    </div>
+</div>
+<form class="form-inline" ng-submit="newResident()">
+    <fieldset>
+        <legend>Nouveau domicilié</legend>
+        <label>Prénom</label>
+        <input type="text" ng-model="resident.firstName" required />
+        <label>Nom</label>
+        <input type="text" ng-model="resident.lastName" required />
+        <button type="submit" class="btn btn-primary">Créer</button>
+    </fieldset>
+</form>
+
+<h2>Tous les domiciliés</h2>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th class="span2"></th>
+        <th class="span4"><a href="#" ng-click="tableSortPredicate = 'lastName'; tableSortReverse = !tableSortReverse;">Nom</a></th>
+        <th class="span4"><a href="#" ng-click="tableSortPredicate = 'firstName'; tableSortReverse = !tableSortReverse;">Prénom</a></th>
+        <th class="span2">Futur blabla</th>
+    </tr>
+    </thead>
+    <tbody ng-repeat="r in allResidents | orderBy:tableSortPredicate:tableSortReverse">
+    <tr>
+        <td><a ng-click="alert('Plus tard !')">Voir le détail</a></td>
+        <td>{{r.lastName}}</td>
+        <td>{{r.firstName}}</td>
+        <td>Rien</td>
+    </tr>
+    </tbody>
+</table>

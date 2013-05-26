@@ -1,4 +1,4 @@
-function ResidentCtrl($scope, $http, $log, $location) {
+function ResidentCtrl($scope, $http, $log) {
     $scope.resident = new Object();
     $scope.errors = [];
     $scope.messages = [];
@@ -26,6 +26,7 @@ function ResidentCtrl($scope, $http, $log, $location) {
             url: '/residents'
         }).success(function (data, status, headers, config) {
                 $scope.allResidents = data;
+                $log.log('Fetched ' + data.length + ' residents');
             });
     }
 
