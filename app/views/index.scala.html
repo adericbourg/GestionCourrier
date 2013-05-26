@@ -70,7 +70,7 @@
                             <input type="text" ng-model="resident.firstName" required />
                             <label>Nom</label>
                             <input type="text" ng-model="resident.lastName" required />
-                            <button type="submit" class="btn">Créer</button>
+                            <button type="submit" class="btn btn-primary">Créer</button>
                         </fieldset>
                     </form>
 
@@ -86,7 +86,7 @@
                         </thead>
                         <tbody ng-repeat="r in allResidents | orderBy:tableSortPredicate:tableSortReverse">
                             <tr>
-                                <td><a href="#" ng-click="alert('Plus tard !)">Voir le détail</a></td>
+                                <td><a href="#" ng-click="alert('Plus tard !')">Voir le détail</a></td>
                                 <td>{{r.lastName}}</td>
                                 <td>{{r.firstName}}</td>
                                 <td>Rien</td>
