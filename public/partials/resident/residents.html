@@ -21,21 +21,31 @@
 </form>
 
 <h2>Tous les domiciliés</h2>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th class="span2"></th>
-        <th class="span4"><a href="#" ng-click="tableSortPredicate = 'lastName'; tableSortReverse = !tableSortReverse;">Nom</a></th>
-        <th class="span4"><a href="#" ng-click="tableSortPredicate = 'firstName'; tableSortReverse = !tableSortReverse;">Prénom</a></th>
-        <th class="span2">Futur blabla</th>
-    </tr>
-    </thead>
-    <tbody ng-repeat="r in allResidents | orderBy:tableSortPredicate:tableSortReverse">
-    <tr>
-        <td><a ng-click="alert('Plus tard !')">Voir le détail</a></td>
-        <td>{{r.lastName}}</td>
-        <td>{{r.firstName}}</td>
-        <td>Rien</td>
-    </tr>
-    </tbody>
-</table>
+<input type="text" ng-model="filterResident" placeholder="Filtrer la liste" ng-show="allResidents.length"/>
+<div class="well" ng-hide="allResidents.length">
+    Aucun domicilié dans l'application.
+</div>
+<div class="well" ng-hide="filteredResidents.length">
+    Aucun domicilié ne correspond au critère.
+</div>
+<div class="well" ng-show="filteredResidents.length">
+
+    <table class="table table-striped" ng-init="init()">
+        <thead>
+        <tr>
+            <th class="span2"></th>
+            <th class="span4"><a href="#" ng-click="tableSortPredicate = 'lastName'; tableSortReverse = !tableSortReverse;">Nom</a></th>
+            <th class="span4"><a href="#" ng-click="tableSortPredicate = 'firstName'; tableSortReverse = !tableSortReverse;">Prénom</a></th>
+            <th class="span2">Futur blabla</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="r in filteredResidents = (allResidents | filter:filterResident | orderBy:tableSortPredicate:tableSortReverse)">
+        <tr>
+            <td><a ng-click="alert('Plus tard !')">Voir le détail</a></td>
+            <td>{{r.lastName}}</td>
+            <td>{{r.firstName}}</td>
+            <td>Rien</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
