@@ -1,26 +1,11 @@
 <h1>Domiciliés</h1>
-<div ng-repeat="message in messages">
-    <div class="alert alert-success">
-        {{message.value}}
-    </div>
-</div>
-<div ng-repeat="error in errors">
-    <div class="alert alert-error">
-        {{error.value}}
-    </div>
-</div>
-<form class="form-inline" ng-submit="newResident()">
-    <fieldset>
-        <legend>Nouveau domicilié</legend>
-        <label>Prénom</label>
-        <input type="text" ng-model="resident.firstName" required />
-        <label>Nom</label>
-        <input type="text" ng-model="resident.lastName" required />
-        <button type="submit" class="btn btn-primary">Créer</button>
-    </fieldset>
-</form>
 
-<h2>Tous les domiciliés</h2>
+<div class="form-actions">
+
+    <a class="btn" ng-href="#/resident/new/">Nouveau domicilié</a>
+
+</div>
+
 <div class="well">
     <input type="text" ng-model="filterResident" placeholder="Filtrer la liste" ng-show="allResidents.length"/>
     <div ng-hide="allResidents.length">
