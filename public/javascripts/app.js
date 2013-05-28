@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('gestionCourrier', []).
+angular.module('gestionCourrier', ['$strap.directives']).
     config(function ($routeProvider) {
         $routeProvider.
             when('/', {redirectTo: '/residents'}).
