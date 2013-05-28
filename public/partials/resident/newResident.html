@@ -17,6 +17,12 @@
     <label>Nom</label>
     <input type="text" ng-model="resident.lastName" required/>
 
+    <label>Date de naissance</label>
+    <div class="control-group input-append">
+        <input type="text" ng-model="resident.birthDate" bs-datepicker>
+        <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
+    </div>
+
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">Créer</button>
         <button type="button" class="btn" ng-href="#/residents/">Annuler</button>

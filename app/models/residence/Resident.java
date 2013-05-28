@@ -1,5 +1,6 @@
 package models.residence;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -23,7 +24,7 @@ public class Resident extends Model {
     public String firstName;
     @Constraints.Required
     public String lastName;
-    public LocalDate birthDate;
+    public Date birthDate; // TODO Use LocalDate (need to fix JSon mapping)
     public Department followingDepartment;
     public String followedBy;
     @OneToMany(mappedBy = "resident")
