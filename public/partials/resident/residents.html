@@ -22,15 +22,15 @@
     <table class="table table-striped" ng-show="filteredResidents.length" ng-init="init()">
         <thead>
         <tr>
-            <th class="span2"></th>
+            <th class="span1"></th>
             <th class="span4"><a href="#" ng-click="tableSortPredicate = 'lastName'; tableSortReverse = !tableSortReverse;">Nom</a></th>
             <th class="span4"><a href="#" ng-click="tableSortPredicate = 'firstName'; tableSortReverse = !tableSortReverse;">Prénom</a></th>
-            <th class="span2">Futur blabla</th>
+            <th class="span3">Futur blabla</th>
         </tr>
         </thead>
         <tbody ng-repeat="r in filteredResidents = (allResidents | filter:filterResident | orderBy:tableSortPredicate:tableSortReverse)">
         <tr>
-            <td><a ng-click="alert('Plus tard !')">Voir le détail</a></td>
+            <td><a ng-href="#/resident/{{r.id}}"><i class="icon-eye-open"></i></a></td>
             <td>{{r.lastName}}</td>
             <td>{{r.firstName}}</td>
             <td>Rien</td>
