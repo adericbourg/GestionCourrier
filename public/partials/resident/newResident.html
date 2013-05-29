@@ -1,30 +1,23 @@
-<h1>Nouveau domicilié</h1>
-
-<div ng-repeat="message in messages">
-    <div class="alert alert-success">
-        {{message.value}}
+<form ng-submit="close(result)">
+    <div class="modal-header">
+        <h1>Nouveau domicilié</h1>
     </div>
-</div>
-<div ng-repeat="error in errors">
-    <div class="alert alert-error">
-        {{error.value}}
+    <div class="modal-body">
+        <label>Prénom</label>
+        <input type="text" ng-model="result.firstName" required/>
+
+        <label>Nom</label>
+        <input type="text" ng-model="result.lastName" required/>
+
+        <label>Date de naissance</label>
+
+        <div class="control-group input-append">
+            <input type="text" ng-model="result.birthDate" bs-datepicker>
+            <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
+        </div>
     </div>
-</div>
-<form ng-submit="newResident()">
-    <label>Prénom</label>
-    <input type="text" ng-model="resident.firstName" required/>
-
-    <label>Nom</label>
-    <input type="text" ng-model="resident.lastName" required/>
-
-    <label>Date de naissance</label>
-    <div class="control-group input-append">
-        <input type="text" ng-model="resident.birthDate" bs-datepicker>
-        <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
-    </div>
-
-    <div class="form-actions">
+    <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Créer</button>
-        <button type="button" class="btn" ng-href="#/residents/">Annuler</button>
+        <button ng-click="close()" class="btn">Annuler</button>
     </div>
 </form>

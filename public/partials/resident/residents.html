@@ -1,8 +1,10 @@
 <h1>Domiciliés</h1>
 
+<alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
 <div class="form-actions">
 
-    <a class="btn" ng-href="#/resident/new/">Nouveau domicilié</a>
+    <a class="btn" ng-click="newResidentDialog()">Nouveau domicilié</a>
 
 </div>
 
