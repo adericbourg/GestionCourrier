@@ -48,6 +48,10 @@ function NewResidentCtrl($scope, dialog) {
     };
 }
 
+function ViewResidentCtrl($scope) {
+    // TODO
+}
+
 function EditResidentCtrl($scope, $http, $location) {
     // TODO
 }
