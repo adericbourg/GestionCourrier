@@ -18,7 +18,7 @@ function ResidentCtrl($scope, $dialog, residentService) {
         d.open().then(function (result) {
             if (result) {
                 $scope.messages.push(result);
-                refresh();
+                $scope.refresh();
             }
         });
     };
