@@ -1,8 +1,9 @@
-function ResidentCtrl($scope, $http, $log, $dialog) {
+function ResidentCtrl($scope, $dialog, residentService) {
     $scope.messages = [];
 
     $scope.tableSortPredicate = "lastName";
     $scope.tableSortReverse = false;
+
 
     $scope.newResidentDialogOpts = {
         backdrop: true,
@@ -17,22 +18,18 @@ function ResidentCtrl($scope, $http, $log, $dialog) {
         d.open().then(function (result) {
             if (result) {
                 $scope.messages.push(result);
-                refreshResidents();
+                refresh();
             }
         });
     };
 
-    var refreshResidents = function () {
-        $http({
-            method: 'GET',
-            url: '/residents'
-        }).success(function (data, status, headers, config) {
-                $scope.allResidents = data;
-                $log.log('Fetched ' + data.length + ' residents');
-            });
+    var refresh = function () {
+        residentService.async().then(function (data) {
+            $scope.allResidents = data;
+        });
     }
 
-    refreshResidents();
+    refresh();
 }
 
 function NewResidentCtrl($scope, $http, dialog) {

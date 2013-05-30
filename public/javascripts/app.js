@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('gestionCourrier', ['ui.bootstrap', '$strap.directives']).
+var app = angular.module('gestionCourrier', ['ui.bootstrap', '$strap.directives']).
     config(function ($routeProvider) {
         $routeProvider.
             when('/', {redirectTo: '/residents'}).
@@ -9,3 +9,4 @@ angular.module('gestionCourrier', ['ui.bootstrap', '$strap.directives']).
             when('/resident/:residentId/edit/', {controller: EditResidentCtrl, templateUrl: '/assets/partials/resident/editResident.html'}).
             otherwise({redirectTo: '/'})
     });
+
