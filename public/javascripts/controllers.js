@@ -16,15 +16,8 @@ function ResidentCtrl($scope, $http, $log, $dialog) {
         var d = $dialog.dialog($scope.newResidentDialogOpts);
         d.open().then(function (result) {
             if (result) {
-                $scope.messages = [];
-                $http.post("/resident/create", result).
-                    success(function (data, status, headers, config) {
-                        $scope.messages.push({type: 'success', msg: "Utilisateur créé avec succès"});
-                        refreshResidents();
-                    }).
-                    error(function (data, status, headers, config) {
-                        $scope.messages.push({type: 'error', msg: "Erreur de création"});
-                    });
+                $scope.messages.push(result);
+                refreshResidents();
             }
         });
     };
@@ -42,10 +35,24 @@ function ResidentCtrl($scope, $http, $log, $dialog) {
     refreshResidents();
 }
 
-function NewResidentCtrl($scope, dialog) {
-    $scope.close = function (result) {
-        dialog.close(result);
+function NewResidentCtrl($scope, $http, dialog) {
+    $scope.messages = [];
+    $scope.resident = {};
+
+    $scope.cancel = function () {
+        dialog.close();
     };
+
+    $scope.createResident = function () {
+        $scope.messages = [];
+        $http.post("/resident/create", $scope.resident).
+            success(function (data, status, headers, config) {
+                dialog.close({type: 'success', msg: "Utilisateur créé avec succès"});
+            }).
+            error(function (data, status, headers, config) {
+                $scope.messages.push({type: 'error', msg: "Erreur de création"});
+            });
+    }
 }
 
 function ViewResidentCtrl($scope) {

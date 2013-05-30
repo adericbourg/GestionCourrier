@@ -1,23 +1,26 @@
-<form ng-submit="close(result)">
+<form ng-submit="createResident()">
     <div class="modal-header">
         <h1>Nouveau domicilié</h1>
     </div>
     <div class="modal-body">
+
+        <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
         <label>Prénom</label>
-        <input type="text" ng-model="result.firstName" required/>
+        <input type="text" ng-model="resident.firstName" required/>
 
         <label>Nom</label>
-        <input type="text" ng-model="result.lastName" required/>
+        <input type="text" ng-model="resident.lastName" required/>
 
         <label>Date de naissance</label>
 
         <div class="control-group input-append">
-            <input type="text" ng-model="result.birthDate" bs-datepicker>
+            <input type="text" ng-model="resident.birthDate" bs-datepicker>
             <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
         </div>
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Créer</button>
-        <button ng-click="close()" class="btn">Annuler</button>
+        <button ng-click="cancel()" class="btn">Annuler</button>
     </div>
 </form>
