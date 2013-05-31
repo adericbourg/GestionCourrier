@@ -18,9 +18,13 @@ function ResidentCtrl($scope, $dialog, residentService) {
         d.open().then(function (result) {
             if (result) {
                 $scope.messages.push(result);
-                $scope.refresh();
+                refresh();
             }
         });
+    };
+
+    $scope.closeAlert = function (index) {
+        $scope.messages.splice(index, 1);
     };
 
     var refresh = function () {
@@ -44,8 +48,10 @@ function NewResidentCtrl($scope, $http, dialog) {
         $scope.messages = [];
         $http.post("/resident/create", $scope.resident).
             success(function (data, status, headers, config) {
-                dialog.close({type: 'success', msg: "Utilisateur créé avec succès"});
-            }).
+                dialog.close({type: 'success', msg: "La fiche de " + $scope.resident.firstName + " " + $scope.resident.lastName + " a été créée"
+                });
+            }
+        ).
             error(function (data, status, headers, config) {
                 $scope.messages.push({type: 'error', msg: "Erreur de création"});
             });
