@@ -1,3 +1,43 @@
-<h1>À faire</h1>
+<h1>{{resident.firstName}} {{resident.lastName}}</h1>
 
-Consultation.
+<h2>Informations de base</h2>
+
+<table class="table">
+    <tr>
+        <td>Date de naissance</td>
+        <td>{{resident.birthDate}}</td>
+    </tr>
+    <tr>
+        <td>Pôle</td>
+        <td>{{resident.department}}</td>
+    </tr>
+    <tr>
+        <td>Suivi par</td>
+        <td>{{resident.followedBy}}</td>
+    </tr>
+</table>
+
+<h2>Domiciliation</h2>
+
+<div class="well" ng-hide="resident.residences.length">
+    Aucune domiciliation connue.
+</div>
+
+<table class="table table-striped" ng-show="resident.residences.length">
+    <thead>
+        <tr>
+            <th class="span3">Type</th>
+            <th class="span3">Date de début</th>
+            <th class="span3">Date de fin</th>
+            <th class="span3">Suivi courrier</th>
+        </tr>
+    </thead>
+    <tbody ng-repeat="res in resident.residences">
+        <tr>
+            <td>{{res.residenceType}}</td>
+            <td>{{res.startDate}}</td>
+            <td>{{res.endDate}}</td>
+            <td>À faire</td>
+        </tr>
+    </tbody>
+</table>

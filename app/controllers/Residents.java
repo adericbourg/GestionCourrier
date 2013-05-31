@@ -22,6 +22,10 @@ public class Residents extends Controller {
         return ok(Json.toJson(Resident.findAll()));
     }
 
+    public static Result resident(Long id) {
+        return ok(Json.toJson(Resident.byId(id)));
+    }
+
     public static Result create() {
         JsonNode json = request().body().asJson();
         Resident resident = Json.fromJson(json, Resident.class);

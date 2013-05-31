@@ -3,11 +3,17 @@
 //
 app.factory('residentService', function ($http) {
     var residentService = {
-        async: function () {
+        allResidents: function () {
             var promise = $http.get('/residents').then(function (response) {
                 return response.data;
             });
 
+            return promise;
+        },
+        fetchResident: function (id) {
+            var promise = $http.get('/resident/' + id).then(function (response) {
+                return response.data;
+            });
             return promise;
         }
     };

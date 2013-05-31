@@ -7,16 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.joda.time.LocalDate;
-
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 @Entity
 public class Resident extends Model {
 
-    private static final Finder<Long, Resident> FINDER = new Finder<Long, Resident>(
-            Long.class, Resident.class);
+    private static final Finder<Long, Resident> FINDER = new Finder<Long, Resident>(Long.class, Resident.class);
 
     @Id
     public Long id;
@@ -37,5 +34,9 @@ public class Resident extends Model {
      */
     public static List<Resident> findAll() {
         return FINDER.all();
+    }
+
+    public static Resident byId(Long id) {
+        return FINDER.byId(id);
     }
 }

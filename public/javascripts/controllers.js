@@ -28,7 +28,7 @@ function ResidentCtrl($scope, $dialog, residentService) {
     };
 
     var refresh = function () {
-        residentService.async().then(function (data) {
+        residentService.allResidents().then(function (data) {
             $scope.allResidents = data;
         });
     }
@@ -64,8 +64,17 @@ function NewResidentCtrl($scope, $http, dialog, referenceListService) {
     });
 }
 
-function ViewResidentCtrl($scope) {
-    // TODO
+function ViewResidentCtrl($scope, $routeParams, residentService) {
+    $scope.resident = {};
+
+    residentService.fetchResident($routeParams.residentId).then(function (data) {
+        $scope.resident = data;
+        // Mock
+        $scope.resident.residences = [
+            {residenceType: "A", startDate: "12/08/2011", endDate: "11/08/2012"},
+            {residenceType: "A", startDate: "12/08/2010", endDate: "11/08/2011"},
+        ];
+    });
 }
 
 function EditResidentCtrl($scope, $http, $location) {

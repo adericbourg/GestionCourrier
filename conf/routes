@@ -7,7 +7,11 @@
 GET     /                           controllers.Assets.at(path="/public", file="index.html")
 
 GET     /residents                  controllers.Residents.allResidents()
+
+GET     /resident/:id               controllers.Residents.resident(id: Long)
 POST    /resident/create            controllers.Residents.create()
+
+
 
 GET     /departments                controllers.Residents.departments()
 
