@@ -9,6 +9,8 @@ GET     /                           controllers.Assets.at(path="/public", file="
 GET     /residents                  controllers.Residents.allResidents()
 POST    /resident/create            controllers.Residents.create()
 
+GET     /departments                controllers.Residents.departments()
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET     /public/*file               controllers.Assets.at(path="/public", file)

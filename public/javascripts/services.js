@@ -13,3 +13,15 @@ app.factory('residentService', function ($http) {
     };
     return residentService;
 });
+
+app.factory('referenceListService', function ($http) {
+    var referenceListService = {
+        listDepartments: function () {
+            var promise = $http.get('/departments').then(function (response) {
+                return response.data;
+            });
+            return promise;
+        }
+    }
+    return referenceListService;
+});

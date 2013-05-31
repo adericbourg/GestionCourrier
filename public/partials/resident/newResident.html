@@ -13,11 +13,16 @@
         <input type="text" ng-model="resident.lastName" required/>
 
         <label>Date de naissance</label>
-
         <div class="control-group input-append">
             <input type="text" ng-model="resident.birthDate" bs-datepicker>
             <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
         </div>
+
+        <label>Département</label>
+        <select ng-model="resident.followingDepartment" ng-options="dep.value for dep in departments"></select>
+
+        <label>Suivi par</label>
+        <input type="text" ng-model="resident.followedBy" required/>
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Créer</button>

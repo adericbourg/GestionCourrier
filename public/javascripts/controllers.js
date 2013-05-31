@@ -36,9 +36,11 @@ function ResidentCtrl($scope, $dialog, residentService) {
     refresh();
 }
 
-function NewResidentCtrl($scope, $http, dialog) {
+function NewResidentCtrl($scope, $http, dialog, referenceListService) {
     $scope.messages = [];
     $scope.resident = {};
+
+    $scope.departments = [];
 
     $scope.cancel = function () {
         dialog.close();
@@ -56,6 +58,10 @@ function NewResidentCtrl($scope, $http, dialog) {
                 $scope.messages.push({type: 'error', msg: "Erreur de création"});
             });
     }
+
+    referenceListService.listDepartments().then(function (data) {
+        $scope.departments = data;
+    });
 }
 
 function ViewResidentCtrl($scope) {

@@ -8,7 +8,17 @@ import com.avaje.ebean.annotation.EnumValue;
 public enum Department {
 
     @EnumValue("PREC")
-    PRECARITY,
+    PRECARITY("Précarité"),
     @EnumValue("PROS")
-    PROSTITUTION;
+    PROSTITUTION("Prostitution");
+
+    private String meaning;
+
+    private Department(String meaning) {
+        this.meaning = meaning;
+    }
+
+    public String getMeaning() {
+        return meaning;
+    }
 }
