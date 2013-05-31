@@ -25,7 +25,7 @@
             <th class="span1"></th>
             <th class="span4"><a href="#" ng-click="tableSortPredicate = 'lastName'; tableSortReverse = !tableSortReverse;">Nom</a></th>
             <th class="span4"><a href="#" ng-click="tableSortPredicate = 'firstName'; tableSortReverse = !tableSortReverse;">Prénom</a></th>
-            <th class="span3">Futur blabla</th>
+            <th class="span3">Fin de domiciliation</th>
         </tr>
         </thead>
         <tbody ng-repeat="r in filteredResidents = (allResidents | filter:searchResidentCriterion | orderBy:tableSortPredicate:tableSortReverse)">
