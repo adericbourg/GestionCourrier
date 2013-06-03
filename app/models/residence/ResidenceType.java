@@ -8,7 +8,17 @@ import com.avaje.ebean.annotation.EnumValue;
 public enum ResidenceType {
 
     @EnumValue("AME")
-    STATE_MEDICAL_SUPPORT,
+    STATE_MEDICAL_SUPPORT("AME"),
     @EnumValue("ADM")
-    ADMINISTRATIVE;
+    ADMINISTRATIVE("Administrative");
+
+    private final String meaning;
+
+    private ResidenceType(String meaning) {
+        this.meaning = meaning;
+    }
+
+    public String getMeaning() {
+        return meaning;
+    }
 }

@@ -1,0 +1,30 @@
+<form ng-submit="createResidence()">
+    <div class="modal-header">
+        <h1>Nouvelle domiciliation</h1>
+    </div>
+    <div class="modal-body">
+        <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+        <label>Type de domiciliation</label>
+        <select ng-model="residence.residenceType" ng-options="residenceType.value for residenceType in residenceTypes"></select>
+
+        <label>Date de début</label>
+        <div class="control-group input-append">
+            <input type="text" ng-model="residence.startDate" bs-datepicker>
+            <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
+        </div>
+
+        <label>Date de fin</label>
+        <div class="control-group input-append">
+            <input type="text" ng-model="residence.endDate" bs-datepicker>
+            <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
+        </div>
+
+        <label>Adresse de suivi du courrier</label>
+        <textarea rows="3" ng-model="residence.mailForwardAddress"></textarea>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Créer</button>
+        <button ng-click="cancel()" class="btn">Annuler</button>
+    </div>
+</form>

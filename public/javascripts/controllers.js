@@ -64,8 +64,28 @@ function NewResidentCtrl($scope, $http, dialog, referenceListService) {
     });
 }
 
-function ViewResidentCtrl($scope, $routeParams, residentService) {
+function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
     $scope.resident = {};
+
+    $scope.newResidenceDialogOpts = {
+        backdrop: true,
+        keyboard: true,
+        backdropClick: true,
+        templateUrl: '/assets/partials/resident/residence/newResidence.html',
+        controller: 'NewResidenceCtrl',
+        resolve: {residentId: function () {
+            return $scope.resident.id
+        }}
+    };
+
+    $scope.newResidenceDialog = function () {
+        var d = $dialog.dialog($scope.newResidenceDialogOpts);
+        d.open().then(function (result) {
+            if (result) {
+                $scope.messages.push(result);
+            }
+        });
+    };
 
     residentService.fetchResident($routeParams.residentId).then(function (data) {
         $scope.resident = data;
@@ -79,4 +99,38 @@ function ViewResidentCtrl($scope, $routeParams, residentService) {
 
 function EditResidentCtrl($scope, $http, $location) {
     // TODO
+}
+
+function NewResidenceCtrl($scope, $http, dialog, residentId, referenceListService) {
+
+    $scope.residentId = residentId;
+    $scope.residence = {};
+
+    $scope.messages = [];
+    $scope.residenceTypes = [];
+
+    $scope.createResidence = function () {
+        $scope.messages = [];
+        $http.post("/resident/" + $scope.residentId + "/addResidence", $scope.resident).
+            success(function (data, status, headers, config) {
+                dialog.close({type: 'success', msg: "Domiciliation ajoutée"
+                });
+            }
+        ).
+            error(function (data, status, headers, config) {
+                $scope.messages.push({type: 'error', msg: "Erreur de création de la domiciliation"});
+            });
+    }
+
+    $scope.cancel = function () {
+        dialog.close();
+    };
+
+    $scope.closeAlert = function (index) {
+        $scope.messages.splice(index, 1);
+    };
+
+    referenceListService.listResidenceTypes().then(function (data) {
+        $scope.residenceTypes = data;
+    });
 }

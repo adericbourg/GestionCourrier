@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.residence.Department;
+import models.residence.ResidenceType;
 import models.residence.Resident;
 
 import org.codehaus.jackson.JsonNode;
@@ -39,5 +40,17 @@ public class Residents extends Controller {
             deparments.add(new Item<Department, String>(department, department.getMeaning()));
         }
         return ok(Json.toJson(deparments));
+    }
+
+    public static Result residenceTypes() {
+        List<Item<ResidenceType, String>> deparments = new ArrayList<Item<ResidenceType, String>>();
+        for (ResidenceType residenteType : ResidenceType.values()) {
+            deparments.add(new Item<ResidenceType, String>(residenteType, residenteType.getMeaning()));
+        }
+        return ok(Json.toJson(deparments));
+    }
+
+    public static Result addResidence(long residentId) {
+        return play.mvc.Results.TODO;
     }
 }

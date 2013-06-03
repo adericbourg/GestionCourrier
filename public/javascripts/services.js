@@ -27,6 +27,12 @@ app.factory('referenceListService', function ($http) {
                 return response.data;
             });
             return promise;
+        },
+        listResidenceTypes: function () {
+            var promise = $http.get('/residencetypes').then(function (response) {
+                return response.data;
+            });
+            return promise;
         }
     }
     return referenceListService;
