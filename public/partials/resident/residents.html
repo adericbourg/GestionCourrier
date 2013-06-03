@@ -10,8 +10,8 @@
 
 <div class="well">
     <div class="input-prepend" ng-show="allResidents.length">
-        <span class="add-on"><i class="icon-filter"></i></span>
-        <input type="text" ng-model="searchResidentCriterion" placeholder="Filtrer la liste"/>
+        <span class="add-on"><i class="icon-search"></i></span>
+        <input type="text" ng-model="searchResidentCriterion" placeholder="Rechercher   "/>
     </div>
     <div ng-hide="allResidents.length">
         Aucun domicilié dans l'application.
@@ -19,7 +19,7 @@
     <div ng-show="allResidents.length && !filteredResidents.length">
         Aucun domicilié ne correspond au critère.
     </div>
-    <table class="table table-striped" ng-show="allResidents.length">
+    <table class="table table-striped" ng-show="filteredResidents.length">
         <thead>
         <tr>
             <th class="span1"></th>
