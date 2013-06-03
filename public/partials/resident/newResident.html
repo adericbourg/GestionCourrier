@@ -19,7 +19,7 @@
         </div>
 
         <label>Département</label>
-        <select ng-model="resident.followingDepartment" ng-options="dep.value for dep in departments"></select>
+        <select ng-model="resident.followingDepartment" ng-options="dep.key as dep.value for dep in departments"></select>
 
         <label>Suivi par</label>
         <input type="text" ng-model="resident.followedBy" required/>

@@ -6,7 +6,7 @@
         <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
         <label>Type de domiciliation</label>
-        <select ng-model="residence.residenceType" ng-options="residenceType.value for residenceType in residenceTypes"></select>
+        <select ng-model="residence.residenceType" ng-options="residenceType.key as residenceType.value for residenceType in residenceTypes"></select>
 
         <label>Date de début</label>
         <div class="control-group input-append">
