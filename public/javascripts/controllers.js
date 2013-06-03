@@ -100,11 +100,6 @@ function ViewResidentCtrl($scope, $http, $dialog, $routeParams, residentService)
 
     residentService.fetchResident($routeParams.residentId).then(function (data) {
         $scope.resident = data;
-        // Mock
-        $scope.resident.residences = [
-            {residenceType: "A", startDate: "12/08/2011", endDate: "11/08/2012"},
-            {residenceType: "A", startDate: "12/08/2010", endDate: "11/08/2011"},
-        ];
     });
 }
 

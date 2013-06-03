@@ -55,6 +55,7 @@ public class Residents extends Controller {
         JsonNode json = request().body().asJson();
         Residence residence = Json.fromJson(json, Residence.class);
 
+
         Resident resident = Resident.byId(residentId);
         resident.residences.add(residence);
         resident.save();
