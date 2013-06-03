@@ -3,10 +3,7 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.residence.Department;
-import models.residence.Residence;
-import models.residence.ResidenceType;
-import models.residence.Resident;
+import models.residence.*;
 
 import org.codehaus.jackson.JsonNode;
 
@@ -49,6 +46,14 @@ public class Residents extends Controller {
             deparments.add(new Item<ResidenceType, String>(residenteType, residenteType.getMeaning()));
         }
         return ok(Json.toJson(deparments));
+    }
+
+    public static Result sexes() {
+        List<Item<Sex, String>> sexes = new ArrayList<Item<Sex, String>>();
+        for (Sex sex : Sex.values()) {
+            sexes.add(new Item<Sex, String>(sex, sex.getMeaning()));
+        }
+        return ok(Json.toJson(sexes));
     }
 
     public static Result addResidence(long residentId) {

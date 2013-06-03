@@ -6,11 +6,17 @@
 
         <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
+        <label>Sexe</label>
+        <select ng-model="resident.sex" ng-options="sex.key as sex.value for sex in sexes"></select>
+
         <label>Prénom</label>
         <input type="text" ng-model="resident.firstName" required/>
 
         <label>Nom</label>
         <input type="text" ng-model="resident.lastName" required/>
+
+        <label>Nom de jeune fille</label>
+        <input type="text" ng-model="resident.maidenName"/>
 
         <label>Date de naissance</label>
         <div class="control-group input-append">

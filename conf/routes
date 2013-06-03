@@ -17,6 +17,7 @@ POST    /resident/:id/renewResidence    controllers.Residents.renewResidence(id:
 
 GET     /departments                    controllers.Residents.departments()
 GET     /residencetypes                 controllers.Residents.residenceTypes()
+GET     /sexes                          controllers.Residents.sexes()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                   controllers.Assets.at(path="/public", file)

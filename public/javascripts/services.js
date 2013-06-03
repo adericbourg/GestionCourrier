@@ -33,6 +33,12 @@ app.factory('referenceListService', function ($http) {
                 return response.data;
             });
             return promise;
+        },
+        listSexes: function () {
+            var promise = $http.get('/sexes').then(function (response) {
+                return response.data;
+            });
+            return promise;
         }
     }
     return referenceListService;

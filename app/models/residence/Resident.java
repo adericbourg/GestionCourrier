@@ -18,10 +18,12 @@ public class Resident extends Model {
 
     @Id
     public Long id;
+    public Sex sex;
     @Constraints.Required
     public String firstName;
     @Constraints.Required
     public String lastName;
+    public String maidenName;
     public Date birthDate; // TODO Use LocalDate (need to fix JSon mapping)
     public Department followingDepartment;
     public String followedBy;
