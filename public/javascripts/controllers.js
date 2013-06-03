@@ -64,7 +64,7 @@ function NewResidentCtrl($scope, $http, dialog, referenceListService) {
     });
 }
 
-function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
+function ViewResidentCtrl($scope, $http, $dialog, $routeParams, residentService) {
     $scope.resident = {};
 
     $scope.newResidenceDialogOpts = {
@@ -85,6 +85,17 @@ function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
                 $scope.messages.push(result);
             }
         });
+    };
+
+    $scope.renewLatestResidence = function () {
+        $http.post("/resident/" + $scope.resident.id + "/renewResidence").
+            success(function (data, status, headers, config) {
+                // TODO
+            }
+        ).
+            error(function (data, status, headers, config) {
+                // TODO
+            });
     };
 
     residentService.fetchResident($routeParams.residentId).then(function (data) {

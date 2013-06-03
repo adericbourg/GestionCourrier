@@ -53,4 +53,8 @@ public class Residents extends Controller {
     public static Result addResidence(long residentId) {
         return play.mvc.Results.TODO;
     }
+
+    public static Result renewResidence(long residentId) {
+        return play.mvc.Results.TODO;
+    }
 }
