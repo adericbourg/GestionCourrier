@@ -122,7 +122,7 @@ function NewResidenceCtrl($scope, $http, dialog, residentId, referenceListServic
 
     $scope.createResidence = function () {
         $scope.messages = [];
-        $http.post("/resident/" + $scope.residentId + "/addResidence", $scope.resident).
+        $http.post("/resident/" + $scope.residentId + "/addResidence", $scope.residence).
             success(function (data, status, headers, config) {
                 dialog.close({type: 'success', msg: "Domiciliation ajoutée"
                 });
