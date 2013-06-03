@@ -10,3 +10,8 @@ var app = angular.module('gestionCourrier', ['ui.bootstrap', '$strap.directives'
             otherwise({redirectTo: '/'})
     });
 
+app.value('$strapConfig', {
+    datepicker: {
+        language: 'fr'
+    }
+});
