@@ -3,6 +3,7 @@ package models.residence;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -24,7 +25,7 @@ public class Resident extends Model {
     public Date birthDate; // TODO Use LocalDate (need to fix JSon mapping)
     public Department followingDepartment;
     public String followedBy;
-    @OneToMany(mappedBy = "resident")
+    @OneToMany(mappedBy = "resident", cascade = CascadeType.ALL)
     public List<Residence> residences;
 
     //
@@ -37,6 +38,6 @@ public class Resident extends Model {
     }
 
     public static Resident byId(Long id) {
-        return FINDER.byId(id);
+        return FINDER.fetch("residences").orderBy("residences.startDate DESC").where().idEq(id).findUnique();
     }
 }
