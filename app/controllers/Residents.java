@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.residence.Department;
+import models.residence.Residence;
 import models.residence.ResidenceType;
 import models.residence.Resident;
 
@@ -51,7 +52,14 @@ public class Residents extends Controller {
     }
 
     public static Result addResidence(long residentId) {
-        return play.mvc.Results.TODO;
+        JsonNode json = request().body().asJson();
+        Residence residence = Json.fromJson(json, Residence.class);
+
+        Resident resident = Resident.byId(residentId);
+        resident.residences.add(residence);
+        resident.save();
+
+        return ok();
     }
 
     public static Result renewResidence(long residentId) {
