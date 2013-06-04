@@ -1,6 +1,5 @@
 package models.residence;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,8 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.codehaus.jackson.map.ext.JodaSerializers;
+import org.joda.time.LocalDate;
+
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
+import io.JodaLocalDateDeserializer;
 
 @Entity
 public class Resident extends Model {
@@ -24,7 +29,9 @@ public class Resident extends Model {
     @Constraints.Required
     public String lastName;
     public String maidenName;
-    public Date birthDate; // TODO Use LocalDate (need to fix JSon mapping)
+    @JsonSerialize(using = JodaSerializers.LocalDateSerializer.class)
+    @JsonDeserialize(using = JodaLocalDateDeserializer.class)
+    public LocalDate birthDate;
     public Department followingDepartment;
     public String followedBy;
     @OneToMany(mappedBy = "resident", cascade = CascadeType.ALL)

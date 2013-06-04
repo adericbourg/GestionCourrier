@@ -8,6 +8,7 @@ import models.residence.*;
 import org.codehaus.jackson.JsonNode;
 
 import play.libs.Json;
+import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
 import controllers.model.Item;
@@ -25,6 +26,7 @@ public class Residents extends Controller {
         return ok(Json.toJson(Resident.byId(id)));
     }
 
+    @BodyParser.Of(BodyParser.Json.class)
     public static Result create() {
         JsonNode json = request().body().asJson();
         Resident resident = Json.fromJson(json, Resident.class);
@@ -56,6 +58,7 @@ public class Residents extends Controller {
         return ok(Json.toJson(sexes));
     }
 
+    @BodyParser.Of(BodyParser.Json.class)
     public static Result addResidence(long residentId) {
         JsonNode json = request().body().asJson();
         Residence residence = Json.fromJson(json, Residence.class);
