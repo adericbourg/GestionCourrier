@@ -7,7 +7,7 @@
 <table class="table">
     <tr>
         <td>Date de naissance</td>
-        <td>{{resident.birthDate | moment}}</td>
+        <td>{{resident.birthDate | localDate}}</td>
     </tr>
     <tr>
         <td>Pôle</td>
@@ -44,8 +44,8 @@
     <tbody ng-repeat="res in resident.residences">
         <tr>
             <td>{{res.residenceType}}</td>
-            <td>{{res.startDate | moment}}</td>
-            <td>{{res.endDate | moment}}</td>
+            <td>{{res.startDate | localDate}}</td>
+            <td>{{res.endDate | localDate}}</td>
             <td>{{res.mailForwardAddress}}</td>
         </tr>
     </tbody>

@@ -16,7 +16,7 @@ app.value('$strapConfig', {
     }
 });
 
-app.filter('moment', function () {
+app.filter('localDate', function () {
     return function (text, format) {
         format = format || 'L';
 
