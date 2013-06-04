@@ -17,11 +17,18 @@ app.value('$strapConfig', {
 });
 
 app.filter('moment', function () {
-    // Usage: {{aDate | moment:'format'}}
-    return function (dateString, format) {
-        if (!format) {
-            format = "L";
+    return function (text, format) {
+        format = format || 'L';
+
+        var pad = function (n, width) {
+            n = n + '';
+            return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
         }
-        return moment(dateString).format(format);
+
+        if (!text) {
+            return 'Invalid date';
+        }
+        var value = text[0] + '-' + pad(text[1], 2) + '-' + pad(text[2], 2);
+        return moment(value, 'YYYY-MM-DD').format(format);
     };
 });

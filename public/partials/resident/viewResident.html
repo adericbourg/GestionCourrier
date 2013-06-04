@@ -42,8 +42,8 @@
     <tbody ng-repeat="res in resident.residences">
         <tr>
             <td>{{res.residenceType}}</td>
-            <td>{{res.startDate}}</td>
-            <td>{{res.endDate}}</td>
+            <td>{{res.startDate | moment}}</td>
+            <td>{{res.endDate | moment}}</td>
             <td>{{res.mailForwardAddress}}</td>
         </tr>
     </tbody>
