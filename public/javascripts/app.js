@@ -18,6 +18,10 @@ app.value('$strapConfig', {
 
 app.filter('localDate', function () {
     return function (text, format) {
+        if (!text) {
+            return;
+        }
+
         format = format || 'L';
 
         var pad = function (n, width) {
@@ -25,9 +29,6 @@ app.filter('localDate', function () {
             return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
         }
 
-        if (!text) {
-            return;
-        }
         var value = text[0] + '-' + pad(text[1], 2) + '-' + pad(text[2], 2);
         return moment(value, 'YYYY-MM-DD').format(format);
     };
