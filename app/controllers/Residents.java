@@ -61,8 +61,11 @@ public class Residents extends Controller {
     @BodyParser.Of(BodyParser.Json.class)
     public static Result addResidence(long residentId) {
         JsonNode json = request().body().asJson();
+
         Residence residence = Json.fromJson(json, Residence.class);
 
+        // Auto-fill the end date.
+        residence.endDate = residence.startDate.plusYears(1).minusDays(1);
 
         Resident resident = Resident.byId(residentId);
         resident.residences.add(residence);
