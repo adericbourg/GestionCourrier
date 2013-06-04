@@ -1,11 +1,12 @@
 package models.residence;
 
 import com.avaje.ebean.annotation.EnumValue;
+import core.io.serialization.StaticList;
 
 /**
  * @author adericbourg
  */
-public enum ResidenceType {
+public enum ResidenceType implements StaticList {
 
     @EnumValue("AME")
     STATE_MEDICAL_SUPPORT("AME"),

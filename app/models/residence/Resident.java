@@ -15,6 +15,7 @@ import org.joda.time.LocalDate;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import core.io.serialization.JodaLocalDateDeserializer;
+import core.io.serialization.StaticListSerializer;
 
 @Entity
 public class Resident extends Model {
@@ -24,6 +25,7 @@ public class Resident extends Model {
     @Id
     public Long id;
 
+    @JsonSerialize(using = StaticListSerializer.class)
     public Sex sex;
 
     @Constraints.Required
@@ -38,6 +40,7 @@ public class Resident extends Model {
     @JsonDeserialize(using = JodaLocalDateDeserializer.class)
     public LocalDate birthDate;
 
+    @JsonSerialize(using = StaticListSerializer.class)
     public Department followingDepartment;
 
     public String followedBy;

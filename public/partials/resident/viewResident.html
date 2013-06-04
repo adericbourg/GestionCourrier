@@ -11,7 +11,7 @@
     </tr>
     <tr>
         <td>Pôle</td>
-        <td>{{resident.followingDepartment}}</td>
+        <td>{{resident.followingDepartment | staticList}}</td>
     </tr>
     <tr>
         <td>Suivi par</td>
@@ -34,20 +34,20 @@
 
 <table class="table table-striped" ng-show="resident.residences.length">
     <thead>
-        <tr>
-            <th class="span3">Type</th>
-            <th class="span3">Date de début</th>
-            <th class="span3">Date de fin</th>
-            <th class="span3">Suivi courrier</th>
-        </tr>
+    <tr>
+        <th class="span3">Type</th>
+        <th class="span3">Date de début</th>
+        <th class="span3">Date de fin</th>
+        <th class="span3">Suivi courrier</th>
+    </tr>
     </thead>
     <tbody ng-repeat="res in resident.residences">
-        <tr>
-            <td>{{res.residenceType}}</td>
-            <td>{{res.startDate | localDate}}</td>
-            <td>{{res.endDate | localDate}}</td>
-            <td>{{res.mailForwardAddress}}</td>
-        </tr>
+    <tr>
+        <td>{{res.residenceType | staticList}}</td>
+        <td>{{res.startDate | localDate}}</td>
+        <td>{{res.endDate | localDate}}</td>
+        <td>{{res.mailForwardAddress}}</td>
+    </tr>
     </tbody>
 </table>
 

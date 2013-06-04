@@ -1,9 +1,11 @@
 package models.residence;
 
+import core.io.serialization.StaticList;
+
 /**
  * @author adericbourg
  */
-public enum Sex {
+public enum Sex implements StaticList {
 
     MALE("H"),
     FEMALE("F");

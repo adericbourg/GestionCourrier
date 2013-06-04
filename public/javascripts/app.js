@@ -32,3 +32,12 @@ app.filter('localDate', function () {
         return moment(value, 'YYYY-MM-DD').format(format);
     };
 });
+
+app.filter('staticList', function () {
+    return function (text) {
+        if (!text) {
+            return '';
+        }
+        return text.value;
+    };
+})
