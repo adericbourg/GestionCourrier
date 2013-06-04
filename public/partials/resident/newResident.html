@@ -1,4 +1,4 @@
-<form ng-submit="createResident()">
+<form class="form-horizontal" ng-submit="createResident()">
     <div class="modal-header">
         <h1>Nouveau domicilié</h1>
     </div>
@@ -6,29 +6,61 @@
 
         <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
-        <label>Sexe</label>
-        <select ng-model="resident.sex" ng-options="sex.key as sex.value for sex in sexes"></select>
+        <div class="control-group">
+            <label class="control-label">Sexe</label>
 
-        <label>Prénom</label>
-        <input type="text" ng-model="resident.firstName" required/>
-
-        <label>Nom</label>
-        <input type="text" ng-model="resident.lastName" required/>
-
-        <label>Nom de jeune fille</label>
-        <input type="text" ng-model="resident.maidenName"/>
-
-        <label>Date de naissance</label>
-        <div class="control-group input-append">
-            <input type="text" ng-model="resident.birthDate" bs-datepicker>
-            <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
+            <div class="controls">
+                <select ng-model="resident.sex" ng-options="sex.key as sex.value for sex in sexes"></select>
+            </div>
         </div>
 
-        <label>Pôle</label>
-        <select ng-model="resident.followingDepartment" ng-options="dep.key as dep.value for dep in departments"></select>
+        <div class="control-group">
+            <label class="control-label">Prénom</label>
 
-        <label>Suivi par</label>
-        <input type="text" ng-model="resident.followedBy" required/>
+            <div class="controls">
+                <input type="text" ng-model="resident.firstName" required/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Nom</label>
+
+            <div class="controls">
+                <input type="text" ng-model="resident.lastName" required/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Nom de jeune fille</label>
+
+            <div class="controls">
+                <input type="text" ng-model="resident.maidenName"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Date de naissance</label>
+
+            <div class="controls">
+                <div class="input-append">
+                    <input type="text" ng-model="resident.birthDate" bs-datepicker>
+                    <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Pôle</label>
+
+            <div class="controls">
+                <select ng-model="resident.followingDepartment"
+                        ng-options="dep.key as dep.value for dep in departments"></select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Suivi par</label>
+
+            <div class="controls">
+                <input type="text" ng-model="resident.followedBy" required/>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary">Créer</button>
