@@ -9,8 +9,10 @@
         <div class="control-group">
             <label class="control-label">Sexe</label>
 
-            <div class="controls">
-                <select ng-model="resident.sex" ng-options="sex.key as sex.value for sex in sexes"></select>
+            <div class="controls" ng-repeat="sex in sexes">
+                <label class="radio">
+                    <input type="radio" name="resident.sex" ng-model="resident.sex" ng-value="sex.key"/> {{sex.value}}
+                </label>
             </div>
         </div>
 
