@@ -20,7 +20,7 @@ app.filter('moment', function () {
     // Usage: {{aDate | moment:'format'}}
     return function (dateString, format) {
         if (!format) {
-            format = "dd/MM/yyyy";
+            format = "L";
         }
         return moment(dateString).format(format);
     };
