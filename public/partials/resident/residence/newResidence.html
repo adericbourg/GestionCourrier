@@ -1,17 +1,28 @@
-<form ng-submit="createResidence()">
+<form class="form-horizontal" ng-submit="createResidence()">
     <div class="modal-header">
         <h1>Nouvelle domiciliation</h1>
     </div>
     <div class="modal-body">
         <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
-        <label>Type de domiciliation</label>
-        <select ng-model="residence.residenceType" ng-options="residenceType.key as residenceType.value for residenceType in residenceTypes"></select>
+        <div class="control-group">
+            <label class="control-label">Type de domiciliation</label>
 
-        <label>Date de début</label>
-        <div class="control-group input-append">
-            <input type="text" ng-model="residence.startDate" bs-datepicker>
-            <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
+            <div class="controls">
+                <select ng-model="residence.residenceType"
+                        ng-options="residenceType.key as residenceType.value for residenceType in residenceTypes"></select>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">Date de début</label>
+
+            <div class="controls">
+                <div class="input-append">
+                    <input type="text" ng-model="residence.startDate" bs-datepicker>
+                    <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal-footer">
