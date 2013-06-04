@@ -98,6 +98,7 @@ function ViewResidentCtrl($scope, $http, $dialog, $routeParams, residentService)
         var d = $dialog.dialog($scope.newResidenceDialogOpts);
         d.open().then(function (result) {
             if (result) {
+                fetchResidences();
                 $scope.messages.push(result);
             }
         });
@@ -107,6 +108,7 @@ function ViewResidentCtrl($scope, $http, $dialog, $routeParams, residentService)
         var d = $dialog.dialog($scope.renewResidenceDialogOpts);
         d.open().then(function (result) {
             if (result) {
+                fetchResidences();
                 $scope.messages.push(result);
             }
         });
@@ -115,6 +117,12 @@ function ViewResidentCtrl($scope, $http, $dialog, $routeParams, residentService)
     residentService.fetchResident($routeParams.residentId).then(function (data) {
         $scope.resident = data;
     });
+
+    var fetchResidences = function () {
+        residentService.fetchResidences($scope.resident.id).then(function (data) {
+            $scope.resident.residences = data;
+        });
+    }
 }
 
 function EditResidentCtrl($scope, $http, $location) {
@@ -133,8 +141,7 @@ function NewResidenceCtrl($scope, $http, dialog, residentId, referenceListServic
         $scope.messages = [];
         $http.post("/resident/" + $scope.residentId + "/addResidence", $scope.residence).
             success(function (data, status, headers, config) {
-                dialog.close({type: 'success', msg: "Domiciliation ajoutée"
-                });
+                dialog.close({type: 'success', msg: "Domiciliation ajoutée"});
             }
         ).
             error(function (data, status, headers, config) {

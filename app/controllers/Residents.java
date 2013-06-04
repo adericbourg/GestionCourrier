@@ -26,6 +26,10 @@ public class Residents extends Controller {
         return ok(Json.toJson(Resident.byId(id)));
     }
 
+    public static Result residences(Long residentId) {
+        return ok(Json.toJson(Resident.byId(residentId).residences));
+    }
+
     @BodyParser.Of(BodyParser.Json.class)
     public static Result create() {
         JsonNode json = request().body().asJson();

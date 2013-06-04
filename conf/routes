@@ -9,6 +9,7 @@ GET     /                               controllers.Assets.at(path="/public", fi
 GET     /residents                      controllers.Residents.allResidents()
 
 GET     /resident/:id                   controllers.Residents.resident(id: Long)
+GET     /resident/:id/residences        controllers.Residents.residences(id: Long)
 POST    /resident/create                controllers.Residents.create()
 POST    /resident/:id/addResidence      controllers.Residents.addResidence(id: Long)
 POST    /resident/:id/renewResidence    controllers.Residents.renewResidence(id: Long)

@@ -15,6 +15,12 @@ app.factory('residentService', function ($http) {
                 return response.data;
             });
             return promise;
+        },
+        fetchResidences: function (id) {
+            var promise = $http.get('/resident/' + id + '/residences').then(function (response) {
+                return response.data;
+            });
+            return promise;
         }
     };
     return residentService;
