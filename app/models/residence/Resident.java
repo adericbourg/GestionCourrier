@@ -1,15 +1,15 @@
 package models.residence;
 
+import static core.util.Collections.first;
+
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.codehaus.jackson.map.ext.JodaSerializers;
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 
 import play.data.validation.Constraints;
@@ -20,7 +20,8 @@ import core.io.serialization.StaticListSerializer;
 @Entity
 public class Resident extends Model {
 
-    private static final Finder<Long, Resident> FINDER = new Finder<Long, Resident>(Long.class, Resident.class);
+    private static final Finder<Long, Resident> FINDER = new Finder<Long, Resident>(
+            Long.class, Resident.class);
 
     @Id
     public Long id;
@@ -50,6 +51,24 @@ public class Resident extends Model {
 
     //
 
+    @Transient
+    public Residence getLatestResidence() {
+        return first(residences);
+    }
+
+    @Transient
+    public int getResidenceProgress() {
+        Residence latestResidence = getLatestResidence();
+        if (latestResidence == null
+                || LocalDate.now().isAfter(latestResidence.endDate)) {
+            return -1;
+        }
+        return (int) (100 * (1 - (((double) Days.daysBetween(LocalDate.now(),
+                latestResidence.endDate).getDays()) / 365)));
+    }
+
+    //
+
     /**
      * Fetch all residents. * @return All residents.
      */
@@ -58,6 +77,7 @@ public class Resident extends Model {
     }
 
     public static Resident byId(Long id) {
-        return FINDER.fetch("residences").orderBy("residences.startDate DESC").where().idEq(id).findUnique();
+        return FINDER.fetch("residences").orderBy("residences.startDate DESC")
+                .where().idEq(id).findUnique();
     }
 }

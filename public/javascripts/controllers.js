@@ -71,6 +71,7 @@ function NewResidentCtrl($scope, $http, dialog, referenceListService) {
 
 function ViewResidentCtrl($scope, $http, $dialog, $routeParams, residentService) {
     $scope.resident = {};
+    $scope.residenceProgress = {};
 
     $scope.newResidenceDialogOpts = {
         backdrop: true,
@@ -98,7 +99,7 @@ function ViewResidentCtrl($scope, $http, $dialog, $routeParams, residentService)
         var d = $dialog.dialog($scope.newResidenceDialogOpts);
         d.open().then(function (result) {
             if (result) {
-                fetchResidences();
+                refresh();
                 $scope.messages.push(result);
             }
         });
@@ -108,21 +109,36 @@ function ViewResidentCtrl($scope, $http, $dialog, $routeParams, residentService)
         var d = $dialog.dialog($scope.renewResidenceDialogOpts);
         d.open().then(function (result) {
             if (result) {
-                fetchResidences();
+                refresh();
                 $scope.messages.push(result);
             }
         });
     };
 
-    residentService.fetchResident($routeParams.residentId).then(function (data) {
-        $scope.resident = data;
-    });
+    var computeResidenceProgress = function () {
+        var value = $scope.resident.residenceProgress;
+        if (value < 0) {
+            return;
+        }
+        var type;
+        if (value < 50) {
+            type = 'info';
+        } else if (value < 75) {
+            type = 'warning';
+        } else {
+            type = 'danger';
+        }
+        $scope.residenceProgress = {value: value, type: type};
+    }
 
-    var fetchResidences = function () {
-        residentService.fetchResidences($scope.resident.id).then(function (data) {
-            $scope.resident.residences = data;
+    var refresh = function () {
+        residentService.fetchResident($routeParams.residentId).then(function (data) {
+            $scope.resident = data;
+            computeResidenceProgress();
         });
     }
+
+    refresh();
 }
 
 function EditResidentCtrl($scope, $http, $location) {

@@ -6,6 +6,11 @@
     <div class="span8">
         <h2>Domiciliation</h2>
 
+        <div ng-show="residenceProgress.value">
+            État de la domiciliation
+            <progress value="residenceProgress"></progress>
+        </div>
+
         <div class="well">
             <span ng-hide="resident.residences.length">
                 Aucune domiciliation connue.
