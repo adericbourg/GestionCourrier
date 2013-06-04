@@ -22,7 +22,7 @@
 
 <h2>Domiciliation</h2>
 
-<button class="btn btn-primary btn-small" ng-click="renewLatestResidence()">
+<button class="btn btn-primary btn-small" ng-click="renewLatestResidence()" ng-show="resident.residences.length">
     <i class="icon-refresh icon-white"></i> Renouveler la dernière domiciliation
 </button>
 <button class="btn btn-small" ng-click="newResidenceDialog()">Nouvelle domiciliation</button>

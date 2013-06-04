@@ -37,4 +37,14 @@ public class Residence extends Model {
     @JsonIgnore
     @ManyToOne
     public Resident resident;
+
+    //
+
+    @Transient
+    public Residence copy() {
+        Residence copy = new Residence();
+        copy.residenceType = residenceType;
+        copy.mailForwardAddress = mailForwardAddress;
+        return copy;
+    }
 }

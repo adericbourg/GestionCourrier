@@ -1,11 +1,14 @@
 package controllers;
 
+import static core.util.Collections.first;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import models.residence.*;
 
 import org.codehaus.jackson.JsonNode;
+import org.joda.time.LocalDate;
 
 import play.libs.Json;
 import play.mvc.BodyParser;
@@ -67,18 +70,32 @@ public class Residents extends Controller {
         JsonNode json = request().body().asJson();
 
         Residence residence = Json.fromJson(json, Residence.class);
+        saveResidence(residentId, residence);
+        return ok();
+    }
 
+    public static Result renewResidence(long residentId) {
+        Residence latestResidence = first(Resident.byId(residentId).residences);
+
+        Residence renewedResidence = latestResidence.copy();
+
+        if (latestResidence.endDate.isAfter(LocalDate.now())) {
+            renewedResidence.startDate = latestResidence.endDate.plusDays(1);
+        } else {
+            renewedResidence.startDate = LocalDate.now();
+        }
+
+        saveResidence(residentId, renewedResidence);
+        return ok();
+    }
+
+    private static void saveResidence(long residentId, Residence residence) {
         // Auto-fill the end date.
         residence.endDate = residence.startDate.plusYears(1).minusDays(1);
 
         Resident resident = Resident.byId(residentId);
         resident.residences.add(residence);
         resident.save();
-
-        return ok();
     }
 
-    public static Result renewResidence(long residentId) {
-        return play.mvc.Results.TODO;
-    }
 }

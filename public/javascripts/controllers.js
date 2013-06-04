@@ -169,11 +169,11 @@ function RenewResidenceCtrl($scope, $http, dialog, resident) {
     $scope.renewResidence = function () {
         $http.post("/resident/" + $scope.resident.id + "/renewResidence").
             success(function (data, status, headers, config) {
-                // TODO
+                dialog.close({type: 'success', msg: "Domiciliation renouvelée"});
             }
         ).
             error(function (data, status, headers, config) {
-                // TODO
+                $scope.messages.push({type: 'error', msg: "Erreur de renouvellement de la domiciliation"});
             });
     }
 
