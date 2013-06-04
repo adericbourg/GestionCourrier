@@ -26,7 +26,7 @@ app.filter('localDate', function () {
         }
 
         if (!text) {
-            return 'Invalid date';
+            return;
         }
         var value = text[0] + '-' + pad(text[1], 2) + '-' + pad(text[2], 2);
         return moment(value, 'YYYY-MM-DD').format(format);
