@@ -83,6 +83,17 @@ function ViewResidentCtrl($scope, $http, $dialog, $routeParams, residentService)
         }}
     };
 
+    $scope.renewResidenceDialogOpts = {
+        backdrop: true,
+        keyboard: true,
+        backdropClick: true,
+        templateUrl: '/assets/partials/resident/residence/renewResidence.html',
+        controller: 'RenewResidenceCtrl',
+        resolve: {resident: function () {
+            return $scope.resident
+        }}
+    };
+
     $scope.newResidenceDialog = function () {
         var d = $dialog.dialog($scope.newResidenceDialogOpts);
         d.open().then(function (result) {
@@ -93,14 +104,12 @@ function ViewResidentCtrl($scope, $http, $dialog, $routeParams, residentService)
     };
 
     $scope.renewLatestResidence = function () {
-        $http.post("/resident/" + $scope.resident.id + "/renewResidence").
-            success(function (data, status, headers, config) {
-                // TODO
+        var d = $dialog.dialog($scope.renewResidenceDialogOpts);
+        d.open().then(function (result) {
+            if (result) {
+                $scope.messages.push(result);
             }
-        ).
-            error(function (data, status, headers, config) {
-                // TODO
-            });
+        });
     };
 
     residentService.fetchResident($routeParams.residentId).then(function (data) {
@@ -144,4 +153,24 @@ function NewResidenceCtrl($scope, $http, dialog, residentId, referenceListServic
     referenceListService.listResidenceTypes().then(function (data) {
         $scope.residenceTypes = data;
     });
+}
+
+function RenewResidenceCtrl($scope, $http, dialog, resident) {
+
+    $scope.resident = resident;
+
+    $scope.renewResidence = function () {
+        $http.post("/resident/" + $scope.resident.id + "/renewResidence").
+            success(function (data, status, headers, config) {
+                // TODO
+            }
+        ).
+            error(function (data, status, headers, config) {
+                // TODO
+            });
+    }
+
+    $scope.cancel = function () {
+        dialog.close();
+    };
 }
