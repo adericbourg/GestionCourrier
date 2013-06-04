@@ -23,17 +23,25 @@ public class Resident extends Model {
 
     @Id
     public Long id;
+
     public Sex sex;
+
     @Constraints.Required
     public String firstName;
+
     @Constraints.Required
     public String lastName;
+
     public String maidenName;
+
     @JsonSerialize(using = JodaSerializers.LocalDateSerializer.class)
     @JsonDeserialize(using = JodaLocalDateDeserializer.class)
     public LocalDate birthDate;
+
     public Department followingDepartment;
+
     public String followedBy;
+
     @OneToMany(mappedBy = "resident", cascade = CascadeType.ALL)
     public List<Residence> residences;
 

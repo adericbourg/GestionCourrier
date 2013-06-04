@@ -19,15 +19,19 @@ public class Residence extends Model {
 
     @Id
     public Long id;
+
     @Enumerated(EnumType.STRING)
     public ResidenceType residenceType;
+
     @JsonSerialize(using = JodaSerializers.LocalDateSerializer.class)
     @JsonDeserialize(using = JodaLocalDateDeserializer.class)
     public LocalDate startDate;
+
     @JsonSerialize(using = JodaSerializers.LocalDateSerializer.class)
     @JsonDeserialize(using = JodaLocalDateDeserializer.class)
     public LocalDate endDate;
     public String mailForwardAddress;
+
     @JsonIgnore
     @ManyToOne
     public Resident resident;
