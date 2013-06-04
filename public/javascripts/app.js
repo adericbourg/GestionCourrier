@@ -15,3 +15,13 @@ app.value('$strapConfig', {
         language: 'fr'
     }
 });
+
+app.filter('moment', function () {
+    // Usage: {{aDate | moment:'format'}}
+    return function (dateString, format) {
+        if (!format) {
+            format = "dd/MM/yyyy";
+        }
+        return moment(dateString).format(format);
+    };
+});
