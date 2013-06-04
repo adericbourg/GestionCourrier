@@ -1,4 +1,4 @@
-package io;
+package core.io.serialization;
 
 import java.io.IOException;
 

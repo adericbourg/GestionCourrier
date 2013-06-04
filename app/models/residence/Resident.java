@@ -14,7 +14,7 @@ import org.joda.time.LocalDate;
 
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
-import io.JodaLocalDateDeserializer;
+import core.io.serialization.JodaLocalDateDeserializer;
 
 @Entity
 public class Resident extends Model {
