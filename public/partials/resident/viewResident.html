@@ -2,52 +2,59 @@
 
 <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
-<h2>Informations de base</h2>
+<div class="row">
+    <div class="span8">
+        <h2>Domiciliation</h2>
 
-<table class="table">
-    <tr>
-        <td>Date de naissance</td>
-        <td>{{resident.birthDate | localDate}}</td>
-    </tr>
-    <tr>
-        <td>Pôle</td>
-        <td>{{resident.followingDepartment | staticList}}</td>
-    </tr>
-    <tr>
-        <td>Suivi par</td>
-        <td>{{resident.followedBy}}</td>
-    </tr>
-</table>
+        <div class="well">
+            <span ng-hide="resident.residences.length">
+                Aucune domiciliation connue.
+            </span>
 
+            <table class="table" ng-show="resident.residences.length">
+                <thead>
+                <tr>
+                    <th class="span3">Type</th>
+                    <th class="span3">Date de début</th>
+                    <th class="span3">Date de fin</th>
+                    <th class="span3">Suivi courrier</th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="res in resident.residences">
+                <tr>
+                    <td>{{res.residenceType | staticList}}</td>
+                    <td>{{res.startDate | localDate}}</td>
+                    <td>{{res.endDate | localDate}}</td>
+                    <td>{{res.mailForwardAddress}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="span4">
+        <div class="well">
+            <button class="btn btn-primary btn-block" ng-click="renewLatestResidence()"
+                    ng-show="resident.residences.length">
+                <i class="icon-refresh icon-white"></i> Renouveler la dernière domiciliation
+            </button>
+            <button class="btn btn-block" ng-click="newResidenceDialog()">Nouvelle domiciliation</button>
+        </div>
+        <div class="well">
+            <table class="table">
+                <tr>
+                    <td>Date de naissance</td>
+                    <td>{{resident.birthDate | localDate}}</td>
+                </tr>
+                <tr>
+                    <td>Pôle</td>
+                    <td>{{resident.followingDepartment | staticList}}</td>
+                </tr>
+                <tr>
+                    <td>Suivi par</td>
+                    <td>{{resident.followedBy}}</td>
+                </tr>
+            </table>
+        </div>
 
-<h2>Domiciliation</h2>
-
-<button class="btn btn-primary btn-small" ng-click="renewLatestResidence()" ng-show="resident.residences.length">
-    <i class="icon-refresh icon-white"></i> Renouveler la dernière domiciliation
-</button>
-<button class="btn btn-small" ng-click="newResidenceDialog()">Nouvelle domiciliation</button>
-
-<div class="well" ng-hide="resident.residences.length">
-    Aucune domiciliation connue.
+    </div>
 </div>
-
-
-<table class="table table-striped" ng-show="resident.residences.length">
-    <thead>
-    <tr>
-        <th class="span3">Type</th>
-        <th class="span3">Date de début</th>
-        <th class="span3">Date de fin</th>
-        <th class="span3">Suivi courrier</th>
-    </tr>
-    </thead>
-    <tbody ng-repeat="res in resident.residences">
-    <tr>
-        <td>{{res.residenceType | staticList}}</td>
-        <td>{{res.startDate | localDate}}</td>
-        <td>{{res.endDate | localDate}}</td>
-        <td>{{res.mailForwardAddress}}</td>
-    </tr>
-    </tbody>
-</table>
-
