@@ -5,7 +5,7 @@ package models.residence;
  */
 public enum Sex {
 
-    MALE("M"),
+    MALE("H"),
     FEMALE("F");
 
     private final String meaning;
