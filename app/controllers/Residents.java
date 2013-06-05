@@ -1,11 +1,8 @@
 package controllers;
 
 import static core.util.Collections.first;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import models.residence.*;
+import models.residence.Residence;
+import models.residence.Resident;
 
 import org.codehaus.jackson.JsonNode;
 import org.joda.time.LocalDate;
@@ -14,7 +11,6 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
-import controllers.model.Item;
 
 /**
  * @author adericbourg
@@ -39,30 +35,6 @@ public class Residents extends Controller {
         Resident resident = Json.fromJson(json, Resident.class);
         resident.save();
         return ok();
-    }
-
-    public static Result departments() {
-        List<Item<Department, String>> deparments = new ArrayList<Item<Department, String>>();
-        for (Department department : Department.values()) {
-            deparments.add(new Item<Department, String>(department, department.getMeaning()));
-        }
-        return ok(Json.toJson(deparments));
-    }
-
-    public static Result residenceTypes() {
-        List<Item<ResidenceType, String>> deparments = new ArrayList<Item<ResidenceType, String>>();
-        for (ResidenceType residenteType : ResidenceType.values()) {
-            deparments.add(new Item<ResidenceType, String>(residenteType, residenteType.getMeaning()));
-        }
-        return ok(Json.toJson(deparments));
-    }
-
-    public static Result sexes() {
-        List<Item<Sex, String>> sexes = new ArrayList<Item<Sex, String>>();
-        for (Sex sex : Sex.values()) {
-            sexes.add(new Item<Sex, String>(sex, sex.getMeaning()));
-        }
-        return ok(Json.toJson(sexes));
     }
 
     @BodyParser.Of(BodyParser.Json.class)
@@ -97,5 +69,4 @@ public class Residents extends Controller {
         resident.residences.add(residence);
         resident.save();
     }
-
 }
