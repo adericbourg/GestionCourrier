@@ -16,6 +16,7 @@ function ResidentCtrl($scope, $dialog, residentService) {
     $scope.newResidentDialog = function () {
         var d = $dialog.dialog($scope.newResidentDialogOpts);
         d.open().then(function (result) {
+            $scope.messages = [];
             if (result) {
                 $scope.messages.push(result);
                 refresh();
