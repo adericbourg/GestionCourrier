@@ -51,11 +51,11 @@
         <!-- Sidebar -->
         <div class="span2">
             <div class="well sidebar-nav">
-                <ul class="nav nav-list">
+                <ul class="nav nav-list" ng-controller="NavigationCtrl">
                     <li class="nav-header">Navigation</li>
-                    <li class="active"><a href="#"><i class="icon-home"></i> Domiciliés</a></li>
-                    <li><a href="#"><i class="icon-inbox"></i> Enregistrement courrier</a></li>
-                    <li><a href="#"><i class="icon-envelope"></i> Distribution courrier</a></li>
+                    <li ng-class="navClass('resident')"><a ng-href="#/"><i class="icon-home"></i> Domiciliés</a></li>
+                    <li ng-class="navClass('inbox')"><a href="#"><i class="icon-inbox"></i> Enregistrement courrier</a></li>
+                    <li ng-class="navClass('outbox')"><a href="#"><i class="icon-envelope"></i> Distribution courrier</a></li>
                 </ul>
             </div> <!--/.well -->
         </div> <!--/span-->
