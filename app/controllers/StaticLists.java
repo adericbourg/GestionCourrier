@@ -13,6 +13,8 @@ import controllers.model.Item;
 import core.io.serialization.StaticList;
 
 /**
+ * Controller for static lists. Serves all static lists sorted by displayed value.
+ * 
  * @author adericbourg
  */
 public class StaticLists extends Controller {

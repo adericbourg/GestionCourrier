@@ -13,6 +13,8 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 /**
+ * Resident controller. Handles all I/O for residents.
+ * 
  * @author adericbourg
  */
 public class Residents extends Controller {
