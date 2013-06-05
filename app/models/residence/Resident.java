@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.codehaus.jackson.map.ext.JodaSerializers;
@@ -18,10 +19,10 @@ import core.io.serialization.JodaLocalDateDeserializer;
 import core.io.serialization.StaticListSerializer;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Resident extends Model {
 
-    private static final Finder<Long, Resident> FINDER = new Finder<Long, Resident>(
-            Long.class, Resident.class);
+    private static final Finder<Long, Resident> FINDER = new Finder<Long, Resident>(Long.class, Resident.class);
 
     @Id
     public Long id;
@@ -59,12 +60,10 @@ public class Resident extends Model {
     @Transient
     public int getResidenceProgress() {
         Residence latestResidence = getLatestResidence();
-        if (latestResidence == null
-                || LocalDate.now().isAfter(latestResidence.endDate)) {
+        if (latestResidence == null || LocalDate.now().isAfter(latestResidence.endDate)) {
             return -1;
         }
-        return (int) (100 * (1 - (((double) Days.daysBetween(LocalDate.now(),
-                latestResidence.endDate).getDays()) / 365)));
+        return (int) (100 * (1 - (((double) Days.daysBetween(LocalDate.now(), latestResidence.endDate).getDays()) / 365)));
     }
 
     //
@@ -77,7 +76,6 @@ public class Resident extends Model {
     }
 
     public static Resident byId(Long id) {
-        return FINDER.fetch("residences").orderBy("residences.startDate DESC")
-                .where().idEq(id).findUnique();
+        return FINDER.fetch("residences").orderBy("residences.startDate DESC").where().idEq(id).findUnique();
     }
 }

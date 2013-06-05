@@ -150,7 +150,7 @@ function EditResidentCtrl($scope, $http, $location, $routeParams, residentServic
     $scope.updateResident = function () {
         $http.post("/resident/" + $scope.resident.id + "/update", $scope.resident).
             success(function (data, status, headers, config) {
-                $location.path("#/resident/" + $scope.resident.id);
+                $location.path("/#/resident/" + $scope.resident.id);
             }
         ).
             error(function (data, status, headers, config) {
