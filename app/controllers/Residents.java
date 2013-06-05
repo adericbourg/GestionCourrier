@@ -23,14 +23,31 @@ public class Residents extends Controller {
         return ok(Json.toJson(Resident.findAll()));
     }
 
-    public static Result resident(Long id) {
-        return ok(Json.toJson(Resident.byId(id)));
+    /**
+     * Fetches resident detail for supplied resident id.
+     * 
+     * @param residentId Resident id.
+     * @return Resident detail.
+     */
+    public static Result resident(Long residentId) {
+        return ok(Json.toJson(Resident.byId(residentId)));
     }
 
+    /**
+     * Fetches all residences for specified resident.
+     * 
+     * @param residentId Resident id.
+     * @return Residences for specified resident.
+     */
     public static Result residences(Long residentId) {
         return ok(Json.toJson(Resident.byId(residentId).residences));
     }
 
+    /**
+     * Create new resident (POST).
+     * 
+     * @return 200 when success.
+     */
     @BodyParser.Of(BodyParser.Json.class)
     public static Result create() {
         JsonNode json = request().body().asJson();
@@ -39,6 +56,12 @@ public class Residents extends Controller {
         return ok();
     }
 
+    /**
+     * Update resident (POST) for specified id.
+     * 
+     * @param residentId Resident id.
+     * @return 200 when success.
+     */
     @BodyParser.Of(BodyParser.Json.class)
     public static Result updateResident(long residentId) {
         JsonNode json = request().body().asJson();
@@ -57,6 +80,12 @@ public class Residents extends Controller {
         return ok();
     }
 
+    /**
+     * Add new residence (POST) for specified resident.
+     * 
+     * @param residentId Resident id.
+     * @return 200 when success.
+     */
     @BodyParser.Of(BodyParser.Json.class)
     public static Result addResidence(long residentId) {
         JsonNode json = request().body().asJson();
@@ -66,8 +95,21 @@ public class Residents extends Controller {
         return ok();
     }
 
+    /**
+     * Renew residence for specified resident.
+     * <ul>
+     * <li>If the latest residence already expired, starts new residence on current day.</li>
+     * <li>If the latest residence ends in the future, starts the new residence the following day the previous one ends.</li>
+     * </ul>
+     * 
+     * @param residentId Resident id.
+     * @return 200 when success, 400 when no residente exists for specified user.
+     */
     public static Result renewResidence(long residentId) {
         Residence latestResidence = first(Resident.byId(residentId).residences);
+        if (latestResidence == null) {
+            return badRequest();
+        }
 
         Residence renewedResidence = latestResidence.copy();
 
@@ -89,5 +131,4 @@ public class Residents extends Controller {
         resident.residences.add(residence);
         resident.save();
     }
-
 }

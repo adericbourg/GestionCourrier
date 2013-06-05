@@ -29,14 +29,29 @@ public class StaticLists extends Controller {
         }
     };
 
+    /**
+     * Lists all departments.
+     * 
+     * @return All departments.
+     */
     public static Result departments() {
         return toJson(Department.values());
     }
 
+    /**
+     * List all residence types.
+     * 
+     * @return All residence types.
+     */
     public static Result residenceTypes() {
         return toJson(ResidenceType.values());
     }
 
+    /**
+     * Lists all genders.
+     * 
+     * @return All genders.
+     */
     public static Result genders() {
         return toJson(Gender.values());
     }

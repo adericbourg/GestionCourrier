@@ -1,4 +1,4 @@
-function ResidentCtrl($scope, $dialog, residentService) {
+function AllResidentsCtrl($scope, $dialog, residentService) {
     $scope.messages = [];
 
     $scope.tableSortPredicate = "lastName";
