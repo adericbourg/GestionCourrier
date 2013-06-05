@@ -1,9 +1,11 @@
 package core.io.serialization;
 
+import java.io.Serializable;
+
 /**
  * @author adericbourg
  */
-public interface StaticList {
+public interface StaticList extends Serializable {
 
     String name();
 
