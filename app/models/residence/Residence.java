@@ -10,7 +10,6 @@ import org.joda.time.LocalDate;
 
 import play.db.ebean.Model;
 import core.io.serialization.JodaLocalDateDeserializer;
-import core.io.serialization.StaticListSerializer;
 
 /**
  * @author adericbourg
@@ -21,7 +20,6 @@ public class Residence extends Model {
     @Id
     public Long id;
 
-    @JsonSerialize(using = StaticListSerializer.class)
     @Enumerated(EnumType.STRING)
     public ResidenceType residenceType;
 

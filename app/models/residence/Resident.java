@@ -27,7 +27,6 @@ public class Resident extends Model {
     @Id
     public Long id;
 
-    @JsonSerialize(using = StaticListSerializer.class)
     public Gender gender;
 
     @Constraints.Required
@@ -42,7 +41,6 @@ public class Resident extends Model {
     @JsonDeserialize(using = JodaLocalDateDeserializer.class)
     public LocalDate birthDate;
 
-    @JsonSerialize(using = StaticListSerializer.class)
     public Department followingDepartment;
 
     public String followedBy;
