@@ -5,14 +5,14 @@ import core.io.serialization.StaticList;
 /**
  * @author adericbourg
  */
-public enum Sex implements StaticList {
+public enum Gender implements StaticList {
 
     MALE("H"),
     FEMALE("F");
 
     private final String meaning;
 
-    private Sex(String meaning) {
+    private Gender(String meaning) {
         this.meaning = meaning;
     }
 

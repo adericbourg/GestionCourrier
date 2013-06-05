@@ -7,11 +7,12 @@
         <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
         <div class="control-group">
-            <label class="control-label">Sexe</label>
+            <label class="control-label">Genre</label>
 
-            <div class="controls" ng-repeat="sex in sexes">
+            <div class="controls" ng-repeat="gender in genders">
                 <label class="radio">
-                    <input type="radio" name="resident.sex" ng-model="resident.sex" ng-value="sex.key"/> {{sex.value}}
+                    <input type="radio" name="resident.gender" ng-model="resident.gender" ng-value="gender.key"/>
+                    {{gender.value}}
                 </label>
             </div>
         </div>

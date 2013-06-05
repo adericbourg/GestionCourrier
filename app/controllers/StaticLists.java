@@ -4,8 +4,8 @@ import java.text.Collator;
 import java.util.*;
 
 import models.residence.Department;
+import models.residence.Gender;
 import models.residence.ResidenceType;
-import models.residence.Sex;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -37,8 +37,8 @@ public class StaticLists extends Controller {
         return toJson(ResidenceType.values());
     }
 
-    public static Result sexes() {
-        return toJson(Sex.values());
+    public static Result genders() {
+        return toJson(Gender.values());
     }
 
     protected static <T extends StaticList> Result toJson(T[] values) {

@@ -40,8 +40,8 @@ app.factory('referenceListService', function ($http) {
             });
             return promise;
         },
-        listSexes: function () {
-            var promise = $http.get('/sexes').then(function (response) {
+        listGenders: function () {
+            var promise = $http.get('/genders').then(function (response) {
                 return response.data;
             });
             return promise;

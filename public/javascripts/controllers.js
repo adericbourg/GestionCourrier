@@ -41,7 +41,7 @@ function NewResidentCtrl($scope, $http, dialog, referenceListService) {
     $scope.messages = [];
     $scope.resident = {};
 
-    $scope.sexes = [];
+    $scope.genders = [];
     $scope.departments = [];
 
     $scope.cancel = function () {
@@ -65,8 +65,8 @@ function NewResidentCtrl($scope, $http, dialog, referenceListService) {
         $scope.departments = data;
     });
 
-    referenceListService.listSexes().then(function (data) {
-        $scope.sexes = data;
+    referenceListService.listGenders().then(function (data) {
+        $scope.genders = data;
     });
 }
 

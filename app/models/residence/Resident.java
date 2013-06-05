@@ -27,7 +27,7 @@ public class Resident extends Model {
     public Long id;
 
     @JsonSerialize(using = StaticListSerializer.class)
-    public Sex sex;
+    public Gender gender;
 
     @Constraints.Required
     public String firstName;
