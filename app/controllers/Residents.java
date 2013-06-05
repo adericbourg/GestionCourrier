@@ -44,7 +44,7 @@ public class Residents extends Controller {
     }
 
     /**
-     * Create new resident (POST).
+     * Create new resident (POST). Json body expected.
      * 
      * @return 200 when success.
      */
@@ -57,7 +57,7 @@ public class Residents extends Controller {
     }
 
     /**
-     * Update resident (POST) for specified id.
+     * Update resident (POST) for specified id. Json body expected.
      * 
      * @param residentId Resident id.
      * @return 200 when success.
@@ -81,7 +81,7 @@ public class Residents extends Controller {
     }
 
     /**
-     * Add new residence (POST) for specified resident.
+     * Add new residence (POST) for specified resident. Json body expected.
      * 
      * @param residentId Resident id.
      * @return 200 when success.
