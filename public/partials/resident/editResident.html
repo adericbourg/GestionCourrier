@@ -1,5 +1,7 @@
 <h1>{{resident.firstName}} {{resident.lastName}} <span ng-show="resident.maidenName">({{resident.maidenName}})</span></h1>
 
+<alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
 <form class="form-horizontal" ng-submit="updateResident()">
 
     <div class="control-group">

@@ -40,6 +40,24 @@ public class Residents extends Controller {
     }
 
     @BodyParser.Of(BodyParser.Json.class)
+    public static Result updateResident(long residentId) {
+        JsonNode json = request().body().asJson();
+        Resident updatedResident = Json.fromJson(json, Resident.class);
+
+        Resident baseResident = Resident.byId(residentId);
+        baseResident.gender = updatedResident.gender;
+        baseResident.firstName = updatedResident.firstName;
+        baseResident.lastName = updatedResident.lastName;
+        baseResident.maidenName = updatedResident.maidenName;
+        baseResident.birthDate = updatedResident.birthDate;
+        baseResident.followedBy = updatedResident.followedBy;
+        baseResident.followingDepartment = updatedResident.followingDepartment;
+        baseResident.save();
+
+        return ok();
+    }
+
+    @BodyParser.Of(BodyParser.Json.class)
     public static Result addResidence(long residentId) {
         JsonNode json = request().body().asJson();
 
@@ -71,4 +89,5 @@ public class Residents extends Controller {
         resident.residences.add(residence);
         resident.save();
     }
+
 }

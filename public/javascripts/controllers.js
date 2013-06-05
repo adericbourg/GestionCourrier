@@ -142,12 +142,24 @@ function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
     refresh();
 }
 
-function EditResidentCtrl($scope, $routeParams, residentService, referenceListService) {
+function EditResidentCtrl($scope, $http, $location, $routeParams, residentService, referenceListService) {
+    $scope.messages = [];
     $scope.resident = {};
     $scope.departments = [];
 
     $scope.updateResident = function () {
-        return;
+        $http.post("/resident/" + $scope.resident.id + "/update", $scope.resident).
+            success(function (data, status, headers, config) {
+                $location.path("#/resident/" + $scope.resident.id);
+            }
+        ).
+            error(function (data, status, headers, config) {
+                $scope.messages.push({type: 'error', msg: "Erreur de mise-à-jour"});
+            });
+    };
+
+    $scope.closeAlert = function (index) {
+        $scope.messages.splice(index, 1);
     };
 
     residentService.fetchResident($routeParams.residentId).then(function (data) {
