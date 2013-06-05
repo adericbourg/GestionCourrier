@@ -1,3 +1,26 @@
-<h1>À faire</h1>
+<h1>{{resident.firstName}} {{resident.lastName}} <span ng-show="resident.maidenName">({{resident.maidenName}})</span></h1>
 
-Modification.
+<form class="form-horizontal" ng-submit="updateResident()">
+
+    <div class="control-group">
+        <label class="control-label">Pôle</label>
+
+        <div class="controls">
+            <select ng-model="resident.followingDepartment.key"
+                    ng-options="dep.key as dep.value for dep in departments"></select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">Suivi par</label>
+
+        <div class="controls">
+            <input type="text" ng-model="resident.followedBy" required/>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <a ng-href="#/resident/{{resident.id}}" class="btn">Annuler</a>
+            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+        </div>
+    </div>
+</form>

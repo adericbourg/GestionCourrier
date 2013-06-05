@@ -70,7 +70,7 @@ function NewResidentCtrl($scope, $http, dialog, referenceListService) {
     });
 }
 
-function ViewResidentCtrl($scope, $http, $dialog, $routeParams, residentService) {
+function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
     $scope.resident = {};
     $scope.residenceProgress = {};
 
@@ -142,8 +142,21 @@ function ViewResidentCtrl($scope, $http, $dialog, $routeParams, residentService)
     refresh();
 }
 
-function EditResidentCtrl($scope, $http, $location) {
-    // TODO
+function EditResidentCtrl($scope, $routeParams, residentService, referenceListService) {
+    $scope.resident = {};
+    $scope.departments = [];
+
+    $scope.updateResident = function () {
+        return;
+    };
+
+    residentService.fetchResident($routeParams.residentId).then(function (data) {
+        $scope.resident = data;
+    });
+
+    referenceListService.listDepartments().then(function (data) {
+        $scope.departments = data;
+    });
 }
 
 function NewResidenceCtrl($scope, $http, dialog, residentId, referenceListService) {
