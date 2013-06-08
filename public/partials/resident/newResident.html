@@ -11,7 +11,7 @@
 
             <div class="controls" ng-repeat="gender in genders">
                 <label class="radio">
-                    <input type="radio" name="resident.gender" ng-model="resident.gender" ng-value="gender.key"/>
+                    <input type="radio" name="resident.gender" ng-model="resident.gender.key" ng-value="gender.key"/>
                     {{gender.value}}
                 </label>
             </div>
@@ -53,7 +53,7 @@
             <label class="control-label">Pôle</label>
 
             <div class="controls">
-                <select ng-model="resident.followingDepartment"
+                <select ng-model="resident.followingDepartment.key"
                         ng-options="dep.key as dep.value for dep in departments"></select>
             </div>
         </div>
