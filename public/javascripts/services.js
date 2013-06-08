@@ -35,6 +35,17 @@ app.factory('residentService', function ($http) {
                 return response.data;
             });
             return promise;
+        },
+        /**
+         * Find a resident by text.
+         * @param text Text search criteria.
+         * @returns {*} List of residents matching search criteria.
+         */
+        findResidents: function (text) {
+            var promise = $http.get('/residents/find/' + text).then(function (response) {
+                return response.data;
+            });
+            return promise;
         }
     };
     return residentService;

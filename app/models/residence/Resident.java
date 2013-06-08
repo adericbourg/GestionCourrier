@@ -2,6 +2,7 @@ package models.residence;
 
 import static core.util.Collections.first;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.*;
@@ -15,14 +16,19 @@ import org.joda.time.LocalDate;
 
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
+
+import com.avaje.ebean.Expr;
+import com.avaje.ebean.Expression;
+import com.avaje.ebean.ExpressionList;
+import com.google.common.base.Strings;
 import core.io.serialization.JodaLocalDateDeserializer;
-import core.io.serialization.StaticListSerializer;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Resident extends Model {
 
-    private static final Finder<Long, Resident> FINDER = new Finder<Long, Resident>(Long.class, Resident.class);
+    private static final Finder<Long, Resident> FINDER = new Finder<Long, Resident>(
+            Long.class, Resident.class);
 
     @Id
     public Long id;
@@ -58,10 +64,22 @@ public class Resident extends Model {
     @Transient
     public int getResidenceProgress() {
         Residence latestResidence = getLatestResidence();
-        if (latestResidence == null || LocalDate.now().isAfter(latestResidence.endDate)) {
+        if (latestResidence == null
+                || LocalDate.now().isAfter(latestResidence.endDate)) {
             return -1;
         }
-        return (int) (100 * (1 - (((double) Days.daysBetween(LocalDate.now(), latestResidence.endDate).getDays()) / 365)));
+        return (int) (100 * (1 - (((double) Days.daysBetween(LocalDate.now(),
+                latestResidence.endDate).getDays()) / 365)));
+    }
+
+    @Transient
+    public String getDisplay() {
+        StringBuilder sb = new StringBuilder(String.format("%s %s", firstName,
+                lastName));
+        if (!Strings.isNullOrEmpty(maidenName)) {
+            sb.append(String.format(" (%s)", maidenName));
+        }
+        return sb.toString();
     }
 
     //
@@ -73,7 +91,22 @@ public class Resident extends Model {
         return FINDER.all();
     }
 
+    public static List<Resident> find(String queryString) {
+        if (Strings.isNullOrEmpty(queryString) || queryString.length() < 3) {
+            return Collections.emptyList();
+        }
+        ExpressionList<Resident> where = FINDER.where();
+        for (String queryToken : queryString.split(" ")) {
+            Expression ex = Expr.or(Expr.ilike("firstName", queryToken + "%"),
+                    Expr.ilike("lastName", queryToken + "%"));
+            ex = Expr.or(ex, Expr.ilike("maidenName", queryToken + "%"));
+            where.add(ex);
+        }
+        return where.findList();
+    }
+
     public static Resident byId(Long id) {
-        return FINDER.fetch("residences").orderBy("residences.startDate DESC").where().idEq(id).findUnique();
+        return FINDER.fetch("residences").orderBy("residences.startDate DESC")
+                .where().idEq(id).findUnique();
     }
 }

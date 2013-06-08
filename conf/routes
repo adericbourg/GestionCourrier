@@ -15,7 +15,7 @@ POST    /resident/:id/update            controllers.Residents.updateResident(id:
 POST    /resident/:id/addResidence      controllers.Residents.addResidence(id: Long)
 POST    /resident/:id/renewResidence    controllers.Residents.renewResidence(id: Long)
 
-
+GET     /residents/find/:query          controllers.Residents.search(query: String)
 
 GET     /departments                    controllers.StaticLists.departments()
 GET     /residencetypes                 controllers.StaticLists.residenceTypes()

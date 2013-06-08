@@ -1,0 +1,32 @@
+<h1>Saisie du courrier</h1>
+
+<form class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label">Destinataire</label>
+
+        <div class="controls">
+            <input type="text" ng-model="inbox.resident"
+                   typeahead="resident as resident.display for resident in findResidents($viewValue)" required="true"/>
+        </div>
+    </div>
+    <div ng-show="inbox.resident.id">
+        <div class="control-group">
+            <label class="control-label">Date d'arrivée</label>
+
+            <div class="controls">
+                <div class="input-append">
+                    <input type="text" ng-model="inbox.arrivalDate" bs-datepicker>
+                    <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
+                </div>
+                <button type="button" class="btn" ng-click="setArrivalDateToday()">Aujourd'hui</button>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Émetteur</label>
+
+            <div class="controls">
+                <input type="text" ng-model="inbox.sender"/>
+            </div>
+        </div>
+    </div>
+</form>

@@ -98,12 +98,15 @@ public class Residents extends Controller {
     /**
      * Renew residence for specified resident.
      * <ul>
-     * <li>If the latest residence already expired, starts new residence on current day.</li>
-     * <li>If the latest residence ends in the future, starts the new residence the following day the previous one ends.</li>
+     * <li>If the latest residence already expired, starts new residence on
+     * current day.</li>
+     * <li>If the latest residence ends in the future, starts the new residence
+     * the following day the previous one ends.</li>
      * </ul>
      * 
      * @param residentId Resident id.
-     * @return 200 when success, 400 when no residente exists for specified user.
+     * @return 200 when success, 400 when no residente exists for specified
+     *         user.
      */
     public static Result renewResidence(long residentId) {
         Residence latestResidence = first(Resident.byId(residentId).residences);
@@ -130,5 +133,14 @@ public class Residents extends Controller {
         Resident resident = Resident.byId(residentId);
         resident.residences.add(residence);
         resident.save();
+    }
+
+    /**
+     * Search resident by full text criteria.
+     * 
+     * @return Residents matching search criteria.
+     */
+    public static Result search(String query) {
+        return ok(Json.toJson(Resident.find(query)));
     }
 }
