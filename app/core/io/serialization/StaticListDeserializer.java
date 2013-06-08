@@ -11,12 +11,29 @@ import org.codehaus.jackson.map.JsonDeserializer;
 /**
  * @author adericbourg
  */
-abstract class StaticListDeserializer<T extends StaticList> extends JsonDeserializer<StaticList> {
+abstract class StaticListDeserializer<T extends StaticList> extends
+        JsonDeserializer<StaticList> {
+
     @Override
-    public final T deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
+    public final T deserialize(JsonParser jsonParser,
+            DeserializationContext deserializationContext) throws IOException {
         ObjectCodec objectCodec = jsonParser.getCodec();
         JsonNode node = objectCodec.readTree(jsonParser);
-        return valueFor(node.get("key").getTextValue());
+
+        String nameValue = getNameValue(node);
+        return valueFor(nameValue);
+    }
+
+    private static String getNameValue(JsonNode node) {
+        String nameValue;
+        if (node.has("key")) {
+            // { key: "name", value: "" }
+            nameValue = node.get("key").getTextValue();
+        } else {
+            // { "name" }
+            nameValue = node.getTextValue();
+        }
+        return nameValue;
     }
 
     abstract T valueFor(String value);
