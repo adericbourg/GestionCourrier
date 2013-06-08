@@ -154,6 +154,7 @@ function EditResidentCtrl($scope, $http, $location, $routeParams, residentServic
             }
         ).
             error(function (data, status, headers, config) {
+                $scope.messages = [];
                 $scope.messages.push({type: 'error', msg: "Erreur de mise-à-jour"});
             });
     };
