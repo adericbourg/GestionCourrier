@@ -13,15 +13,16 @@ import controllers.model.Item;
 import core.io.serialization.StaticList;
 
 /**
- * Controller for static lists. Serves all static lists sorted by displayed value.
+ * Controller for static lists. Serves all static lists sorted by displayed
+ * value.
  * 
  * @author adericbourg
  */
 public class StaticLists extends Controller {
 
-    private static final Comparator<? super Item<StaticList, String>> ITEM_COMPARATOR = new Comparator<Item<StaticList, String>>() {
+    private static final Comparator<? super Item<String, String>> ITEM_COMPARATOR = new Comparator<Item<String, String>>() {
         @Override
-        public int compare(Item<StaticList, String> o1, Item<StaticList, String> o2) {
+        public int compare(Item<String, String> o1, Item<String, String> o2) {
             Collator collator = Collator.getInstance(Locale.FRENCH);
             collator.setStrength(Collator.SECONDARY);
             collator.setDecomposition(Collator.FULL_DECOMPOSITION);
@@ -57,9 +58,10 @@ public class StaticLists extends Controller {
     }
 
     protected static <T extends StaticList> Result toJson(T[] values) {
-        List<Item<StaticList, String>> returnList = new ArrayList<Item<StaticList, String>>();
+        List<Item<String, String>> returnList = new ArrayList<Item<String, String>>();
         for (T item : values) {
-            returnList.add(new Item<StaticList, String>(item, item.getMeaning()));
+            returnList.add(new Item<String, String>(item.name(), item
+                    .getMeaning()));
         }
         Collections.sort(returnList, ITEM_COMPARATOR);
         return ok(Json.toJson(returnList));
