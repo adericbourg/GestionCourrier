@@ -1,4 +1,4 @@
-<h1>{{resident.firstName}} {{resident.lastName}} <span ng-show="resident.maidenName">({{resident.maidenName}})</span></h1>
+<h1>{{resident.display}}</h1>
 
 <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
