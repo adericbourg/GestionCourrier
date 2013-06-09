@@ -1,0 +1,13 @@
+<form class="form-horizontal" ng-submit="confirmWithdrawal()">
+    <div class="modal-header">
+        <h1>Remise du courrier</h1>
+    </div>
+    <div class="modal-body">
+        Confirmez-vous la remise du courrier du {{mail.arrivalDate | localDate}} destiné à
+        <em>{{mail.recipient.display}}</em><span ng-show="mail.sender"> émis par «&nbsp;{{mail.sender}}&nbsp;»</span>&nbsp;?
+    </div>
+    <div class="modal-footer">
+        <button ng-click="cancel()" class="btn">Annuler</button>
+        <button type="submit" class="btn btn-primary">Remettre</button>
+    </div>
+</form>

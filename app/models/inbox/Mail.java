@@ -47,6 +47,10 @@ public class Mail extends Model {
 
     //
 
+    public static Mail byId(Long id) {
+        return FINDER.byId(id);
+    }
+
     /**
      * Fetch all mails.
      * 

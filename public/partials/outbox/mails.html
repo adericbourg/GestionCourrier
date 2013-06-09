@@ -8,7 +8,7 @@
         <input type="text" ng-model="searchMailCriterion" placeholder="Rechercher"/>
     </div>
     <div ng-hide="allMails.length">
-        Aucun courrier dans l'application.
+        Aucun courrier à remettre.
     </div>
     <div ng-show="allMails.length && !filteredMails.length">
         Aucun courrier pour ce domicilié.
@@ -18,8 +18,9 @@
         <tr>
             <th class="span4">Destinataire</th>
             <th class="span3">Date d'arrivée</th>
-            <th class="span4">Expéditeur</th>
-            <th class="span4">Faire suivre</th>
+            <th class="span3">Expéditeur</th>
+            <th class="span1">Faire suivre</th>
+            <th class="span1"></th>
         </tr>
         </thead>
         <tbody ng-repeat="m in filteredMails = (allMails | filter:searchMailCriterion)">
@@ -30,6 +31,9 @@
             <td>
                 <span ng-show="m.toBeForwarded">Oui</span>
                 <span ng-show="!m.toBeForwarded">Non</span>
+            </td>
+            <td>
+                <button ng-click="withdraw(m)" class="btn btn-mini">Remettre</button>
             </td>
         </tr>
         </tbody>
