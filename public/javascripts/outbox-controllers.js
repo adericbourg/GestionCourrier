@@ -24,6 +24,10 @@ function AllMailsController($scope, $dialog, mailService) {
         });
     };
 
+    $scope.closeAlert = function (index) {
+        $scope.messages.splice(index, 1);
+    };
+
     var refresh = function () {
         mailService.allMails().then(function (data) {
             $scope.allMails = data;

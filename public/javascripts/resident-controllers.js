@@ -61,6 +61,10 @@ function NewResidentCtrl($scope, $http, dialog, referenceListService) {
             });
     }
 
+    $scope.closeAlert = function (index) {
+        $scope.messages.splice(index, 1);
+    };
+
     referenceListService.listDepartments().then(function (data) {
         $scope.departments = data;
     });
