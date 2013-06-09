@@ -17,6 +17,8 @@ POST    /resident/:id/renewResidence    controllers.Residents.renewResidence(id:
 
 GET     /residents/find/:query          controllers.Residents.search(query: String)
 
+POST    /inbox/register                 controllers.Inbox.registerMail()
+
 GET     /departments                    controllers.StaticLists.departments()
 GET     /residencetypes                 controllers.StaticLists.residenceTypes()
 GET     /genders                        controllers.StaticLists.genders()

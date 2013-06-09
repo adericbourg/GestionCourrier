@@ -7,6 +7,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import models.inbox.Mail;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
@@ -53,6 +56,10 @@ public class Resident extends Model {
 
     @OneToMany(mappedBy = "resident", cascade = CascadeType.ALL)
     public List<Residence> residences;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL)
+    public List<Mail> mail;
 
     //
 

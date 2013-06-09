@@ -1,15 +1,17 @@
 <h1>Saisie du courrier</h1>
 
-<form class="form-horizontal">
+<alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+<form class="form-horizontal" ng-submit="registerMail()">
     <div class="control-group">
         <label class="control-label">Destinataire</label>
 
         <div class="controls">
-            <input type="text" ng-model="inbox.resident"
+            <input type="text" ng-model="inbox.recipient"
                    typeahead="resident as resident.display for resident in findResidents($viewValue)" required="true"/>
         </div>
     </div>
-    <div ng-show="inbox.resident.id">
+    <div ng-show="inbox.recipient.id">
         <div class="control-group">
             <label class="control-label">Date d'arrivée</label>
 
@@ -26,6 +28,12 @@
 
             <div class="controls">
                 <input type="text" ng-model="inbox.sender"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <a ng-href="#/inbox" class="btn">Annuler</a>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>
         </div>
     </div>
