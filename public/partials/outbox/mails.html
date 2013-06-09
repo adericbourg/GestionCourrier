@@ -17,8 +17,9 @@
         <thead>
         <tr>
             <th class="span4">Destinataire</th>
-            <th class="span4">Date d'arrivée</th>
+            <th class="span3">Date d'arrivée</th>
             <th class="span4">Expéditeur</th>
+            <th class="span4">Faire suivre</th>
         </tr>
         </thead>
         <tbody ng-repeat="m in filteredMails = (allMails | filter:searchMailCriterion)">
@@ -26,6 +27,10 @@
             <td>{{m.recipient.display}}</td>
             <td>{{m.arrivalDate | localDate}}</td>
             <td>{{m.sender}}</td>
+            <td>
+                <span ng-show="m.toBeForwarded">Oui</span>
+                <span ng-show="!m.toBeForwarded">Non</span>
+            </td>
         </tr>
         </tbody>
     </table>
