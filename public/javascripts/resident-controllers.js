@@ -57,7 +57,7 @@ function NewResidentCtrl($scope, $http, dialog, referenceListService) {
             }
         ).
             error(function (data, status, headers, config) {
-                $scope.messages.push({type: 'error', msg: "Erreur de création"});
+                $scope.messages.push({type: 'error', msg: "Erreur de création : " + status + " (" + config.method + ":" + config.url + ")."});
             });
     }
 
@@ -155,7 +155,7 @@ function EditResidentCtrl($scope, $http, $location, $routeParams, residentServic
         ).
             error(function (data, status, headers, config) {
                 $scope.messages = [];
-                $scope.messages.push({type: 'error', msg: "Erreur de mise-à-jour"});
+                $scope.messages.push({type: 'error', msg: "Erreur de mise-à-jour : " + status + " (" + config.method + ":" + config.url + ")."});
             });
     };
 
@@ -188,7 +188,7 @@ function NewResidenceCtrl($scope, $http, dialog, residentId, referenceListServic
             }
         ).
             error(function (data, status, headers, config) {
-                $scope.messages.push({type: 'error', msg: "Erreur de création de la domiciliation"});
+                $scope.messages.push({type: 'error', msg: "Erreur de création de la domiciliation : " + status + " (" + config.method + ":" + config.url + ")."});
             });
     }
 
@@ -216,7 +216,7 @@ function RenewResidenceCtrl($scope, $http, dialog, resident) {
             }
         ).
             error(function (data, status, headers, config) {
-                $scope.messages.push({type: 'error', msg: "Erreur de renouvellement de la domiciliation"});
+                $scope.messages.push({type: 'error', msg: "Erreur de renouvellement de la domiciliation : " + status + " (" + config.method + ":" + config.url + ")."});
             });
     }
 
