@@ -18,8 +18,7 @@ function RegisterMailCtrl($scope, $http, residentService) {
                     {type: 'success', msg: "Courrier à destination de " + $scope.inbox.recipient.display + " enregistré"}
                 ];
                 $scope.inbox = {};
-            }
-        ).
+            }).
             error(function (data, status, headers, config) {
                 $scope.messages = [
                     {type: 'error', msg: "Erreur d'enregistrement : " + status + " (" + config.method + ":" + config.url + ")."}

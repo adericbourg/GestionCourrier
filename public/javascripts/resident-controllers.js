@@ -54,8 +54,7 @@ function NewResidentCtrl($scope, $http, dialog, referenceListService) {
             success(function (data, status, headers, config) {
                 dialog.close({type: 'success', msg: "La fiche de " + $scope.resident.firstName + " " + $scope.resident.lastName + " a été créée"
                 });
-            }
-        ).
+            }).
             error(function (data, status, headers, config) {
                 $scope.messages.push({type: 'error', msg: "Erreur de création : " + status + " (" + config.method + ":" + config.url + ")."});
             });
@@ -155,8 +154,7 @@ function EditResidentCtrl($scope, $http, $location, $routeParams, residentServic
         $http.post("/resident/" + $scope.resident.id + "/update", $scope.resident).
             success(function (data, status, headers, config) {
                 $location.path("/resident/" + $scope.resident.id);
-            }
-        ).
+            }).
             error(function (data, status, headers, config) {
                 $scope.messages = [];
                 $scope.messages.push({type: 'error', msg: "Erreur de mise-à-jour : " + status + " (" + config.method + ":" + config.url + ")."});
@@ -189,8 +187,7 @@ function NewResidenceCtrl($scope, $http, dialog, residentId, referenceListServic
         $http.post("/resident/" + $scope.residentId + "/addResidence", $scope.residence).
             success(function (data, status, headers, config) {
                 dialog.close({type: 'success', msg: "Domiciliation ajoutée"});
-            }
-        ).
+            }).
             error(function (data, status, headers, config) {
                 $scope.messages.push({type: 'error', msg: "Erreur de création de la domiciliation : " + status + " (" + config.method + ":" + config.url + ")."});
             });
@@ -217,8 +214,7 @@ function RenewResidenceCtrl($scope, $http, dialog, resident) {
         $http.post("/resident/" + $scope.resident.id + "/renewResidence").
             success(function (data, status, headers, config) {
                 dialog.close({type: 'success', msg: "Domiciliation renouvelée"});
-            }
-        ).
+            }).
             error(function (data, status, headers, config) {
                 $scope.messages.push({type: 'error', msg: "Erreur de renouvellement de la domiciliation : " + status + " (" + config.method + ":" + config.url + ")."});
             });
