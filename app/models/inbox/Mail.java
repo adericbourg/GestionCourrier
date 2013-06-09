@@ -52,7 +52,7 @@ public class Mail extends Model {
      * 
      * @return All mails.
      */
-    public static List<Mail> findAll() {
-        return FINDER.all();
+    public static List<Mail> findFromInbox() {
+        return FINDER.where().isNull("withdrawalDate").findList();
     }
 }

@@ -16,6 +16,6 @@ public class Outbox extends Controller {
      * @return All mails.
      */
     public static Result mails() {
-        return ok(Json.toJson(Mail.findAll()));
+        return ok(Json.toJson(Mail.findFromInbox()));
     }
 }
