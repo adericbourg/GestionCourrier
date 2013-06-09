@@ -1,7 +1,5 @@
 package models.residence;
 
-import static core.util.Collections.first;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -65,7 +63,15 @@ public class Resident extends Model {
 
     @Transient
     public Residence getLatestResidence() {
-        return first(residences);
+        Residence latestResidence = null;
+        for (Residence residence : residences) {
+            if (latestResidence == null) {
+                latestResidence = residence;
+            } else if (residence.startDate.isAfter(latestResidence.startDate)) {
+                latestResidence = residence;
+            }
+        }
+        return latestResidence;
     }
 
     @Transient
