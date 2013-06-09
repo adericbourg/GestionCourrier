@@ -8,6 +8,7 @@ var app = angular.module('gestionCourrier', ['ui.bootstrap', '$strap.directives'
             when('/resident/:residentId', {controller: ViewResidentCtrl, templateUrl: '/assets/partials/resident/viewResident.html'}).
             when('/resident/:residentId/edit', {controller: EditResidentCtrl, templateUrl: '/assets/partials/resident/editResident.html'}).
             when('/inbox', {controller: RegisterMailCtrl, templateUrl: '/assets/partials/inbox/registerMail.html'}).
+            when('/outbox', {controller: AllMailsController, templateUrl: '/assets/partials/outbox/mails.html'}).
             otherwise({redirectTo: '/'})
     });
 

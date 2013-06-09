@@ -52,6 +52,21 @@ app.factory('residentService', function ($http) {
 });
 
 /**
+ * Mail service
+ */
+app.factory('mailService', function ($http) {
+    var mailService = {
+        allMails: function () {
+            var promise = $http.get('/outbox/mails').then(function (response) {
+                return response.data;
+            });
+            return promise;
+        }
+    };
+    return mailService;
+});
+
+/**
  * Service providing general purpose reference lists.
  */
 app.factory('referenceListService', function ($http) {

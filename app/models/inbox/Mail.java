@@ -1,5 +1,7 @@
 package models.inbox;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -21,6 +23,9 @@ import core.io.serialization.JodaLocalDateDeserializer;
 @Entity
 public class Mail extends Model {
 
+    private static final Finder<Long, Mail> FINDER = new Finder<Long, Mail>(
+            Long.class, Mail.class);
+
     @Id
     public Long id;
 
@@ -39,4 +44,15 @@ public class Mail extends Model {
     public LocalDate withdrawalDate;
 
     public Boolean toBeForwarded = false;
+
+    //
+
+    /**
+     * Fetch all mails.
+     * 
+     * @return All mails.
+     */
+    public static List<Mail> findAll() {
+        return FINDER.all();
+    }
 }

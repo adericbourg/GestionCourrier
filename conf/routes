@@ -19,6 +19,8 @@ GET     /residents/find/:query          controllers.Residents.search(query: Stri
 
 POST    /inbox/register                 controllers.Inbox.registerMail()
 
+GET     /outbox/mails                   controllers.Outbox.mails()
+
 GET     /departments                    controllers.StaticLists.departments()
 GET     /residencetypes                 controllers.StaticLists.residenceTypes()
 GET     /genders                        controllers.StaticLists.genders()
