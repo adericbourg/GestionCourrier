@@ -1,3 +1,5 @@
+'use strict';
+
 function AllMailsController($scope, $dialog, mailService) {
 
     $scope.allMails = [];

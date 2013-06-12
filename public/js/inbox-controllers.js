@@ -1,3 +1,5 @@
+'use strict';
+
 function RegisterMailCtrl($scope, $http, residentService) {
 
     $scope.inbox = {};
