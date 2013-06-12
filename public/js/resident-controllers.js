@@ -74,6 +74,7 @@ function NewResidentCtrl($scope, $http, dialog, referenceListService) {
 }
 
 function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
+    $scope.messages = [];
     $scope.resident = {};
     $scope.residenceProgress = {};
 
@@ -103,6 +104,7 @@ function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
         var d = $dialog.dialog($scope.newResidenceDialogOpts);
         d.open().then(function (result) {
             if (result) {
+                $scope.messages = [];
                 refresh();
                 $scope.messages.push(result);
             }
