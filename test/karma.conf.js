@@ -5,8 +5,6 @@ files = [
     JASMINE_ADAPTER,
     'public/third-party/jquery/*.js',
     'public/third-party/angular/angular.js',
-    'public/third-party/angular/angular.js',
-    'public/third-party/angular/angular-*.js',
     'public/third-party/angular/i18n/angular-*.js',
     'public/third-party/moment/moment.min.js',
     'public/third-party/moment/moment-*.js',
