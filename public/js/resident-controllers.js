@@ -117,6 +117,7 @@ function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
         var d = $dialog.dialog($scope.renewResidenceDialogOpts);
         d.open().then(function (result) {
             if (result) {
+                $scope.messages = []
                 refresh();
                 $scope.messages.push(result);
             }
@@ -138,6 +139,10 @@ function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
         }
         $scope.residenceProgress = {value: value, type: type};
     }
+
+    $scope.closeAlert = function (index) {
+        $scope.messages.splice(index, 1);
+    };
 
     var refresh = function () {
         residentService.fetchResident($routeParams.residentId).then(function (data) {
