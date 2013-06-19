@@ -57,7 +57,7 @@ public class StaticLists extends Controller {
         return toJson(Gender.values());
     }
 
-    protected static <T extends StaticList> Result toJson(T[] values) {
+    private static <T extends StaticList> Result toJson(T[] values) {
         List<Item<String, String>> returnList = new ArrayList<Item<String, String>>();
         for (T item : values) {
             returnList.add(new Item<String, String>(item.name(), item

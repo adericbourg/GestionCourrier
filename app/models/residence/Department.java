@@ -21,7 +21,7 @@ public enum Department implements StaticList {
     @EnumValue("PROS")
     PROSTITUTION("Prostitution");
 
-    private String meaning;
+    private final String meaning;
 
     private Department(String meaning) {
         this.meaning = meaning;

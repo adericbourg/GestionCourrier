@@ -9,9 +9,6 @@ public class Collections {
         if (iterable == null) {
             return null;
         }
-        for (T item : iterable) {
-            return item;
-        }
-        return null;
+        return iterable.iterator().next();
     }
 }

@@ -5,8 +5,8 @@ package controllers.model;
  */
 public class Item<T, U> {
 
-    public T key;
-    public U value;
+    public final T key;
+    public final U value;
 
     public Item(T key, U value) {
         this.key = key;

@@ -17,9 +17,9 @@ import org.joda.time.format.ISODateTimeFormat;
 public class JodaLocalDateDeserializer extends
         JodaDeserializers.LocalDateDeserializer {
 
-    private final static DateTimeFormatter _localDateTimeFormat = ISODateTimeFormat
+    private  static final DateTimeFormatter _localDateTimeFormat = ISODateTimeFormat
             .localDateOptionalTimeParser();
-    public static final String FRENCH_DATE_FORMAT = "^("
+    private static final String FRENCH_DATE_FORMAT = "^("
             + "("
             + "(((0[1-9])|(1\\d)|(2[0-8]))\\/((0[1-9])|(1[0-2])))"
             + "|((31\\/((0[13578])|(1[02])))|((29|30)\\/((0[1,3-9])|(1[0-2]))))"
