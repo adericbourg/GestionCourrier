@@ -124,6 +124,14 @@ function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
         });
     };
 
+    $scope.getResidenceClass = function (residence) {
+        if (residence.currentResidence) {
+            return "info"
+        } else {
+            return "";
+        }
+    };
+
     var computeResidenceProgress = function () {
         var value = $scope.resident.residenceProgress;
         if (value < 0) {

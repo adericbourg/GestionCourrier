@@ -28,7 +28,7 @@
                 </tr>
                 </thead>
                 <tbody ng-repeat="res in resident.residences">
-                <tr>
+                <tr class="{{getResidenceClass(res)}}">
                     <td>{{res.residenceType | staticList}}</td>
                     <td>{{res.startDate | localDate}}</td>
                     <td>{{res.endDate | localDate}}</td>
