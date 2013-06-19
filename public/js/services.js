@@ -34,6 +34,9 @@ angular.module('gestionCourrierServices', []).
              * @returns {*} List of residents matching search criteria.
              */
             findResidents: function (text) {
+                if (!text || text.length < 3) {
+                    return [];
+                }
                 var promise = $http.get('/residents/find/' + text).then(function (response) {
                     return response.data;
                 });

@@ -10,9 +10,6 @@ function RegisterMailCtrl($scope, $http, residentService) {
     };
 
     $scope.findResidents = function (text) {
-        if (!text || text.length < 3) {
-            return;
-        }
         return residentService.findResidents(text);
     };
 
