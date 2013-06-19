@@ -11,11 +11,9 @@ angular.module('gestionCourrierServices', []).
              * @returns {*}
              */
             allResidents: function () {
-                var promise = $http.get('/residents').then(function (response) {
+                return $http.get('/residents').then(function (response) {
                     return response.data;
                 });
-
-                return promise;
             },
             /**
              * Fetches a resident detail.
@@ -23,10 +21,9 @@ angular.module('gestionCourrierServices', []).
              * @returns {*} Resident detail for specified id.
              */
             fetchResident: function (residentId) {
-                var promise = $http.get('/resident/' + residentId).then(function (response) {
+                return $http.get('/resident/' + residentId).then(function (response) {
                     return response.data;
                 });
-                return promise;
             },
             /**
              * Find a resident by text.
@@ -37,10 +34,9 @@ angular.module('gestionCourrierServices', []).
                 if (!text || text.length < 3) {
                     return [];
                 }
-                var promise = $http.get('/residents/find/' + text).then(function (response) {
+                return $http.get('/residents/find/' + text).then(function (response) {
                     return response.data;
                 });
-                return promise;
             }
         };
         return residentService;
@@ -51,10 +47,9 @@ angular.module('gestionCourrierServices', []).
          */
         var mailService = {
             allMails: function () {
-                var promise = $http.get('/outbox/mails').then(function (response) {
+                return $http.get('/outbox/mails').then(function (response) {
                     return response.data;
                 });
-                return promise;
             }
         };
         return mailService;
@@ -69,31 +64,28 @@ angular.module('gestionCourrierServices', []).
              * @returns {*} All departments.
              */
             listDepartments: function () {
-                var promise = $http.get('/departments').then(function (response) {
+                return $http.get('/departments').then(function (response) {
                     return response.data;
                 });
-                return promise;
             },
             /**
              * Lists all residence types.
              * @returns {*} All residence types.
              */
             listResidenceTypes: function () {
-                var promise = $http.get('/residencetypes').then(function (response) {
+                return $http.get('/residencetypes').then(function (response) {
                     return response.data;
                 });
-                return promise;
             },
             /**
              * Lists all genders.
              * @returns {*} All genders.
              */
             listGenders: function () {
-                var promise = $http.get('/genders').then(function (response) {
+                return $http.get('/genders').then(function (response) {
                     return response.data;
                 });
-                return promise;
             }
-        }
+        };
         return referenceListService;
     });

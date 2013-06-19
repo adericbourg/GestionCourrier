@@ -7,7 +7,7 @@ angular.module('gestionCourrierFilters', []).
          */
         return function (text, format) {
             if (!text) {
-                return;
+                return '';
             }
 
             format = format || 'L';
@@ -15,7 +15,7 @@ angular.module('gestionCourrierFilters', []).
             var pad = function (n, width) {
                 n = n + '';
                 return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
-            }
+            };
 
             var value = text[0] + '-' + pad(text[1], 2) + '-' + pad(text[2], 2);
             return moment(value, 'YYYY-MM-DD').format(format);

@@ -34,7 +34,7 @@ function AllMailsController($scope, $dialog, mailService) {
         mailService.allMails().then(function (data) {
             $scope.allMails = data;
         });
-    }
+    };
 
     refresh();
 }

@@ -26,7 +26,7 @@ function RegisterMailCtrl($scope, $http, residentService) {
                     {type: 'error', msg: "Erreur d'enregistrement : " + status + " (" + config.method + ":" + config.url + ")."}
                 ];
             });
-    }
+    };
 
     $scope.closeAlert = function (index) {
         $scope.messages.splice(index, 1);

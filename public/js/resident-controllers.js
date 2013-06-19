@@ -34,7 +34,7 @@ function AllResidentsCtrl($scope, $dialog, residentService) {
         residentService.allResidents().then(function (data) {
             $scope.allResidents = data;
         });
-    }
+    };
 
     refresh();
 }
@@ -60,7 +60,7 @@ function NewResidentCtrl($scope, $http, dialog, referenceListService) {
             error(function (data, status, headers, config) {
                 $scope.messages.push({type: 'error', msg: "Erreur de création : " + status + " (" + config.method + ":" + config.url + ")."});
             });
-    }
+    };
 
     $scope.closeAlert = function (index) {
         $scope.messages.splice(index, 1);
@@ -117,7 +117,7 @@ function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
         var d = $dialog.dialog($scope.renewResidenceDialogOpts);
         d.open().then(function (result) {
             if (result) {
-                $scope.messages = []
+                $scope.messages = [];
                 refresh();
                 $scope.messages.push(result);
             }
@@ -138,7 +138,7 @@ function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
             type = 'danger';
         }
         $scope.residenceProgress = {value: value, type: type};
-    }
+    };
 
     $scope.closeAlert = function (index) {
         $scope.messages.splice(index, 1);
@@ -149,7 +149,7 @@ function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
             $scope.resident = data;
             computeResidenceProgress();
         });
-    }
+    };
 
     refresh();
 }
@@ -200,7 +200,7 @@ function NewResidenceCtrl($scope, $http, dialog, residentId, referenceListServic
             error(function (data, status, headers, config) {
                 $scope.messages.push({type: 'error', msg: "Erreur de création de la domiciliation : " + status + " (" + config.method + ":" + config.url + ")."});
             });
-    }
+    };
 
     $scope.cancel = function () {
         dialog.close();
@@ -227,7 +227,7 @@ function RenewResidenceCtrl($scope, $http, dialog, resident) {
             error(function (data, status, headers, config) {
                 $scope.messages.push({type: 'error', msg: "Erreur de renouvellement de la domiciliation : " + status + " (" + config.method + ":" + config.url + ")."});
             });
-    }
+    };
 
     $scope.cancel = function () {
         dialog.close();
