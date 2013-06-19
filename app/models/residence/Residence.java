@@ -7,8 +7,8 @@ import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.codehaus.jackson.map.ext.JodaSerializers;
 import org.joda.time.LocalDate;
-
 import org.joda.time.Months;
+
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import core.io.serialization.JodaLocalDateDeserializer;
@@ -46,8 +46,13 @@ public class Residence extends Model {
         return Months.monthsBetween(LocalDate.now(), endDate).getMonths();
     }
 
-    //
+    @Transient
+    public boolean isCurrentResidence() {
+        LocalDate today = LocalDate.now();
+        return today.isAfter(startDate) && today.isBefore(endDate) || today.isEqual(startDate) || today.isEqual(endDate);
+    }
 
+    //
 
     @Transient
     public Residence copy() {

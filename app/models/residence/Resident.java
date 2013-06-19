@@ -75,10 +75,8 @@ public class Resident extends Model {
     @Transient
     public Residence getCurrentResidence() {
         Residence currentResidence = null;
-        LocalDate today = LocalDate.now();
         for (Residence residence : residences) {
-            if (today.isAfter(residence.startDate) && today.isBefore(residence.endDate) || today.isEqual(residence.startDate)
-                    || today.isEqual(residence.endDate)) {
+            if (residence.isCurrentResidence()) {
                 currentResidence = residence;
                 break;
             }
