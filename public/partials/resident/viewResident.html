@@ -8,8 +8,8 @@
     <div class="span8">
         <h2>Domiciliation</h2>
 
-        <div ng-show="residenceProgress.value">
-            État de la domiciliation
+        <div ng-show="resident.currentResidence">
+            La domiciliation en cours se termine dans {{resident.currentResidence.monthsToEnd}} mois ({{resident.currentResidence.endDate | localDate}}).
             <progress value="residenceProgress"></progress>
         </div>
 

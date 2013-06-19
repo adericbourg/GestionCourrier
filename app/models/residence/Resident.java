@@ -12,7 +12,6 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.codehaus.jackson.map.ext.JodaSerializers;
-import org.joda.time.Days;
 import org.joda.time.LocalDate;
 
 import play.data.validation.Constraints;
@@ -28,8 +27,7 @@ import core.io.serialization.JodaLocalDateDeserializer;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Resident extends Model {
 
-    private static final Finder<Long, Resident> FINDER = new Finder<Long, Resident>(
-            Long.class, Resident.class);
+    private static final Finder<Long, Resident> FINDER = new Finder<Long, Resident>(Long.class, Resident.class);
 
     @Id
     public Long id;
@@ -75,20 +73,31 @@ public class Resident extends Model {
     }
 
     @Transient
+    public Residence getCurrentResidence() {
+        Residence currentResidence = null;
+        LocalDate today = LocalDate.now();
+        for (Residence residence : residences) {
+            if (today.isAfter(residence.startDate) && today.isBefore(residence.endDate) || today.isEqual(residence.startDate)
+                    || today.isEqual(residence.endDate)) {
+                currentResidence = residence;
+                break;
+            }
+        }
+        return currentResidence;
+    }
+
+    @Transient
     public int getResidenceProgress() {
-        Residence latestResidence = getLatestResidence();
-        if (latestResidence == null
-                || LocalDate.now().isAfter(latestResidence.endDate)) {
+        Residence currentResidence = getCurrentResidence();
+        if (currentResidence == null) {
             return -1;
         }
-        return (int) (100 * (1 - (((double) Days.daysBetween(LocalDate.now(),
-                latestResidence.endDate).getDays()) / 365)));
+        return (int) (100 * (1 - ((double) currentResidence.getMonthsToEnd() / 12)));
     }
 
     @Transient
     public String getDisplay() {
-        StringBuilder sb = new StringBuilder(String.format("%s %s", firstName,
-                lastName));
+        StringBuilder sb = new StringBuilder(String.format("%s %s", firstName, lastName));
         if (!Strings.isNullOrEmpty(maidenName)) {
             sb.append(String.format(" (%s)", maidenName));
         }
@@ -110,8 +119,7 @@ public class Resident extends Model {
         }
         ExpressionList<Resident> where = FINDER.where();
         for (String queryToken : queryString.split(" ")) {
-            Expression ex = Expr.or(Expr.ilike("firstName", queryToken + "%"),
-                    Expr.ilike("lastName", queryToken + "%"));
+            Expression ex = Expr.or(Expr.ilike("firstName", queryToken + "%"), Expr.ilike("lastName", queryToken + "%"));
             ex = Expr.or(ex, Expr.ilike("maidenName", queryToken + "%"));
             where.add(ex);
         }
@@ -119,7 +127,6 @@ public class Resident extends Model {
     }
 
     public static Resident byId(Long id) {
-        return FINDER.fetch("residences").orderBy("residences.startDate DESC")
-                .where().idEq(id).findUnique();
+        return FINDER.fetch("residences").orderBy("residences.startDate DESC").where().idEq(id).findUnique();
     }
 }
