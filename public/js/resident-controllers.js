@@ -53,7 +53,7 @@ function NewResidentCtrl($scope, $http, dialog, referenceListService) {
     $scope.createResident = function () {
         $scope.messages = [];
         $http.post("/resident/create", $scope.resident).
-            success(function (data, status, headers, config) {
+            success(function () {
                 dialog.close({type: 'success', msg: "La fiche de " + $scope.resident.firstName + " " + $scope.resident.lastName + " a été créée"
                 });
             }).
@@ -161,7 +161,7 @@ function EditResidentCtrl($scope, $http, $location, $routeParams, residentServic
 
     $scope.updateResident = function () {
         $http.post("/resident/" + $scope.resident.id + "/update", $scope.resident).
-            success(function (data, status, headers, config) {
+            success(function () {
                 $location.path("/resident/" + $scope.resident.id);
             }).
             error(function (data, status, headers, config) {
@@ -194,7 +194,7 @@ function NewResidenceCtrl($scope, $http, dialog, residentId, referenceListServic
     $scope.createResidence = function () {
         $scope.messages = [];
         $http.post("/resident/" + $scope.residentId + "/addResidence", $scope.residence).
-            success(function (data, status, headers, config) {
+            success(function () {
                 dialog.close({type: 'success', msg: "Domiciliation ajoutée"});
             }).
             error(function (data, status, headers, config) {
@@ -221,7 +221,7 @@ function RenewResidenceCtrl($scope, $http, dialog, resident) {
 
     $scope.renewResidence = function () {
         $http.post("/resident/" + $scope.resident.id + "/renewResidence").
-            success(function (data, status, headers, config) {
+            success(function () {
                 dialog.close({type: 'success', msg: "Domiciliation renouvelée"});
             }).
             error(function (data, status, headers, config) {

@@ -48,7 +48,7 @@ function WithdrawMailCtrl($scope, $http, dialog, mail) {
 
     $scope.confirmWithdrawal = function () {
         $http.post('/outbox/withdraw/' + $scope.mail.id).
-            success(function (data, status, headers, config) {
+            success(function () {
                 dialog.close({type: 'success', msg: "Courrier remis"});
             }).
             error(function (data, status, headers, config) {

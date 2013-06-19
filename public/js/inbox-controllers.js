@@ -18,7 +18,7 @@ function RegisterMailCtrl($scope, $http, residentService) {
 
     $scope.registerMail = function () {
         $http.post("/inbox/register", $scope.inbox).
-            success(function (data, status, headers, config) {
+            success(function () {
                 $scope.messages = [
                     {type: 'success', msg: "Courrier à destination de " + $scope.inbox.recipient.display + " enregistré"}
                 ];
