@@ -34,16 +34,6 @@ public class Residents extends Controller {
     }
 
     /**
-     * Fetches all residences for specified resident.
-     * 
-     * @param residentId Resident id.
-     * @return Residences for specified resident.
-     */
-    public static Result residences(Long residentId) {
-        return ok(Json.toJson(Resident.byId(residentId).residences));
-    }
-
-    /**
      * Create new resident (POST). Json body expected.
      * 
      * @return 200 when success.
@@ -98,15 +88,12 @@ public class Residents extends Controller {
     /**
      * Renew residence for specified resident.
      * <ul>
-     * <li>If the latest residence already expired, starts new residence on
-     * current day.</li>
-     * <li>If the latest residence ends in the future, starts the new residence
-     * the following day the previous one ends.</li>
+     * <li>If the latest residence already expired, starts new residence on current day.</li>
+     * <li>If the latest residence ends in the future, starts the new residence the following day the previous one ends.</li>
      * </ul>
      * 
      * @param residentId Resident id.
-     * @return 200 when success, 400 when no residente exists for specified
-     *         user.
+     * @return 200 when success, 400 when no residente exists for specified user.
      */
     public static Result renewResidence(long residentId) {
         Residence latestResidence = first(Resident.byId(residentId).residences);

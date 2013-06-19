@@ -29,17 +29,6 @@ angular.module('gestionCourrierServices', []).
                 return promise;
             },
             /**
-             * Fetches all residences for specified resident.
-             * @param residentId Resident id.
-             * @returns {*} Residences for specified resident.
-             */
-            fetchResidences: function (residentId) {
-                var promise = $http.get('/resident/' + residentId + '/residences').then(function (response) {
-                    return response.data;
-                });
-                return promise;
-            },
-            /**
              * Find a resident by text.
              * @param text Text search criteria.
              * @returns {*} List of residents matching search criteria.
