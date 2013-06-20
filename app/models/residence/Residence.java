@@ -3,6 +3,7 @@ package models.residence;
 import javax.persistence.*;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.codehaus.jackson.map.ext.JodaSerializers;
@@ -17,6 +18,7 @@ import core.io.serialization.JodaLocalDateDeserializer;
  * @author adericbourg
  */
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Residence extends Model {
 
     @Id
