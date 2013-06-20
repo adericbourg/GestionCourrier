@@ -6,7 +6,6 @@ function AllResidentsCtrl($scope, $dialog, residentService) {
     $scope.tableSortPredicate = "lastName";
     $scope.tableSortReverse = false;
 
-
     $scope.newResidentDialogOpts = {
         backdrop: true,
         keyboard: true,
@@ -25,6 +24,16 @@ function AllResidentsCtrl($scope, $dialog, residentService) {
             }
         });
     };
+
+    $scope.setSortCriterion = function (sortCriterion) {
+        if (sortCriterion == $scope.tableSortPredicate) {
+            $scope.tableSortReverse = !$scope.tableSortReverse;
+        } else {
+            $scope.tableSortPredicate = sortCriterion;
+            $scope.tableSortReverse = false;
+        }
+    };
+
 
     $scope.closeAlert = function (index) {
         $scope.messages.splice(index, 1);
