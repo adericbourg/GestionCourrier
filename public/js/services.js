@@ -5,7 +5,7 @@ angular.module('gestionCourrierServices', []).
         /**
          * Service for "residents" module.
          */
-        var residentService = {
+        return {
             /**
              * Returns all residents.
              * @returns {*}
@@ -72,13 +72,12 @@ angular.module('gestionCourrierServices', []).
                 return $http.post("/json/resident/" + residentId + "/renewResidence")
             }
         };
-        return residentService;
     }).
     factory('mailService',function ($http) {
         /**
          * Mail service
          */
-        var mailService = {
+        return {
             /**
              * Return all mails in outbox.
              * @returns {*} All mails still on outbox.
@@ -105,13 +104,12 @@ angular.module('gestionCourrierServices', []).
                 return $http.post('/json/outbox/withdraw/' + mailId);
             }
         };
-        return mailService;
     }).
     factory('referenceListService', function ($http) {
         /**
          * Service providing general purpose reference lists.
          */
-        var referenceListService = {
+        return {
             /**
              * Lists all departments.
              * @returns {*} All departments.
@@ -140,5 +138,4 @@ angular.module('gestionCourrierServices', []).
                 });
             }
         };
-        return referenceListService;
     });
