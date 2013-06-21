@@ -1,4 +1,4 @@
-package models.residence;
+package models.person;
 
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize;

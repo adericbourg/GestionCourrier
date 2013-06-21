@@ -1,4 +1,4 @@
-package models.residence;
+package models.person;
 
 import core.io.serialization.StaticListSerializer;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;

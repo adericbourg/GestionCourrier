@@ -1,6 +1,6 @@
 package core.io.serialization;
 
-import models.residence.Gender;
+import models.person.Gender;
 
 /**
  * @author adericbourg

@@ -2,6 +2,7 @@ package models.residence;
 
 import javax.persistence.*;
 
+import models.person.Person;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;

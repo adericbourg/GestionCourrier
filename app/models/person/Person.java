@@ -1,4 +1,4 @@
-package models.residence;
+package models.person;
 
 import java.util.Collections;
 import java.util.List;
@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 import models.inbox.Mail;
 
+import models.residence.Residence;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
@@ -50,6 +51,8 @@ public class Person extends Model {
     public Department followingDepartment;
 
     public String followedBy;
+
+    public String orientation;
 
     @Constraints.Required
     public Boolean isFollowed = true;

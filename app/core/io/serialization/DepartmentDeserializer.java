@@ -1,6 +1,6 @@
 package core.io.serialization;
 
-import models.residence.Department;
+import models.person.Department;
 
 /**
  * @author adericbourg

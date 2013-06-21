@@ -3,8 +3,8 @@ package controllers;
 import java.text.Collator;
 import java.util.*;
 
-import models.residence.Department;
-import models.residence.Gender;
+import models.person.Department;
+import models.person.Gender;
 import models.residence.ResidenceType;
 import play.libs.Json;
 import play.mvc.Controller;

@@ -1,7 +1,7 @@
 package controllers;
 
 import static core.util.Collections.first;
-import models.residence.Person;
+import models.person.Person;
 import models.residence.Residence;
 
 import org.codehaus.jackson.JsonNode;
@@ -63,6 +63,7 @@ public class Persons extends Controller {
         basePerson.lastName = updatedPerson.lastName;
         basePerson.maidenName = updatedPerson.maidenName;
         basePerson.birthDate = updatedPerson.birthDate;
+        basePerson.orientation = updatedPerson.orientation;
         basePerson.followedBy = updatedPerson.followedBy;
         basePerson.followingDepartment = updatedPerson.followingDepartment;
         basePerson.forwardAddress = updatedPerson.forwardAddress;
