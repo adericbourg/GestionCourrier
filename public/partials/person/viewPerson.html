@@ -1,8 +1,21 @@
 <h1>{{person.display}}</h1>
 
-<a ng-href="#/person/{{person.id}}/edit"><i class="icon-edit"></i> Modifier la fiche</a>
+<div class="alert" ng-hide="person.isFollowed">
+    <i class="icon-info-sign"></i> Cette personne n'est pas suivie par l'association.
+</div>
 
 <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+<p>
+    <a ng-href="#/person/{{person.id}}/edit"><i class="icon-edit"></i> Modifier la fiche</a>
+    <button class="btn btn-link" ng-click="unfollow()" ng-show="person.isFollowed">
+        <i class="icon-stop"></i> Arrêter le suivi de cette personne
+    </button>
+    <button class="btn btn-link" ng-click="follow()" ng-hide="person.isFollowed">
+        <i class="icon-forward"></i> Reprendre le suivi de cette personne
+    </button>
+</p>
+
 
 <div class="row">
     <div class="span8">

@@ -50,6 +50,9 @@ public class Person extends Model {
 
     public String followedBy;
 
+    @Constraints.Required
+    public Boolean isFollowed = true;
+
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     public List<Residence> residences;
 

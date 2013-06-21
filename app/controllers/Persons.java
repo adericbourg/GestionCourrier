@@ -1,7 +1,6 @@
 package controllers;
 
 import static core.util.Collections.first;
-
 import models.residence.Person;
 import models.residence.Residence;
 
@@ -67,6 +66,34 @@ public class Persons extends Controller {
         basePerson.followedBy = updatedPerson.followedBy;
         basePerson.followingDepartment = updatedPerson.followingDepartment;
         basePerson.save();
+
+        return ok();
+    }
+
+    /**
+     * Stop following person.
+     * 
+     * @param personId Person id.
+     * @return Ok.
+     */
+    public static Result follow(long personId) {
+        return setFollowing(personId, true);
+    }
+
+    /**
+     * Start following person.
+     * 
+     * @param personId Person id.
+     * @return Ok.
+     */
+    public static Result unfollow(long personId) {
+        return setFollowing(personId, false);
+    }
+
+    private static Result setFollowing(long personId, boolean following) {
+        Person person = Person.byId(personId);
+        person.isFollowed = following;
+        person.save();
 
         return ok();
     }

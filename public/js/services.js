@@ -55,6 +55,22 @@ angular.module('gestionCourrierServices', []).
                 return $http.post("/json/person/" + person.id + "/update", person);
             },
             /**
+             * Follow person.
+             * @param personId Person id.
+             * @returns {*|HttpPromise} Promise.
+             */
+            follow: function (personId) {
+                return $http.post("/json/person/" + personId + "/follow");
+            },
+            /**
+             * Unfollow person.
+             * @param personId Person id.
+             * @returns {*|HttpPromise} Promise.
+             */
+            unfollow: function (personId) {
+                return $http.post("/json/person/" + personId + "/unfollow");
+            },
+            /**
              * Create new residence for person.
              * @param personId Person id.
              * @param residence Residence to be created.

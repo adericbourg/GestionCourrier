@@ -133,6 +133,28 @@ function ViewPersonCtrl($scope, $dialog, $routeParams, personService) {
         });
     };
 
+    $scope.follow = function () {
+        personService.follow($scope.person.id).
+            success(function () {
+                $scope.person.isFollowed = true;
+            }).
+            error(function (data, status, headers, config) {
+                $scope.messages = [];
+                $scope.messages.push({type: 'error', msg: "Erreur technique : " + status + " (" + config.method + ":" + config.url + ")."});
+            });
+    };
+
+    $scope.unfollow = function () {
+        personService.unfollow($scope.person.id).
+            success(function () {
+                $scope.person.isFollowed = false;
+            }).
+            error(function (data, status, headers, config) {
+                $scope.messages = [];
+                $scope.messages.push({type: 'error', msg: "Erreur technique : " + status + " (" + config.method + ":" + config.url + ")."});
+            });
+    };
+
     $scope.getResidenceClass = function (residence) {
         if (residence.currentResidence) {
             return "info"
