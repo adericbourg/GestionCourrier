@@ -39,7 +39,7 @@ function AllMailsController($scope, $dialog, mailService) {
     refresh();
 }
 
-function WithdrawMailCtrl($scope, $http, dialog, mail) {
+function WithdrawMailCtrl($scope, mailService, dialog, mail) {
     $scope.mail = mail;
 
     $scope.cancel = function () {
@@ -47,7 +47,7 @@ function WithdrawMailCtrl($scope, $http, dialog, mail) {
     };
 
     $scope.confirmWithdrawal = function () {
-        $http.post('/json/outbox/withdraw/' + $scope.mail.id).
+        mailService.withdraw($scope.mail.id).
             success(function () {
                 dialog.close({type: 'success', msg: "Courrier remis"});
             }).

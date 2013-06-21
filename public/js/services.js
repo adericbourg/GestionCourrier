@@ -37,6 +37,39 @@ angular.module('gestionCourrierServices', []).
                 return $http.get('/json/residents/find/' + text).then(function (response) {
                     return response.data;
                 });
+            },
+            /**
+             * Create new resident.
+             * @param resident Resident to be created.
+             * @returns {*|HttpPromise} Promise.
+             */
+            createResident: function (resident) {
+                return $http.post("/json/resident/create", resident);
+            },
+            /**
+             * Update resident.
+             * @param resident Resident to be updated.
+             * @returns {*|HttpPromise} Promise.
+             */
+            updateResident: function (resident) {
+                return $http.post("/json/resident/" + resident.id + "/update", resident);
+            },
+            /**
+             * Create new residence for resident.
+             * @param residentId Resident id.
+             * @param residence Residence to be created.
+             * @returns {*|HttpPromise} Promise.
+             */
+            createResidence: function (residentId, residence) {
+                return $http.post("/json/resident/" + residentId + "/addResidence", residence);
+            },
+            /**
+             * Renew latest residence.
+             * @param residentId Resident id to whom residence is to be renewed.
+             * @returns {*|HttpPromise} Promise.
+             */
+            renewResidence: function (residentId) {
+                return $http.post("/json/resident/" + residentId + "/renewResidence")
             }
         };
         return residentService;
@@ -46,10 +79,30 @@ angular.module('gestionCourrierServices', []).
          * Mail service
          */
         var mailService = {
+            /**
+             * Return all mails in outbox.
+             * @returns {*} All mails still on outbox.
+             */
             allMails: function () {
                 return $http.get('/json/outbox/mails').then(function (response) {
                     return response.data;
                 });
+            },
+            /**
+             * Register inbox mail.
+             * @param inboxMail Inbox mail.
+             * @returns {*|HttpPromise} Promise.
+             */
+            registerMail: function (inboxMail) {
+                return $http.post("/json/inbox/register", inboxMail);
+            },
+            /**
+             * Withdraw outbox mail.
+             * @param mailId Mail id from outbox.
+             * @returns {*|HttpPromise} Promise.
+             */
+            withdraw: function (mailId) {
+                return $http.post('/json/outbox/withdraw/' + mailId);
             }
         };
         return mailService;

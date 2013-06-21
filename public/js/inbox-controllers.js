@@ -1,6 +1,6 @@
 'use strict';
 
-function RegisterMailCtrl($scope, $http, residentService) {
+function RegisterMailCtrl($scope, residentService, mailService) {
 
     $scope.inbox = {};
     $scope.messages = [];
@@ -14,7 +14,7 @@ function RegisterMailCtrl($scope, $http, residentService) {
     };
 
     $scope.registerMail = function () {
-        $http.post("/json/inbox/register", $scope.inbox).
+        mailService.registerMail($scope.inbox).
             success(function () {
                 $scope.messages = [
                     {type: 'success', msg: "Courrier à destination de " + $scope.inbox.recipient.display + " enregistré"}

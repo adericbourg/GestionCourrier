@@ -48,7 +48,7 @@ function AllResidentsCtrl($scope, $dialog, residentService) {
     refresh();
 }
 
-function NewResidentCtrl($scope, $http, dialog, referenceListService) {
+function NewResidentCtrl($scope, dialog, residentService, referenceListService) {
     $scope.messages = [];
     $scope.resident = {};
 
@@ -61,7 +61,7 @@ function NewResidentCtrl($scope, $http, dialog, referenceListService) {
 
     $scope.createResident = function () {
         $scope.messages = [];
-        $http.post("/json/resident/create", $scope.resident).
+        residentService.createResident($scope.resident).
             success(function () {
                 dialog.close({type: 'success', msg: "La fiche de " + $scope.resident.firstName + " " + $scope.resident.lastName + " a été créée"
                 });
@@ -171,13 +171,13 @@ function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
     refresh();
 }
 
-function EditResidentCtrl($scope, $http, $location, $routeParams, residentService, referenceListService) {
+function EditResidentCtrl($scope, $location, $routeParams, residentService, referenceListService) {
     $scope.messages = [];
     $scope.resident = {};
     $scope.departments = [];
 
     $scope.updateResident = function () {
-        $http.post("/json/resident/" + $scope.resident.id + "/update", $scope.resident).
+        residentService.updateResident($scope.resident).
             success(function () {
                 $location.path("/resident/" + $scope.resident.id);
             }).
@@ -200,7 +200,7 @@ function EditResidentCtrl($scope, $http, $location, $routeParams, residentServic
     });
 }
 
-function NewResidenceCtrl($scope, $http, dialog, residentId, referenceListService) {
+function NewResidenceCtrl($scope, dialog, residentId, residentService, referenceListService) {
 
     $scope.residentId = residentId;
     $scope.residence = {};
@@ -210,7 +210,7 @@ function NewResidenceCtrl($scope, $http, dialog, residentId, referenceListServic
 
     $scope.createResidence = function () {
         $scope.messages = [];
-        $http.post("/json/resident/" + $scope.residentId + "/addResidence", $scope.residence).
+        residentService.createResidence(residentId, $scope.residence).
             success(function () {
                 dialog.close({type: 'success', msg: "Domiciliation ajoutée"});
             }).
@@ -232,12 +232,12 @@ function NewResidenceCtrl($scope, $http, dialog, residentId, referenceListServic
     });
 }
 
-function RenewResidenceCtrl($scope, $http, dialog, resident) {
+function RenewResidenceCtrl($scope, residentService, dialog, resident) {
 
     $scope.resident = resident;
 
     $scope.renewResidence = function () {
-        $http.post("/json/resident/" + $scope.resident.id + "/renewResidence").
+        residentService.renewResidence($scope.resident.id).
             success(function () {
                 dialog.close({type: 'success', msg: "Domiciliation renouvelée"});
             }).
