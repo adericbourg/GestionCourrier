@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import models.residence.Resident;
+import models.residence.Person;
 
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
@@ -31,7 +31,7 @@ public class Mail extends Model {
 
     @Constraints.Required
     @ManyToOne
-    public Resident recipient;
+    public Person recipient;
 
     public String sender;
 

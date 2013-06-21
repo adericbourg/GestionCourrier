@@ -1,6 +1,6 @@
 'use strict';
 
-function RegisterMailCtrl($scope, residentService, mailService) {
+function RegisterMailCtrl($scope, personService, mailService) {
 
     $scope.inbox = {};
     $scope.messages = [];
@@ -9,8 +9,8 @@ function RegisterMailCtrl($scope, residentService, mailService) {
         $scope.inbox.arrivalDate = moment().format("L");
     };
 
-    $scope.findResidents = function (text) {
-        return residentService.findResidents(text);
+    $scope.findPersons = function (text) {
+        return personService.find(text);
     };
 
     $scope.registerMail = function () {

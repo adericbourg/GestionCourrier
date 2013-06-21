@@ -41,7 +41,7 @@ public class Residence extends Model {
 
     @JsonIgnore
     @ManyToOne
-    public Resident resident;
+    public Person person;
 
     @Transient
     public int getMonthsToEnd() {

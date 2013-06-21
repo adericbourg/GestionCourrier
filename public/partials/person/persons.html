@@ -1,25 +1,25 @@
-<h1>Domiciliés</h1>
+<h1>Personnes</h1>
 
 <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
 <div class="form-actions">
 
-    <a class="btn" ng-click="newResidentDialog()">Nouveau domicilié</a>
+    <a class="btn" ng-click="newPersonDialog()">Inscrire une personne</a>
 
 </div>
 
 <div class="well">
-    <div class="input-prepend" ng-show="allResidents.length">
+    <div class="input-prepend" ng-show="allPersons.length">
         <span class="add-on"><i class="icon-search"></i></span>
-        <input type="text" ng-model="searchResidentCriterion" placeholder="Rechercher"/>
+        <input type="text" ng-model="searchPersonCriterion" placeholder="Rechercher"/>
     </div>
-    <div ng-hide="allResidents.length">
-        Aucun domicilié dans l'application.
+    <div ng-hide="allPersons.length">
+        Aucune personne dans l'application.
     </div>
-    <div ng-show="allResidents.length && !filteredResidents.length">
-        Aucun domicilié ne correspond au critère.
+    <div ng-show="allPersons.length && !filteredPersons.length">
+        Aucune personne ne correspond au critère.
     </div>
-    <table class="table table-striped" ng-show="filteredResidents.length">
+    <table class="table table-striped" ng-show="filteredPersons.length">
         <thead>
         <tr>
             <th class="span1"></th>
@@ -28,9 +28,9 @@
             <th class="span3"><a ng-click="setSortCriterion('currentResidence.endDate')">Fin de domiciliation</a></th>
         </tr>
         </thead>
-        <tbody ng-repeat="r in filteredResidents = (allResidents | filter:searchResidentCriterion | orderBy:tableSortPredicate:tableSortReverse)">
+        <tbody ng-repeat="r in filteredPersons = (allPersons | filter:searchPersonCriterion | orderBy:tableSortPredicate:tableSortReverse)">
         <tr>
-            <td><a ng-href="#/resident/{{r.id}}"><i class="icon-eye-open"></i></a></td>
+            <td><a ng-href="#/person/{{r.id}}"><i class="icon-eye-open"></i></a></td>
             <td>{{r.lastName}}</td>
             <td>{{r.firstName}}</td>
             <td>{{r.latestResidence.endDate | localDate}}</td>

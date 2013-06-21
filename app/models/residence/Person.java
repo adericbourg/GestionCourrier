@@ -25,9 +25,9 @@ import core.io.serialization.JodaLocalDateDeserializer;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Resident extends Model {
+public class Person extends Model {
 
-    private static final Finder<Long, Resident> FINDER = new Finder<Long, Resident>(Long.class, Resident.class);
+    private static final Finder<Long, Person> FINDER = new Finder<Long, Person>(Long.class, Person.class);
 
     @Id
     public Long id;
@@ -50,7 +50,7 @@ public class Resident extends Model {
 
     public String followedBy;
 
-    @OneToMany(mappedBy = "resident", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     public List<Residence> residences;
 
     @JsonIgnore
@@ -105,17 +105,19 @@ public class Resident extends Model {
     //
 
     /**
-     * Fetch all residents. * @return All residents.
+     * Fetch all persons.
+     * 
+     * @return All persons.
      */
-    public static List<Resident> findAll() {
+    public static List<Person> findAll() {
         return FINDER.all();
     }
 
-    public static List<Resident> find(String queryString) {
+    public static List<Person> find(String queryString) {
         if (Strings.isNullOrEmpty(queryString) || queryString.length() < 3) {
             return Collections.emptyList();
         }
-        ExpressionList<Resident> where = FINDER.where();
+        ExpressionList<Person> where = FINDER.where();
         for (String queryToken : queryString.split(" ")) {
             Expression ex = Expr.or(Expr.ilike("firstName", queryToken + "%"), Expr.ilike("lastName", queryToken + "%"));
             ex = Expr.or(ex, Expr.ilike("maidenName", queryToken + "%"));
@@ -124,7 +126,7 @@ public class Resident extends Model {
         return where.findList();
     }
 
-    public static Resident byId(Long id) {
+    public static Person byId(Long id) {
         return FINDER.fetch("residences").orderBy("residences.startDate DESC").where().idEq(id).findUnique();
     }
 }

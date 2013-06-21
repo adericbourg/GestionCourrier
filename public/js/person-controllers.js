@@ -1,21 +1,21 @@
 'use strict';
 
-function AllResidentsCtrl($scope, $dialog, residentService) {
+function AllPersonsCtrl($scope, $dialog, personService) {
     $scope.messages = [];
 
     $scope.tableSortPredicate = "lastName";
     $scope.tableSortReverse = false;
 
-    $scope.newResidentDialogOpts = {
+    $scope.newPersonDialogOpts = {
         backdrop: true,
         keyboard: true,
         backdropClick: true,
-        templateUrl: '/assets/partials/resident/newResident.html',
-        controller: 'NewResidentCtrl'
+        templateUrl: '/assets/partials/person/newPerson.html',
+        controller: 'NewPersonCtrl'
     };
 
-    $scope.newResidentDialog = function () {
-        var d = $dialog.dialog($scope.newResidentDialogOpts);
+    $scope.newPersonDialog = function () {
+        var d = $dialog.dialog($scope.newPersonDialogOpts);
         d.open().then(function (result) {
             $scope.messages = [];
             if (result) {
@@ -40,17 +40,17 @@ function AllResidentsCtrl($scope, $dialog, residentService) {
     };
 
     var refresh = function () {
-        residentService.allResidents().then(function (data) {
-            $scope.allResidents = data;
+        personService.all().then(function (data) {
+            $scope.allPersons = data;
         });
     };
 
     refresh();
 }
 
-function NewResidentCtrl($scope, dialog, residentService, referenceListService) {
+function NewPersonCtrl($scope, dialog, personService, referenceListService) {
     $scope.messages = [];
-    $scope.resident = {};
+    $scope.person = {};
 
     $scope.genders = [];
     $scope.departments = [];
@@ -59,11 +59,11 @@ function NewResidentCtrl($scope, dialog, residentService, referenceListService) 
         dialog.close();
     };
 
-    $scope.createResident = function () {
+    $scope.createPerson = function () {
         $scope.messages = [];
-        residentService.createResident($scope.resident).
+        personService.create($scope.person).
             success(function () {
-                dialog.close({type: 'success', msg: "La fiche de " + $scope.resident.firstName + " " + $scope.resident.lastName + " a été créée"
+                dialog.close({type: 'success', msg: "La fiche de " + $scope.person.firstName + " " + $scope.person.lastName + " a été créée"
                 });
             }).
             error(function (data, status, headers, config) {
@@ -84,19 +84,19 @@ function NewResidentCtrl($scope, dialog, residentService, referenceListService) 
     });
 }
 
-function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
+function ViewPersonCtrl($scope, $dialog, $routeParams, personService) {
     $scope.messages = [];
-    $scope.resident = {};
+    $scope.person = {};
     $scope.residenceProgress = {};
 
     $scope.newResidenceDialogOpts = {
         backdrop: true,
         keyboard: true,
         backdropClick: true,
-        templateUrl: '/assets/partials/resident/residence/newResidence.html',
+        templateUrl: '/assets/partials/person/residence/newResidence.html',
         controller: 'NewResidenceCtrl',
-        resolve: {residentId: function () {
-            return $scope.resident.id
+        resolve: {personId: function () {
+            return $scope.person.id
         }}
     };
 
@@ -104,10 +104,10 @@ function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
         backdrop: true,
         keyboard: true,
         backdropClick: true,
-        templateUrl: '/assets/partials/resident/residence/renewResidence.html',
+        templateUrl: '/assets/partials/person/residence/renewResidence.html',
         controller: 'RenewResidenceCtrl',
-        resolve: {resident: function () {
-            return $scope.resident
+        resolve: {person: function () {
+            return $scope.person
         }}
     };
 
@@ -142,7 +142,7 @@ function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
     };
 
     var computeResidenceProgress = function () {
-        var value = $scope.resident.residenceProgress;
+        var value = $scope.person.residenceProgress;
         if (value < 0) {
             return;
         }
@@ -162,8 +162,8 @@ function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
     };
 
     var refresh = function () {
-        residentService.fetchResident($routeParams.residentId).then(function (data) {
-            $scope.resident = data;
+        personService.fetch($routeParams.personId).then(function (data) {
+            $scope.person = data;
             computeResidenceProgress();
         });
     };
@@ -171,15 +171,15 @@ function ViewResidentCtrl($scope, $dialog, $routeParams, residentService) {
     refresh();
 }
 
-function EditResidentCtrl($scope, $location, $routeParams, residentService, referenceListService) {
+function EditPersonCtrl($scope, $location, $routeParams, personService, referenceListService) {
     $scope.messages = [];
-    $scope.resident = {};
+    $scope.person = {};
     $scope.departments = [];
 
-    $scope.updateResident = function () {
-        residentService.updateResident($scope.resident).
+    $scope.updatePerson = function () {
+        personService.update($scope.person).
             success(function () {
-                $location.path("/resident/" + $scope.resident.id);
+                $location.path("/person/" + $scope.person.id);
             }).
             error(function (data, status, headers, config) {
                 $scope.messages = [];
@@ -191,8 +191,8 @@ function EditResidentCtrl($scope, $location, $routeParams, residentService, refe
         $scope.messages.splice(index, 1);
     };
 
-    residentService.fetchResident($routeParams.residentId).then(function (data) {
-        $scope.resident = data;
+    personService.fetch($routeParams.personId).then(function (data) {
+        $scope.person = data;
     });
 
     referenceListService.listDepartments().then(function (data) {
@@ -200,9 +200,9 @@ function EditResidentCtrl($scope, $location, $routeParams, residentService, refe
     });
 }
 
-function NewResidenceCtrl($scope, dialog, residentId, residentService, referenceListService) {
+function NewResidenceCtrl($scope, dialog, personId, personService, referenceListService) {
 
-    $scope.residentId = residentId;
+    $scope.personId = personId;
     $scope.residence = {};
 
     $scope.messages = [];
@@ -210,7 +210,7 @@ function NewResidenceCtrl($scope, dialog, residentId, residentService, reference
 
     $scope.createResidence = function () {
         $scope.messages = [];
-        residentService.createResidence(residentId, $scope.residence).
+        personService.createResidence(personId, $scope.residence).
             success(function () {
                 dialog.close({type: 'success', msg: "Domiciliation ajoutée"});
             }).
@@ -232,12 +232,12 @@ function NewResidenceCtrl($scope, dialog, residentId, residentService, reference
     });
 }
 
-function RenewResidenceCtrl($scope, residentService, dialog, resident) {
+function RenewResidenceCtrl($scope, personService, dialog, person) {
 
-    $scope.resident = resident;
+    $scope.person = person;
 
     $scope.renewResidence = function () {
-        residentService.renewResidence($scope.resident.id).
+        personService.renewResidence($scope.person.id).
             success(function () {
                 dialog.close({type: 'success', msg: "Domiciliation renouvelée"});
             }).

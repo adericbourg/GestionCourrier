@@ -1,6 +1,6 @@
-<h1>{{resident.display}}</h1>
+<h1>{{person.display}}</h1>
 
-<a ng-href="#/resident/{{resident.id}}/edit"><i class="icon-edit"></i> Modifier la fiche</a>
+<a ng-href="#/person/{{person.id}}/edit"><i class="icon-edit"></i> Modifier la fiche</a>
 
 <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
@@ -8,17 +8,17 @@
     <div class="span8">
         <h2>Domiciliation</h2>
 
-        <div ng-show="resident.currentResidence">
-            La domiciliation en cours se termine dans {{resident.currentResidence.monthsToEnd}} mois ({{resident.currentResidence.endDate | localDate}}).
+        <div ng-show="person.currentResidence">
+            La domiciliation en cours se termine dans {{person.currentResidence.monthsToEnd}} mois ({{person.currentResidence.endDate | localDate}}).
             <progress value="residenceProgress"></progress>
         </div>
 
         <div class="well">
-            <span ng-hide="resident.residences.length">
+            <span ng-hide="person.residences.length">
                 Aucune domiciliation connue.
             </span>
 
-            <table class="table" ng-show="resident.residences.length">
+            <table class="table" ng-show="person.residences.length">
                 <thead>
                 <tr>
                     <th class="span3">Type</th>
@@ -27,7 +27,7 @@
                     <th class="span3">Suivi courrier</th>
                 </tr>
                 </thead>
-                <tbody ng-repeat="res in resident.residences">
+                <tbody ng-repeat="res in person.residences">
                 <tr class="{{getResidenceClass(res)}}">
                     <td>{{res.residenceType | staticList}}</td>
                     <td>{{res.startDate | localDate}}</td>
@@ -41,7 +41,7 @@
     <div class="span4">
         <div class="well">
             <button class="btn btn-primary btn-block" ng-click="renewLatestResidence()"
-                    ng-show="resident.residences.length">
+                    ng-show="person.residences.length">
                 <i class="icon-refresh icon-white"></i> Renouveler la dernière domiciliation
             </button>
             <button class="btn btn-block" ng-click="newResidenceDialog()">Nouvelle domiciliation</button>
@@ -50,15 +50,15 @@
             <table class="table">
                 <tr>
                     <td>Date de naissance</td>
-                    <td>{{resident.birthDate | localDate}}</td>
+                    <td>{{person.birthDate | localDate}}</td>
                 </tr>
                 <tr>
                     <td>Pôle</td>
-                    <td>{{resident.followingDepartment | staticList}}</td>
+                    <td>{{person.followingDepartment | staticList}}</td>
                 </tr>
                 <tr>
                     <td>Suivi par</td>
-                    <td>{{resident.followedBy}}</td>
+                    <td>{{person.followedBy}}</td>
                 </tr>
             </table>
         </div>

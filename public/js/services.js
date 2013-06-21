@@ -1,75 +1,75 @@
 "use strict";
 
 angular.module('gestionCourrierServices', []).
-    factory('residentService',function ($http) {
+    factory('personService',function ($http) {
         /**
-         * Service for "residents" module.
+         * Service for "persons" module.
          */
         return {
             /**
-             * Returns all residents.
+             * Returns all persons.
              * @returns {*}
              */
-            allResidents: function () {
-                return $http.get('/json/residents').then(function (response) {
+            all: function () {
+                return $http.get('/json/persons').then(function (response) {
                     return response.data;
                 });
             },
             /**
-             * Fetches a resident detail.
-             * @param residentId Resident id.
-             * @returns {*} Resident detail for specified id.
+             * Fetches a person detail.
+             * @param personId Person id.
+             * @returns {*} Person detail for specified id.
              */
-            fetchResident: function (residentId) {
-                return $http.get('/json/resident/' + residentId).then(function (response) {
+            fetch: function (personId) {
+                return $http.get('/json/person/' + personId).then(function (response) {
                     return response.data;
                 });
             },
             /**
-             * Find a resident by text.
+             * Find a person by text.
              * @param text Text search criteria.
-             * @returns {*} List of residents matching search criteria.
+             * @returns {*} List of persons matching search criteria.
              */
-            findResidents: function (text) {
+            find: function (text) {
                 if (!text || text.length < 3) {
                     return [];
                 }
-                return $http.get('/json/residents/find/' + text).then(function (response) {
+                return $http.get('/json/person/find/' + text).then(function (response) {
                     return response.data;
                 });
             },
             /**
-             * Create new resident.
-             * @param resident Resident to be created.
+             * Create new person.
+             * @param person Person to be created.
              * @returns {*|HttpPromise} Promise.
              */
-            createResident: function (resident) {
-                return $http.post("/json/resident/create", resident);
+            create: function (person) {
+                return $http.post("/json/person/create", person);
             },
             /**
-             * Update resident.
-             * @param resident Resident to be updated.
+             * Update person.
+             * @param person Person to be updated.
              * @returns {*|HttpPromise} Promise.
              */
-            updateResident: function (resident) {
-                return $http.post("/json/resident/" + resident.id + "/update", resident);
+            update: function (person) {
+                return $http.post("/json/person/" + person.id + "/update", person);
             },
             /**
-             * Create new residence for resident.
-             * @param residentId Resident id.
+             * Create new residence for person.
+             * @param personId Person id.
              * @param residence Residence to be created.
              * @returns {*|HttpPromise} Promise.
              */
-            createResidence: function (residentId, residence) {
-                return $http.post("/json/resident/" + residentId + "/addResidence", residence);
+            createResidence: function (personId, residence) {
+                return $http.post("/json/person/" + personId + "/addResidence", residence);
             },
             /**
              * Renew latest residence.
-             * @param residentId Resident id to whom residence is to be renewed.
+             * @param personId Person id to whom residence is to be renewed.
              * @returns {*|HttpPromise} Promise.
              */
-            renewResidence: function (residentId) {
-                return $http.post("/json/resident/" + residentId + "/renewResidence")
+            renewResidence: function (personId) {
+                return $http.post("/json/person/" + personId + "/renewResidence")
             }
         };
     }).

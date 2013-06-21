@@ -1,14 +1,14 @@
-<h1>{{resident.display}}</h1>
+<h1>{{person.display}}</h1>
 
 <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
-<form class="form-horizontal" ng-submit="updateResident()">
+<form class="form-horizontal" ng-submit="updatePerson()">
 
     <div class="control-group">
         <label class="control-label">Pôle</label>
 
         <div class="controls">
-            <select ng-model="resident.followingDepartment.key"
+            <select ng-model="person.followingDepartment.key"
                     ng-options="dep.key as dep.value for dep in departments"></select>
         </div>
     </div>
@@ -16,12 +16,12 @@
         <label class="control-label">Suivi par</label>
 
         <div class="controls">
-            <input type="text" ng-model="resident.followedBy" required/>
+            <input type="text" ng-model="person.followedBy" required/>
         </div>
     </div>
     <div class="control-group">
         <div class="controls">
-            <a ng-href="#/resident/{{resident.id}}" class="btn">Annuler</a>
+            <a ng-href="#/person/{{person.id}}" class="btn">Annuler</a>
             <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
         </div>
     </div>

@@ -3,10 +3,10 @@
 var app = angular.module('gestionCourrier', ['gestionCourrierFilters', 'gestionCourrierServices', 'ui.bootstrap', '$strap.directives']).
     config(function ($routeProvider) {
         $routeProvider.
-            when('/', {redirectTo: '/resident/all'}).
-            when('/resident/all', {controller: AllResidentsCtrl, templateUrl: '/assets/partials/resident/residents.html'}).
-            when('/resident/:residentId', {controller: ViewResidentCtrl, templateUrl: '/assets/partials/resident/viewResident.html'}).
-            when('/resident/:residentId/edit', {controller: EditResidentCtrl, templateUrl: '/assets/partials/resident/editResident.html'}).
+            when('/', {redirectTo: '/person/all'}).
+            when('/person/all', {controller: AllPersonsCtrl, templateUrl: '/assets/partials/person/persons.html'}).
+            when('/person/:personId', {controller: ViewPersonCtrl, templateUrl: '/assets/partials/person/viewPerson.html'}).
+            when('/person/:personId/edit', {controller: EditPersonCtrl, templateUrl: '/assets/partials/person/editPerson.html'}).
             when('/inbox', {controller: RegisterMailCtrl, templateUrl: '/assets/partials/inbox/registerMail.html'}).
             when('/outbox', {controller: AllMailsController, templateUrl: '/assets/partials/outbox/mails.html'}).
             otherwise({redirectTo: '/'})
@@ -19,7 +19,7 @@ var app = angular.module('gestionCourrier', ['gestionCourrierFilters', 'gestionC
  */
 app.controller('NavigationCtrl', ['$scope', '$location', function ($scope, $location) {
     $scope.navClass = function (navigationGroup) {
-        var currentRoute = $location.path().substring(1).split('/')[0] || 'resident';
+        var currentRoute = $location.path().substring(1).split('/')[0] || 'person';
         return navigationGroup === currentRoute ? 'active' : '';
     };
 }]);
