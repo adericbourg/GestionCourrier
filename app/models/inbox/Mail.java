@@ -43,8 +43,6 @@ public class Mail extends Model {
     @JsonDeserialize(using = JodaLocalDateDeserializer.class)
     public LocalDate withdrawalDate;
 
-    public Boolean toBeForwarded = false;
-
     //
 
     public static Mail byId(Long id) {
