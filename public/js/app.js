@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module('gestionCourrier', ['gestionCourrierFilters', 'gestionCourrierServices', 'ui.bootstrap', '$strap.directives']).
+var app = angular.module('gestionCourrier', ['gestionCourrierFilters', 'gestionCourrierServices', 'gestionCourrierDirectives', 'ui.bootstrap', '$strap.directives']).
     config(function ($routeProvider) {
         $routeProvider.
             when('/', {redirectTo: '/person/all'}).

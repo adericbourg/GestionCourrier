@@ -61,7 +61,8 @@
             <label class="control-label">Suivi par</label>
 
             <div class="controls">
-                <input type="text" ng-model="person.followedBy" required/>
+                <input type="text" ng-model="person.followedBy" ng-required="person.isFollowed" ng-disabled="!person.isFollowed"/><br/>
+                <input type="checkbox" inverted ng-model="person.isFollowed"/> Pas de suivi par l'association
             </div>
         </div>
     </div>

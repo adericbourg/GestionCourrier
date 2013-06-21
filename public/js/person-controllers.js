@@ -50,7 +50,9 @@ function AllPersonsCtrl($scope, $dialog, personService) {
 
 function NewPersonCtrl($scope, dialog, personService, referenceListService) {
     $scope.messages = [];
-    $scope.person = {};
+    $scope.person = {
+        isFollowed: true
+    }; // TODO Get default values from backend?
 
     $scope.genders = [];
     $scope.departments = [];
