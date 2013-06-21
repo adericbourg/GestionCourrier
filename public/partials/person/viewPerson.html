@@ -16,13 +16,13 @@
     </button>
 </p>
 
-
-<div class="row">
+<div class="row-fluid">
     <div class="span8">
         <h2>Domiciliation</h2>
 
         <div ng-show="person.currentResidence">
-            La domiciliation en cours se termine dans {{person.currentResidence.monthsToEnd}} mois ({{person.currentResidence.endDate | localDate}}).
+            La domiciliation en cours se termine dans {{person.currentResidence.monthsToEnd}} mois
+            ({{person.currentResidence.endDate | localDate}}).
             <progress value="residenceProgress"></progress>
         </div>
 
@@ -60,6 +60,7 @@
             <button class="btn btn-block" ng-click="newResidenceDialog()">Nouvelle domiciliation</button>
         </div>
         <div class="well">
+            <h3>Fiche d'identité</h3>
             <table class="table">
                 <tr>
                     <td>Date de naissance</td>
@@ -69,12 +70,11 @@
                     <td>Pôle</td>
                     <td>{{person.followingDepartment | staticList}}</td>
                 </tr>
-                <tr>
+                <tr ng-show="person.followedBy">
                     <td>Suivi par</td>
                     <td>{{person.followedBy}}</td>
                 </tr>
             </table>
         </div>
-
     </div>
 </div>
