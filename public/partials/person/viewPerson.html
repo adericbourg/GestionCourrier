@@ -29,10 +29,9 @@
             <table class="table" ng-show="person.residences.length">
                 <thead>
                 <tr>
-                    <th class="span3">Type</th>
-                    <th class="span3">Date de début</th>
-                    <th class="span3">Date de fin</th>
-                    <th class="span3">Suivi courrier</th>
+                    <th class="span4">Type</th>
+                    <th class="span4">Date de début</th>
+                    <th class="span4">Date de fin</th>
                 </tr>
                 </thead>
                 <tbody ng-repeat="res in person.residences">
@@ -40,7 +39,6 @@
                     <td>{{res.residenceType | staticList}}</td>
                     <td>{{res.startDate | localDate}}</td>
                     <td>{{res.endDate | localDate}}</td>
-                    <td>{{res.mailForwardAddress}}</td>
                 </tr>
                 </tbody>
             </table>

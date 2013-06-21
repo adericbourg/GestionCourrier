@@ -37,8 +37,6 @@ public class Residence extends Model {
     @JsonDeserialize(using = JodaLocalDateDeserializer.class)
     public LocalDate endDate;
 
-    public String mailForwardAddress;
-
     @JsonIgnore
     @ManyToOne
     public Person person;
@@ -60,7 +58,6 @@ public class Residence extends Model {
     public Residence copy() {
         Residence copy = new Residence();
         copy.residenceType = residenceType;
-        copy.mailForwardAddress = mailForwardAddress;
         return copy;
     }
 }
