@@ -6,8 +6,8 @@ import java.util.List;
 import javax.persistence.*;
 
 import models.inbox.Mail;
-
 import models.residence.Residence;
+
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
@@ -148,5 +148,11 @@ public class Person extends Model {
     public static Person byId(Long id) {
         return FINDER.fetch("residences").orderBy("residences.startDate DESC")
                 .where().idEq(id).findUnique();
+    }
+
+    public static List<Person> findAllResidents() {
+        return FINDER.fetch("residences").orderBy("residences.startDate DESC")
+                .where().le("residences.startDate", LocalDate.now())
+                .ge("residences.endDate", LocalDate.now()).findList();
     }
 }

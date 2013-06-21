@@ -5,18 +5,24 @@
 # Home page
 GET     /                                   controllers.Assets.at(path="/public", file="index.html")
 
-# Residence
+# Persons
 GET     /json/persons                       controllers.Persons.allPersons()
 
 GET     /json/person/:id                    controllers.Persons.person(id: Long)
+GET     /json/person/find/:query            controllers.Persons.search(query: String)
 POST    /json/person/create                 controllers.Persons.create()
+POST    /json/person/:id/update             controllers.Persons.update(id: Long)
+
 POST    /json/person/:id/follow             controllers.Persons.follow(id: Long)
 POST    /json/person/:id/unfollow           controllers.Persons.unfollow(id: Long)
-POST    /json/person/:id/update             controllers.Persons.update(id: Long)
+
+# Residence
+
 POST    /json/person/:id/addResidence       controllers.Persons.addResidence(id: Long)
 POST    /json/person/:id/renewResidence     controllers.Persons.renewResidence(id: Long)
 
-GET     /json/person/find/:query            controllers.Persons.search(query: String)
+GET     /json/residence/allResidents        controllers.Residences.allResidents()
+
 
 #Inbox
 POST    /json/inbox/register                controllers.Inbox.registerMail()

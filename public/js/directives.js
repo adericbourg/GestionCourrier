@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module('gestionCourrierDirectives', []).
-    directive('inverted', function () {
+    directive('inverted',function () {
         return {
             require: 'ngModel',
             link: function (scope, element, attrs, ngModel) {

@@ -89,6 +89,18 @@ angular.module('gestionCourrierServices', []).
             }
         };
     }).
+    factory('residenceService',function ($http) {
+        /**
+         * Residence service.
+         */
+        return {
+            allResidents: function () {
+                return $http.get('/json/residence/allResidents').then(function (response) {
+                    return response.data;
+                });
+            }
+        };
+    }).
     factory('mailService',function ($http) {
         /**
          * Mail service

@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module('gestionCourrierFilters', []).
-    filter('localDate',function () {
+    filter('localDate', function () {
         /**
          * Filter for date provided in format [yyyy,MM,dd] to display it in French format (dd/MM/yyyy).
          */

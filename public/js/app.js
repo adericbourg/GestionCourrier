@@ -7,6 +7,7 @@ var app = angular.module('gestionCourrier', ['gestionCourrierFilters', 'gestionC
             when('/person/all', {controller: AllPersonsCtrl, templateUrl: '/assets/partials/person/persons.html'}).
             when('/person/:personId', {controller: ViewPersonCtrl, templateUrl: '/assets/partials/person/viewPerson.html'}).
             when('/person/:personId/edit', {controller: EditPersonCtrl, templateUrl: '/assets/partials/person/editPerson.html'}).
+            when('/residence', {controller: AllResidentsCtrl, templateUrl: '/assets/partials/residence/residents.html'}).
             when('/inbox', {controller: RegisterMailCtrl, templateUrl: '/assets/partials/inbox/registerMail.html'}).
             when('/outbox', {controller: AllMailsController, templateUrl: '/assets/partials/outbox/mails.html'}).
             otherwise({redirectTo: '/'})
