@@ -18,6 +18,8 @@ describe('filter', function () {
         it('should convert static list object into its display value',
             inject(function (staticListFilter) {
                 expect(staticListFilter(undefined)).toBe('');
+                expect(staticListFilter({key: 'A'})).toBe('');
+                expect(staticListFilter({value: 'B'})).toBe('B');
                 expect(staticListFilter({key: 'A', value: 'B'})).toBe('B');
             }));
     });

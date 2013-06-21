@@ -32,6 +32,6 @@ angular.module('gestionCourrierFilters', []).
             if (!listItem) {
                 return '';
             }
-            return listItem.value;
+            return listItem.value ? listItem.value : '';
         };
     });
