@@ -7,18 +7,18 @@ describe('filter', function () {
     describe('localDate', function () {
 
         it('should convert local date to french formatted date',
-            inject(function (localDate) {
+            inject(function (localDateFilter) {
                 expect(undefined).toBe(undefined);
-                expect([2013, 5, 12]).toBe('12/05/2013');
+                expect(localDateFilter([2013, 5, 12])).toBe('12/05/2013');
             }));
     });
 
     describe('staticList', function () {
 
         it('should convert static list object into its display value',
-            inject(function (staticList) {
-                expect(undefined).toBe('');
-                expect({key: 'A', value: 'B'}).toBe('B');
+            inject(function (staticListFilter) {
+                expect(staticListFilter(undefined)).toBe('');
+                expect(staticListFilter({key: 'A', value: 'B'})).toBe('B');
             }));
     });
 });
