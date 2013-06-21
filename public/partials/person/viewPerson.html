@@ -8,12 +8,7 @@
 
 <p>
     <a ng-href="#/person/{{person.id}}/edit"><i class="icon-edit"></i> Modifier la fiche</a>
-    <button class="btn btn-link" ng-click="unfollow()" ng-show="person.isFollowed">
-        <i class="icon-stop"></i> Arrêter le suivi de cette personne
-    </button>
-    <button class="btn btn-link" ng-click="follow()" ng-hide="person.isFollowed">
-        <i class="icon-forward"></i> Reprendre le suivi de cette personne
-    </button>
+
 </p>
 
 <div class="row-fluid">
@@ -53,6 +48,13 @@
     </div>
     <div class="span4">
         <div class="well">
+            <button class="btn btn-block" ng-click="unfollow()" ng-show="person.isFollowed">
+                <i class="icon-stop"></i> Interrompre le suivi de cette personne
+            </button>
+            <button class="btn btn-block" ng-click="follow()" ng-hide="person.isFollowed">
+                <i class="icon-forward"></i> Reprendre le suivi de cette personne
+            </button>
+            <hr/>
             <button class="btn btn-primary btn-block" ng-click="renewLatestResidence()"
                     ng-show="person.residences.length">
                 <i class="icon-refresh icon-white"></i> Renouveler la dernière domiciliation
