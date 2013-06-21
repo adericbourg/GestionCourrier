@@ -3,6 +3,7 @@ package models.residence;
 import javax.persistence.*;
 
 import models.person.Person;
+
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
@@ -50,7 +51,15 @@ public class Residence extends Model {
     @Transient
     public boolean isCurrentResidence() {
         LocalDate today = LocalDate.now();
-        return today.isAfter(startDate) && today.isBefore(endDate) || today.isEqual(startDate) || today.isEqual(endDate);
+        return today.isAfter(startDate) && today.isBefore(endDate)
+                || today.isEqual(startDate) || today.isEqual(endDate);
+    }
+
+    @Transient
+    public int getEndDateSortOrder() {
+        // FIXME This is so ugly :-(
+        return endDate.getYear() * 10000 + (endDate.getMonthOfYear() + 10)
+                * 100 + (endDate.getDayOfMonth() + 10);
     }
 
     //
