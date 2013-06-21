@@ -53,6 +53,11 @@ public class Person extends Model {
     @Constraints.Required
     public Boolean isFollowed = true;
 
+    public String forwardAddress;
+
+    @Constraints.Required
+    public Boolean forwardAddressActive = false;
+
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     public List<Residence> residences;
 

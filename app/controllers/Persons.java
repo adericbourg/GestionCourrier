@@ -65,6 +65,8 @@ public class Persons extends Controller {
         basePerson.birthDate = updatedPerson.birthDate;
         basePerson.followedBy = updatedPerson.followedBy;
         basePerson.followingDepartment = updatedPerson.followingDepartment;
+        basePerson.forwardAddress = updatedPerson.forwardAddress;
+        basePerson.forwardAddressActive = updatedPerson.forwardAddressActive;
         basePerson.save();
 
         return ok();
