@@ -61,7 +61,7 @@ function NewResidentCtrl($scope, $http, dialog, referenceListService) {
 
     $scope.createResident = function () {
         $scope.messages = [];
-        $http.post("/resident/create", $scope.resident).
+        $http.post("/json/resident/create", $scope.resident).
             success(function () {
                 dialog.close({type: 'success', msg: "La fiche de " + $scope.resident.firstName + " " + $scope.resident.lastName + " a été créée"
                 });
@@ -177,7 +177,7 @@ function EditResidentCtrl($scope, $http, $location, $routeParams, residentServic
     $scope.departments = [];
 
     $scope.updateResident = function () {
-        $http.post("/resident/" + $scope.resident.id + "/update", $scope.resident).
+        $http.post("/json/resident/" + $scope.resident.id + "/update", $scope.resident).
             success(function () {
                 $location.path("/resident/" + $scope.resident.id);
             }).
@@ -210,7 +210,7 @@ function NewResidenceCtrl($scope, $http, dialog, residentId, referenceListServic
 
     $scope.createResidence = function () {
         $scope.messages = [];
-        $http.post("/resident/" + $scope.residentId + "/addResidence", $scope.residence).
+        $http.post("/json/resident/" + $scope.residentId + "/addResidence", $scope.residence).
             success(function () {
                 dialog.close({type: 'success', msg: "Domiciliation ajoutée"});
             }).
@@ -237,7 +237,7 @@ function RenewResidenceCtrl($scope, $http, dialog, resident) {
     $scope.resident = resident;
 
     $scope.renewResidence = function () {
-        $http.post("/resident/" + $scope.resident.id + "/renewResidence").
+        $http.post("/json/resident/" + $scope.resident.id + "/renewResidence").
             success(function () {
                 dialog.close({type: 'success', msg: "Domiciliation renouvelée"});
             }).

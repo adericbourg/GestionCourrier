@@ -11,7 +11,7 @@ angular.module('gestionCourrierServices', []).
              * @returns {*}
              */
             allResidents: function () {
-                return $http.get('/residents').then(function (response) {
+                return $http.get('/json/residents').then(function (response) {
                     return response.data;
                 });
             },
@@ -21,7 +21,7 @@ angular.module('gestionCourrierServices', []).
              * @returns {*} Resident detail for specified id.
              */
             fetchResident: function (residentId) {
-                return $http.get('/resident/' + residentId).then(function (response) {
+                return $http.get('/json/resident/' + residentId).then(function (response) {
                     return response.data;
                 });
             },
@@ -34,7 +34,7 @@ angular.module('gestionCourrierServices', []).
                 if (!text || text.length < 3) {
                     return [];
                 }
-                return $http.get('/residents/find/' + text).then(function (response) {
+                return $http.get('/json/residents/find/' + text).then(function (response) {
                     return response.data;
                 });
             }
@@ -47,7 +47,7 @@ angular.module('gestionCourrierServices', []).
          */
         var mailService = {
             allMails: function () {
-                return $http.get('/outbox/mails').then(function (response) {
+                return $http.get('/json/outbox/mails').then(function (response) {
                     return response.data;
                 });
             }
@@ -64,7 +64,7 @@ angular.module('gestionCourrierServices', []).
              * @returns {*} All departments.
              */
             listDepartments: function () {
-                return $http.get('/departments').then(function (response) {
+                return $http.get('/json/departments').then(function (response) {
                     return response.data;
                 });
             },
@@ -73,7 +73,7 @@ angular.module('gestionCourrierServices', []).
              * @returns {*} All residence types.
              */
             listResidenceTypes: function () {
-                return $http.get('/residencetypes').then(function (response) {
+                return $http.get('/json/residencetypes').then(function (response) {
                     return response.data;
                 });
             },
@@ -82,7 +82,7 @@ angular.module('gestionCourrierServices', []).
              * @returns {*} All genders.
              */
             listGenders: function () {
-                return $http.get('/genders').then(function (response) {
+                return $http.get('/json/genders').then(function (response) {
                     return response.data;
                 });
             }

@@ -3,28 +3,31 @@
 # ~~~~
 
 # Home page
-#GET     /                           controllers.Application.index
-GET     /                               controllers.Assets.at(path="/public", file="index.html")
+GET     /                                   controllers.Assets.at(path="/public", file="index.html")
 
-GET     /residents                      controllers.Residents.allResidents()
+# Residence
+GET     /json/residents                     controllers.Residents.allResidents()
 
-GET     /resident/:id                   controllers.Residents.resident(id: Long)
-POST    /resident/create                controllers.Residents.create()
-POST    /resident/:id/update            controllers.Residents.updateResident(id: Long)
-POST    /resident/:id/addResidence      controllers.Residents.addResidence(id: Long)
-POST    /resident/:id/renewResidence    controllers.Residents.renewResidence(id: Long)
+GET     /json/resident/:id                  controllers.Residents.resident(id: Long)
+POST    /json/resident/create               controllers.Residents.create()
+POST    /json/resident/:id/update           controllers.Residents.updateResident(id: Long)
+POST    /json/resident/:id/addResidence     controllers.Residents.addResidence(id: Long)
+POST    /json/resident/:id/renewResidence   controllers.Residents.renewResidence(id: Long)
 
-GET     /residents/find/:query          controllers.Residents.search(query: String)
+GET     /json/residents/find/:query         controllers.Residents.search(query: String)
 
-POST    /inbox/register                 controllers.Inbox.registerMail()
+#Inbox
+POST    /json/inbox/register                controllers.Inbox.registerMail()
 
-GET     /outbox/mails                   controllers.Outbox.mails()
-POST    /outbox/withdraw/:mailId        controllers.Outbox.withdraw(mailId: Long)
+# Outbox
+GET     /json/outbox/mails                  controllers.Outbox.mails()
+POST    /json/outbox/withdraw/:mailId       controllers.Outbox.withdraw(mailId: Long)
 
-GET     /departments                    controllers.StaticLists.departments()
-GET     /residencetypes                 controllers.StaticLists.residenceTypes()
-GET     /genders                        controllers.StaticLists.genders()
+# Reference lists
+GET     /json/departments                   controllers.StaticLists.departments()
+GET     /json/residencetypes                controllers.StaticLists.residenceTypes()
+GET     /json/genders                       controllers.StaticLists.genders()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file                   controllers.Assets.at(path="/public", file)
-GET     /public/*file                   controllers.Assets.at(path="/public", file)
+GET     /assets/*file                       controllers.Assets.at(path="/public", file)
+GET     /public/*file                       controllers.Assets.at(path="/public", file)
