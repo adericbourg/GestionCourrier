@@ -27,7 +27,8 @@ import core.io.serialization.JodaLocalDateDeserializer;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Person extends Model {
 
-    private static final Finder<Long, Person> FINDER = new Finder<Long, Person>(Long.class, Person.class);
+    private static final Finder<Long, Person> FINDER = new Finder<Long, Person>(
+            Long.class, Person.class);
 
     @Id
     public Long id;
@@ -103,11 +104,17 @@ public class Person extends Model {
 
     @Transient
     public String getDisplay() {
-        StringBuilder sb = new StringBuilder(String.format("%s %s", firstName, lastName));
+        StringBuilder sb = new StringBuilder(String.format("%s %s", firstName,
+                lastName));
         if (!Strings.isNullOrEmpty(maidenName)) {
             sb.append(String.format(" (%s)", maidenName));
         }
         return sb.toString();
+    }
+
+    @Transient
+    public boolean isMailForwardMandatory() {
+        return forwardAddressActive && !Strings.isNullOrEmpty(forwardAddress);
     }
 
     //
@@ -127,7 +134,8 @@ public class Person extends Model {
         }
         ExpressionList<Person> where = FINDER.where();
         for (String queryToken : queryString.split(" ")) {
-            Expression ex = Expr.or(Expr.ilike("firstName", queryToken + "%"), Expr.ilike("lastName", queryToken + "%"));
+            Expression ex = Expr.or(Expr.ilike("firstName", queryToken + "%"),
+                    Expr.ilike("lastName", queryToken + "%"));
             ex = Expr.or(ex, Expr.ilike("maidenName", queryToken + "%"));
             where.add(ex);
         }
@@ -135,6 +143,7 @@ public class Person extends Model {
     }
 
     public static Person byId(Long id) {
-        return FINDER.fetch("residences").orderBy("residences.startDate DESC").where().idEq(id).findUnique();
+        return FINDER.fetch("residences").orderBy("residences.startDate DESC")
+                .where().idEq(id).findUnique();
     }
 }

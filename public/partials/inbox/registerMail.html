@@ -14,28 +14,32 @@
         </div>
     </div>
     <div ng-show="inbox.recipient.id">
+        <div class="alert alert-error alert-block" ng-show="needForward = (inbox.recipient.forwardAddressActive && inbox.recipient.forwardAddress)">
+            <h4>Suivi du courrier</h4>
+            Le courrier à destination de cette personne est à faire suivre à l'adresse suivante&nbsp;:
+            <pre>{{inbox.recipient.forwardAddress}}</pre>
+        </div>
         <div class="control-group">
             <label class="control-label" for="arrivalDate">Date d'arrivée</label>
 
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" ng-model="inbox.arrivalDate" id="arrivalDate" bs-datepicker>
-                    <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
+                    <input type="text" ng-model="inbox.arrivalDate" id="arrivalDate" ng-disabled="needForward" bs-datepicker>
+                    <button type="button" class="btn" data-toggle="datepicker" ng-disabled="needForward"><i class="icon-calendar"></i></button>
                 </div>
-                <button type="button" class="btn" ng-click="setArrivalDateToday()">Aujourd'hui</button>
+                <button type="button" class="btn" ng-click="setArrivalDateToday()" ng-disabled="needForward">Aujourd'hui</button>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="sender">Émetteur</label>
 
             <div class="controls">
-                <input type="text" ng-model="inbox.sender" id="sender"/>
+                <input type="text" ng-model="inbox.sender" id="sender" ng-disabled="needForward"/>
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
-                <a ng-href="#/inbox" class="btn">Annuler</a>
-                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="needForward">Enregistrer</button>
             </div>
         </div>
     </div>

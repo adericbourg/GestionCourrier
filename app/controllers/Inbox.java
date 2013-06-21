@@ -8,9 +8,10 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import business.inbox.MandatoryForwardMailException;
 
 /**
- * @author alban
+ * @author adericbourg
  */
 public class Inbox extends Controller {
 
@@ -19,6 +20,11 @@ public class Inbox extends Controller {
         JsonNode json = request().body().asJson();
 
         Mail mail = Json.fromJson(json, Mail.class);
+
+        if (mail.recipient.isMailForwardMandatory()) {
+            throw new MandatoryForwardMailException();
+        }
+
         mail.save();
 
         return ok();
