@@ -5,26 +5,29 @@
 <form class="form-horizontal" ng-submit="updatePerson()">
 
     <div class="control-group">
-        <label class="control-label">Pôle</label>
+        <label class="control-label" for="followingDepartment">Pôle</label>
 
         <div class="controls">
             <select ng-model="person.followingDepartment.key"
-                    ng-options="dep.key as dep.value for dep in departments"></select>
+                    ng-options="dep.key as dep.value for dep in departments"
+                    id="followingDepartment"></select>
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">Suivi par</label>
+        <label class="control-label" for="followedBy">Suivi par</label>
 
         <div class="controls">
-            <input type="text" ng-model="person.followedBy" required/>
+            <input type="text" ng-model="person.followedBy" id="followedBy" required/>
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label">Adresse de suivi du courrier</label>
+        <label class="control-label" for="forwardAddress">Adresse de suivi du courrier</label>
 
         <div class="controls">
-            <textarea rows="5" ng-model="person.forwardAddress" ng-disabled="!person.forwardAddressActive"></textarea><br/>
-            <input type="checkbox" inverted ng-model="person.forwardAddressActive"/> Arrêter le suivi du courrier
+            <textarea rows="5" ng-model="person.forwardAddress" id="forwardAddress" ng-disabled="!person.forwardAddressActive"></textarea>
+            <label class="checkbox">
+                <input type="checkbox" inverted ng-model="person.forwardAddressActive"/> Arrêter le suivi du courrier
+            </label>
         </div>
     </div>
     <div class="control-group">

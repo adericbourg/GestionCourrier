@@ -4,30 +4,32 @@
 
 <form class="form-horizontal" ng-submit="registerMail()">
     <div class="control-group">
-        <label class="control-label">Destinataire</label>
+        <label class="control-label" for="recipient">Destinataire</label>
 
         <div class="controls">
             <input type="text" ng-model="inbox.recipient"
-                   typeahead="person as person.display for person in findPersons($viewValue)" required="true"/>
+                   typeahead="person as person.display for person in findPersons($viewValue)"
+                   id="recipient"
+                   required="true"/>
         </div>
     </div>
     <div ng-show="inbox.recipient.id">
         <div class="control-group">
-            <label class="control-label">Date d'arrivée</label>
+            <label class="control-label" for="arrivalDate">Date d'arrivée</label>
 
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" ng-model="inbox.arrivalDate" bs-datepicker>
+                    <input type="text" ng-model="inbox.arrivalDate" id="arrivalDate" bs-datepicker>
                     <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i></button>
                 </div>
                 <button type="button" class="btn" ng-click="setArrivalDateToday()">Aujourd'hui</button>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">Émetteur</label>
+            <label class="control-label" for="sender">Émetteur</label>
 
             <div class="controls">
-                <input type="text" ng-model="inbox.sender"/>
+                <input type="text" ng-model="inbox.sender" id="sender"/>
             </div>
         </div>
         <div class="control-group">

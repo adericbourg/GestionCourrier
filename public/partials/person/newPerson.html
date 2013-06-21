@@ -7,62 +7,66 @@
         <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
         <div class="control-group">
-            <label class="control-label">Genre</label>
+            <label class="control-label" for="gender">Genre</label>
 
             <div class="controls" ng-repeat="gender in genders">
                 <label class="radio">
-                    <input type="radio" name="person.gender" ng-model="person.gender" ng-value="gender.key"/>
+                    <input type="radio" name="person.gender" ng-model="person.gender" id="gender" ng-value="gender.key"/>
                     {{gender.value}}
                 </label>
             </div>
         </div>
 
         <div class="control-group">
-            <label class="control-label">Prénom</label>
+            <label class="control-label" for="firstName">Prénom</label>
 
             <div class="controls">
-                <input type="text" ng-model="person.firstName" required/>
+                <input type="text" ng-model="person.firstName" id="firstName" required/>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">Nom</label>
+            <label class="control-label" for="lastName">Nom</label>
 
             <div class="controls">
-                <input type="text" ng-model="person.lastName" required/>
+                <input type="text" ng-model="person.lastName" id="lastName" required/>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">Nom de jeune fille</label>
+            <label class="control-label" for="maidenName">Nom de jeune fille</label>
 
             <div class="controls">
-                <input type="text" ng-model="person.maidenName"/>
+                <input type="text" ng-model="person.maidenName" id="maidenName"/>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">Date de naissance</label>
+            <label class="control-label" for="birthDate">Date de naissance</label>
 
             <div class="controls">
                 <div class="input-append">
-                    <input type="text" ng-model="person.birthDate" bs-datepicker>
+                    <input type="text" ng-model="person.birthDate" id="birthDate" bs-datepicker>
                     <button type="button" class="btn" data-toggle="datepicker"><i class="icon-calendar"></i>
                     </button>
                 </div>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">Pôle</label>
+            <label class="control-label" for="followingDepartment">Pôle</label>
 
             <div class="controls">
                 <select ng-model="person.followingDepartment"
-                        ng-options="dep.key as dep.value for dep in departments"></select>
+                        ng-options="dep.key as dep.value for dep in departments"
+                        id="followingDepartment"></select>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label">Suivi par</label>
+            <label class="control-label" for="followedBy">Suivi par</label>
 
             <div class="controls">
-                <input type="text" ng-model="person.followedBy" ng-required="person.isFollowed" ng-disabled="!person.isFollowed"/><br/>
-                <input type="checkbox" inverted ng-model="person.isFollowed"/> Pas de suivi par l'association
+                <input type="text" ng-model="person.followedBy" ng-required="person.isFollowed" ng-disabled="!person.isFollowed" id="followedBy"/>
+                <label class="checkbox">
+                    <input type="checkbox" inverted ng-model="person.isFollowed"/>
+                    Pas de suivi par l'association
+                </label>
             </div>
         </div>
     </div>
