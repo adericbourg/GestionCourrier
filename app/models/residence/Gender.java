@@ -14,8 +14,8 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 @JsonDeserialize(using = GenderDeserializer.class)
 public enum Gender implements StaticList {
 
-    MALE("H"),
-    FEMALE("F");
+    MALE("Homme"),
+    FEMALE("Femme");
 
     private final String meaning;
 
