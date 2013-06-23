@@ -10,6 +10,7 @@
             <input type="text" ng-model="inbox.recipient"
                    typeahead="person as person.display for person in findPersons($viewValue)"
                    id="recipient"
+                   autocomplete="off"
                    required="true"/>
         </div>
     </div>
