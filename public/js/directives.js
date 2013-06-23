@@ -13,4 +13,22 @@ angular.module('gestionCourrierDirectives', []).
                 });
             }
         };
+    }).
+    directive('residenceProgress', function () {
+        return {
+            restrict: 'AC',
+            link: function (scope, element, attrs) {
+                scope.$watch(attrs.residenceProgress, function (value) {
+                    var cssClass;
+                    if (value > 50 && value < 75) {
+                        cssClass = 'label label-warning';
+                    } else if (value >= 75) {
+                        cssClass = 'label label-important';
+                    }
+                    if (cssClass) {
+                        element.addClass(cssClass);
+                    }
+                });
+            }
+        };
     });

@@ -33,7 +33,11 @@
             <td><a ng-href="#/person/{{r.id}}"><i class="icon-eye-open"></i></a></td>
             <td>{{r.lastName}}</td>
             <td>{{r.firstName}}</td>
-            <td>{{r.latestResidence.endDate | localDate}}</td>
+            <td>
+                <span residence-progress="r.residenceProgress">
+                    {{r.latestResidence.endDate | localDate}}
+                </span>
+            </td>
         </tr>
         </tbody>
     </table>

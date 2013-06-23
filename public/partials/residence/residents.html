@@ -19,7 +19,7 @@
             <td>{{r.lastName}}</td>
             <td>{{r.firstName}}</td>
             <td>
-                <span ng-class="{'label label-warning': r.residenceProgress > 50 && r.residenceProgress < 75, 'label label-important': r.residenceProgress >= 75}">
+                <span residence-progress="r.residenceProgress">
                     {{r.latestResidence.endDate | localDate}}
                 </span>
             </td>
