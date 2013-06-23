@@ -95,7 +95,7 @@ function ViewPersonCtrl($scope, $dialog, $routeParams, personService) {
         backdrop: true,
         keyboard: true,
         backdropClick: true,
-        templateUrl: '/assets/partials/person/residence/newResidence.html',
+        templateUrl: '/assets/partials/residence/newResidence.html',
         controller: 'NewResidenceCtrl',
         resolve: {personId: function () {
             return $scope.person.id
@@ -106,7 +106,7 @@ function ViewPersonCtrl($scope, $dialog, $routeParams, personService) {
         backdrop: true,
         keyboard: true,
         backdropClick: true,
-        templateUrl: '/assets/partials/person/residence/renewResidence.html',
+        templateUrl: '/assets/partials/residence/renewResidence.html',
         controller: 'RenewResidenceCtrl',
         resolve: {person: function () {
             return $scope.person
@@ -224,53 +224,3 @@ function EditPersonCtrl($scope, $location, $routeParams, personService, referenc
     });
 }
 
-function NewResidenceCtrl($scope, dialog, personId, personService, referenceListService) {
-
-    $scope.personId = personId;
-    $scope.residence = {};
-
-    $scope.messages = [];
-    $scope.residenceTypes = [];
-
-    $scope.createResidence = function () {
-        $scope.messages = [];
-        personService.createResidence(personId, $scope.residence).
-            success(function () {
-                dialog.close({type: 'success', msg: "Domiciliation ajoutée"});
-            }).
-            error(function (data, status, headers, config) {
-                $scope.messages.push({type: 'error', msg: "Erreur de création de la domiciliation : " + status + " (" + config.method + ":" + config.url + ")."});
-            });
-    };
-
-    $scope.cancel = function () {
-        dialog.close();
-    };
-
-    $scope.closeAlert = function (index) {
-        $scope.messages.splice(index, 1);
-    };
-
-    referenceListService.listResidenceTypes().then(function (data) {
-        $scope.residenceTypes = data;
-    });
-}
-
-function RenewResidenceCtrl($scope, personService, dialog, person) {
-
-    $scope.person = person;
-
-    $scope.renewResidence = function () {
-        personService.renewResidence($scope.person.id).
-            success(function () {
-                dialog.close({type: 'success', msg: "Domiciliation renouvelée"});
-            }).
-            error(function (data, status, headers, config) {
-                $scope.messages.push({type: 'error', msg: "Erreur de renouvellement de la domiciliation : " + status + " (" + config.method + ":" + config.url + ")."});
-            });
-    };
-
-    $scope.cancel = function () {
-        dialog.close();
-    };
-}
