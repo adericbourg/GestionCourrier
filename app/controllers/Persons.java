@@ -11,6 +11,7 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import business.residence.ResidenceAlreadyDefinedException;
 
 /**
  * Person controller. Handles all I/O for persons.
@@ -119,8 +120,10 @@ public class Persons extends Controller {
     /**
      * Renew residence for specified person.
      * <ul>
-     * <li>If the latest residence already expired, starts new residence on current day.</li>
-     * <li>If the latest residence ends in the future, starts the new residence the following day the previous one ends.</li>
+     * <li>If the latest residence already expired, starts new residence on
+     * current day.</li>
+     * <li>If the latest residence ends in the future, starts the new residence
+     * the following day the previous one ends.</li>
      * </ul>
      * 
      * @param personId Person id.
@@ -149,6 +152,15 @@ public class Persons extends Controller {
         residence.endDate = residence.startDate.plusYears(1).minusDays(1);
 
         Person person = Person.byId(personId);
+
+        // TODO Move this part of code into "business" package.
+        for (Residence existingResidence : person.residences) {
+            if (existingResidence.startDate.isBefore(residence.startDate)
+                    && existingResidence.endDate.isAfter(residence.startDate)) {
+                throw new ResidenceAlreadyDefinedException();
+            }
+        }
+
         person.residences.add(residence);
         person.save();
     }
