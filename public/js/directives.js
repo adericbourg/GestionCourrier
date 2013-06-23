@@ -20,7 +20,7 @@ angular.module('gestionCourrierDirectives', []).
             link: function (scope, element, attrs) {
                 scope.$watch(attrs.residenceProgress, function (value) {
                     var cssClass;
-                    if (value > 50 && value < 75) {
+                    if (value >= 50 && value < 75) {
                         cssClass = 'label label-warning';
                     } else if (value >= 75) {
                         cssClass = 'label label-important';
