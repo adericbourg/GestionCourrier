@@ -137,8 +137,8 @@ public class Person extends Model {
         }
         ExpressionList<Person> where = FINDER.where();
         for (String queryToken : queryString.split(" ")) {
-            Expression ex = Expr.or(Expr.ilike("firstName", queryToken + "%"),
-                    Expr.ilike("lastName", queryToken + "%"));
+            Expression ex = Expr.ilike("firstName", queryToken + "%");
+            ex = Expr.or(ex, Expr.ilike("lastName", queryToken + "%"));
             ex = Expr.or(ex, Expr.ilike("maidenName", queryToken + "%"));
             where.add(ex);
         }
