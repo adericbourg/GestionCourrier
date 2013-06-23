@@ -16,10 +16,11 @@
     <table class="table table-striped" ng-show="filteredMails.length">
         <thead>
         <tr>
-            <th class="span4">Destinataire</th>
-            <th class="span3">Date d'arrivée</th>
+            <th class="span3">Destinataire</th>
+            <th class="span2">Date d'arrivée</th>
             <th class="span3">Expéditeur</th>
-            <th class="span2"></th>
+            <th class="span3">Fin de domiciliation</th>
+            <th class="span1"></th>
         </tr>
         </thead>
         <tbody ng-repeat="m in filteredMails = (allMails | filter:searchMailCriterion)">
@@ -27,6 +28,11 @@
             <td>{{m.recipient.display}}</td>
             <td>{{m.arrivalDate | localDate}}</td>
             <td>{{m.sender}}</td>
+            <td>
+                <span residence-progress="m.recipient.residenceProgress">
+                    {{m.recipient.latestResidence.endDate | localDate}}
+                </span>
+            </td>
             <td>
                 <button ng-click="withdraw(m)" class="btn btn-mini">Remettre</button>
             </td>
