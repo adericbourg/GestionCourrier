@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.avaje.ebean.*;
+import com.avaje.ebean.Query;
 import models.inbox.Mail;
 import models.residence.Residence;
 
@@ -18,9 +20,6 @@ import org.joda.time.LocalDate;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
-import com.avaje.ebean.Expr;
-import com.avaje.ebean.Expression;
-import com.avaje.ebean.ExpressionList;
 import com.google.common.base.Strings;
 import core.io.serialization.JodaLocalDateDeserializer;
 
@@ -156,5 +155,9 @@ public class Person extends Model {
         LocalDate upperBound = LocalDate.now().plusMonths(3);
         return FINDER.fetch("residences").orderBy("residences.startDate DESC").where()
                 .between("residences.endDate", LocalDate.now(), upperBound).findList();
+    }
+
+    public static List<Person> noResidencePersons() {
+        return Collections.emptyList();
     }
 }

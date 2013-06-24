@@ -22,9 +22,11 @@ function RegisterMailCtrl($scope, personService, mailService) {
                 $scope.inbox = {};
             }).
             error(function (data, status, headers, config) {
-                $scope.messages = [
-                    {type: 'error', msg: "Erreur d'enregistrement : " + status + " (" + config.method + ":" + config.url + ")."}
-                ];
+                if (data) {
+                    $scope.messages.push(data);
+                } else {
+                    $scope.messages.push({type: 'error', msg: "Erreur d'enregistrement : " + status + " (" + config.method + ":" + config.url + ")."});
+                }
             });
     };
 
