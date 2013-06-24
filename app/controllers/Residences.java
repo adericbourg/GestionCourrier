@@ -20,4 +20,12 @@ public class Residences extends Controller {
     public static Result allResidents() {
         return ok(Json.toJson(Person.findAllResidents()));
     }
+
+    public static Result endOfResidenceResidents() {
+        return ok(Json.toJson(Person.findEndOfResidencePersons()));
+    }
+
+    public static Result noResidencePersons() {
+        return TODO;
+    }
 }

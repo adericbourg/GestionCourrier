@@ -98,6 +98,11 @@ angular.module('gestionCourrierServices', []).
                 return $http.get('/json/residence/allResidents').then(function (response) {
                     return response.data;
                 });
+            },
+            endOfResidenceResidents: function () {
+                return $http.get('/json/residence/endOfResidenceResidents').then(function (response) {
+                    return response.data;
+                });
             }
         };
     }).

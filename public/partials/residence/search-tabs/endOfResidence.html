@@ -1,0 +1,31 @@
+<div ng-controller="EndOfResidenceCtrl">
+    La domiciliation des personnes suivantes expire dans moins de trois mois.
+
+    <div class="alert alert-info">
+        Nombre de personnes en fin de domiciliation : <strong>{{residents.length}}</strong>
+    </div>
+    <div class="well">
+        <table class="table table-striped" ng-show="residents.length">
+            <thead>
+            <tr>
+                <th class="span1"></th>
+                <th class="span4"><a ng-click="setSortCriterion('lastName')">Nom</a></th>
+                <th class="span4"><a ng-click="setSortCriterion('firstName')">Prénom</a></th>
+                <th class="span3"><a ng-click="setSortCriterion('latestResidence.endDateSortOrder')">Fin de domiciliation</a></th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="r in residents | orderBy:tableSortPredicate:tableSortReverse">
+            <tr>
+                <td><a ng-href="#/person/{{r.id}}"><i class="icon-eye-open"></i></a></td>
+                <td>{{r.lastName}}</td>
+                <td>{{r.firstName}}</td>
+                <td>
+                        <span residence-progress="r.residenceProgress">
+                            {{r.latestResidence.endDate | localDate}}
+                        </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

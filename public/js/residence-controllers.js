@@ -1,8 +1,35 @@
 'use strict';
 
+function ResidentTabsCtrl($scope) {
+
+    $scope.panes = [
+        { title: "Tous les domiciliés", content: "assets/partials/residence/search-tabs/allResidents.html", active: true },
+        { title: "Fin de domiciliation", content: "assets/partials/residence/search-tabs/endOfResidence.html" },
+        { title: "Personnes non-domiciliées", content: "assets/partials/residence/search-tabs/noResidencePersons.html" }
+    ];
+
+}
+
 function AllResidentsCtrl($scope, residenceService) {
 
     $scope.allResidents = residenceService.allResidents();
+
+    $scope.tableSortPredicate = "lastName";
+    $scope.tableSortReverse = false;
+
+    $scope.setSortCriterion = function (sortCriterion) {
+        if (sortCriterion == $scope.tableSortPredicate) {
+            $scope.tableSortReverse = !$scope.tableSortReverse;
+        } else {
+            $scope.tableSortPredicate = sortCriterion;
+            $scope.tableSortReverse = false;
+        }
+    };
+}
+
+function EndOfResidenceCtrl($scope, residenceService) {
+
+    $scope.residents = residenceService.endOfResidenceResidents();
 
     $scope.tableSortPredicate = "lastName";
     $scope.tableSortReverse = false;

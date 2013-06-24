@@ -22,6 +22,8 @@ POST    /json/person/:id/addResidence       controllers.Persons.addResidence(id:
 POST    /json/person/:id/renewResidence     controllers.Persons.renewResidence(id: Long)
 
 GET     /json/residence/allResidents        controllers.Residences.allResidents()
+GET     /json/residence/endOfResidenceResidents        controllers.Residences.endOfResidenceResidents()
+GET     /json/residence/noResidencePersons  controllers.Residences.noResidencePersons()
 
 
 #Inbox
