@@ -2,7 +2,7 @@
 
 <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
-<div class="form-actions">
+<div class="well">
 
     <a class="btn" ng-click="newPersonDialog()">Inscrire une personne</a>
 
@@ -29,8 +29,8 @@
             <th class="span2"><a ng-click="setSortCriterion('latestResidence.endDateSortOrder')">Fin de domiciliation</a></th>
         </tr>
         </thead>
-        <tbody ng-repeat="r in filteredPersons = (allPersons | filter:searchPersonCriterion | orderBy:tableSortPredicate:tableSortReverse)">
-        <tr>
+        <tbody>
+        <tr ng-repeat="r in filteredPersons = (allPersons | filter:searchPersonCriterion | orderBy:tableSortPredicate:tableSortReverse)">
             <td><a ng-href="#/person/{{r.id}}"><i class="icon-eye-open"></i></a></td>
             <td>{{r.lastName}}</td>
             <td>{{r.firstName}}</td>

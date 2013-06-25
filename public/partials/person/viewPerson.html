@@ -34,8 +34,8 @@
                     <th class="span4">Date de fin</th>
                 </tr>
                 </thead>
-                <tbody ng-repeat="res in person.residences">
-                <tr class="{{getResidenceClass(res)}}">
+                <tbody>
+                <tr class="{{getResidenceClass(res)}}" ng-repeat="res in person.residences">
                     <td>{{res.residenceType | staticList}}</td>
                     <td>{{res.startDate | localDate}}</td>
                     <td>{{res.endDate | localDate}}</td>

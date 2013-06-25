@@ -15,8 +15,8 @@
                 <th class="span3"><a ng-click="setSortCriterion('latestResidence.endDateSortOrder')">Fin de domiciliation</a></th>
             </tr>
             </thead>
-            <tbody ng-repeat="r in residents | orderBy:tableSortPredicate:tableSortReverse">
-            <tr>
+            <tbody>
+            <tr ng-repeat="r in residents | orderBy:tableSortPredicate:tableSortReverse">
                 <td><a ng-href="#/person/{{r.id}}"><i class="icon-eye-open"></i></a></td>
                 <td>{{r.lastName}}</td>
                 <td>{{r.firstName}}</td>

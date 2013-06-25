@@ -23,8 +23,8 @@
             <th class="span1"></th>
         </tr>
         </thead>
-        <tbody ng-repeat="m in filteredMails = (allMails | filter:searchMailCriterion)">
-        <tr>
+        <tbody>
+        <tr ng-repeat="m in filteredMails = (allMails | filter:searchMailCriterion)">
             <td>{{m.recipient.display}}</td>
             <td>{{m.arrivalDate | localDate}}</td>
             <td>{{m.sender}}</td>
