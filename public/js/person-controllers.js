@@ -90,6 +90,7 @@ function ViewPersonCtrl($scope, $dialog, $routeParams, personService) {
     $scope.messages = [];
     $scope.person = {};
     $scope.residenceProgress = {};
+    $scope.forwardAddressCollapse = true;
 
     $scope.newResidenceDialogOpts = {
         backdrop: true,

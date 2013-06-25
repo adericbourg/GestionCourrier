@@ -57,7 +57,19 @@
             <button class="btn btn-block" ng-click="newResidenceDialog()">Nouvelle domiciliation</button>
         </div>
     </div>
+    <div ng-show="person.forwardAddressActive && person.forwardAddress">
+        <button class="btn btn-link" ng-show="forwardAddressCollapse" ng-click="forwardAddressCollapse = false">
+            <i class="icon-caret-right"></i> Afficher l'adresse de suivi du courrier
+        </button>
+        <button class="btn btn-link" ng-hide="forwardAddressCollapse" ng-click="forwardAddressCollapse = true">
+            <i class="icon-caret-down"></i> Masquer l'adresse de suivi du courrier
+        </button>
+        <div collapse="forwardAddressCollapse">
+            <pre>{{person.forwardAddress}}</pre>
+        </div>
+    </div>
 </div>
+
 
 <h2>Domiciliation</h2>
 
