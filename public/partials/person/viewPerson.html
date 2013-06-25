@@ -1,97 +1,90 @@
 <h1>{{person.display}}</h1>
 
+<alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+<p>
+    <ul class="unstyled">
+        <li>
+            <a class="btn btn-link" ng-href="#/person/{{person.id}}/edit"><i class="icon-edit icon-fixed-width"></i> Modifier la fiche</a>
+        </li>
+        <li ng-show="person.isFollowed">
+            <a class="btn btn-link" ng-click="unfollow()"><i class="icon-fixed-width icon-stop"></i> Interrompre le suivi de cette personne</a>
+        </li>
+        <li ng-hide="person.isFollowed">
+            <a class="btn btn-link" ng-click="follow()"><i class="icon-fixed-width icon-forward"></i> Reprendre le suivi de cette personne</a>
+        </li>
+    </ul>
+</p>
+
 <div class="alert" ng-hide="person.isFollowed">
     <i class="icon-info-sign"></i> Cette personne n'est pas suivie par l'association.
 </div>
 
-<alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
-
-<p>
-    <a ng-href="#/person/{{person.id}}/edit"><i class="icon-edit icon-fixed-width"></i> Modifier la fiche</a>
-</p>
-
-
-
-<div class="row-fluid">
-    <div class="span8">
-
-        <ul class="unstyled">
-            <li>
-                <i class="icon-envelope icon-fixed-width"></i> Courriers en attente de retrait&nbsp;: <strong>{{person.mailCount}}</strong>
-            </li>
-            <li ng-show="person.mailCount">
-                <i class="icon-fixed-width"></i> Plus ancien courrier non-retiré : <strong>{{person.oldestMailArrivalDate | localDate}}</strong>
-            </li>
-        </ul>
-
-        <h2>Domiciliation</h2>
-
-        <div ng-show="person.currentResidence">
-            La domiciliation en cours se termine dans {{person.currentResidence.monthsToEnd}} mois
-            ({{person.currentResidence.endDate | localDate}}).
-            <progress value="residenceProgress"></progress>
+<div class="well">
+    <div class="row-fluid">
+        <div class="span4">
+            <ul class="unstyled">
+                <li>
+                    <i class="icon-fixed-width icon-user"></i> Date de naissance : {{person.birthDate | localDate}}
+                </li>
+                <li>
+                    <i class="icon-fixed-width"></i> Pôle : {{person.followingDepartment | staticList}}
+                </li>
+                <li>
+                    <i class="icon-fixed-width"></i> Suivi par {{person.followedBy}}
+                </li>
+                <li ng-show="person.orientation">
+                    <i class="icon-fixed-width"></i> Orienté par {{person.orientation}}
+                </li>
+            </ul>
         </div>
-
-        <div class="well">
-            <span ng-hide="person.residences.length">
-                Aucune domiciliation connue.
-            </span>
-
-            <table class="table" ng-show="person.residences.length">
-                <thead>
-                <tr>
-                    <th class="span1"></th>
-                    <th class="span3">Type</th>
-                    <th class="span4">Date de début</th>
-                    <th class="span4">Date de fin</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="{{getResidenceClass(res)}}" ng-repeat="res in person.residences">
-                    <td><i class="icon-caret-right" ng-show="res.currentResidence"></i></td>
-                    <td>{{res.residenceType | staticList}}</td>
-                    <td>{{res.startDate | localDate}}</td>
-                    <td>{{res.endDate | localDate}}</td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="span4">
+            <ul class="unstyled">
+                <li>
+                    <i class="icon-envelope icon-fixed-width"></i> Courriers en attente de retrait&nbsp;: <strong>{{person.mailCount}}</strong>
+                </li>
+                <li ng-show="person.mailCount">
+                    <i class="icon-fixed-width"></i> Plus ancien courrier non-retiré : <strong>{{person.oldestMailArrivalDate
+                    | localDate}}</strong>
+                </li>
+            </ul>
         </div>
-    </div>
-    <div class="span4">
-        <div class="well">
-            <button class="btn btn-block" ng-click="unfollow()" ng-show="person.isFollowed">
-                <i class="icon-stop"></i> Interrompre le suivi de cette personne
-            </button>
-            <button class="btn btn-block" ng-click="follow()" ng-hide="person.isFollowed">
-                <i class="icon-forward"></i> Reprendre le suivi de cette personne
-            </button>
-            <hr/>
+        <div class="span4">
             <button class="btn btn-primary btn-block" ng-click="renewLatestResidence()"
                     ng-show="person.residences.length">
                 <i class="icon-refresh icon-white"></i> Renouveler la dernière domiciliation
             </button>
             <button class="btn btn-block" ng-click="newResidenceDialog()">Nouvelle domiciliation</button>
         </div>
-        <div class="well">
-            <h3>Fiche d'identité</h3>
-            <table class="table">
-                <tr>
-                    <td>Date de naissance</td>
-                    <td>{{person.birthDate | localDate}}</td>
-                </tr>
-                <tr>
-                    <td>Pôle</td>
-                    <td>{{person.followingDepartment | staticList}}</td>
-                </tr>
-                <tr ng-show="person.followedBy">
-                    <td>Suivi par</td>
-                    <td>{{person.followedBy}}</td>
-                </tr>
-                <tr ng-show="person.orientation">
-                    <td>Orientation</td>
-                    <td>{{person.orientation}}</td>
-                </tr>
-            </table>
-        </div>
     </div>
 </div>
+
+<h2>Domiciliation</h2>
+
+<div ng-show="person.currentResidence">
+    La domiciliation en cours se termine dans {{person.currentResidence.monthsToEnd}} mois
+    ({{person.currentResidence.endDate | localDate}}).
+    <progress value="residenceProgress"></progress>
+</div>
+
+<div class="well" ng-hide="person.residences.length">
+    Aucune domiciliation connue.
+</div>
+<table class="table" ng-show="person.residences.length">
+    <thead>
+    <tr>
+        <th class="span1"></th>
+        <th class="span3">Type</th>
+        <th class="span4">Date de début</th>
+        <th class="span4">Date de fin</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="{{getResidenceClass(res)}}" ng-repeat="res in person.residences">
+        <td><i class="icon-caret-right" ng-show="res.currentResidence"></i></td>
+        <td>{{res.residenceType | staticList}}</td>
+        <td>{{res.startDate | localDate}}</td>
+        <td>{{res.endDate | localDate}}</td>
+    </tr>
+    </tbody>
+</table>
