@@ -40,13 +40,15 @@
             <table class="table" ng-show="person.residences.length">
                 <thead>
                 <tr>
-                    <th class="span4">Type</th>
+                    <th class="span1"></th>
+                    <th class="span3">Type</th>
                     <th class="span4">Date de début</th>
                     <th class="span4">Date de fin</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr class="{{getResidenceClass(res)}}" ng-repeat="res in person.residences">
+                    <td><i class="icon-caret-right" ng-show="res.currentResidence"></i></td>
                     <td>{{res.residenceType | staticList}}</td>
                     <td>{{res.startDate | localDate}}</td>
                     <td>{{res.endDate | localDate}}</td>
