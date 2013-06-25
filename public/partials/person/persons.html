@@ -3,12 +3,8 @@
 <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
 <div class="well">
+    <a class="btn pull-right" ng-click="newPersonDialog()">Inscrire une personne</a>
 
-    <a class="btn" ng-click="newPersonDialog()">Inscrire une personne</a>
-
-</div>
-
-<div class="well">
     <div class="input-prepend" ng-show="allPersons.length">
         <span class="add-on"><i class="icon-search"></i></span>
         <input type="text" ng-model="searchPersonCriterion" placeholder="Rechercher"/>
@@ -19,28 +15,30 @@
     <div ng-show="allPersons.length && !filteredPersons.length">
         Aucune personne ne correspond au critère.
     </div>
-    <table class="table table-striped" ng-show="filteredPersons.length">
-        <thead>
-        <tr>
-            <th class="span1"></th>
-            <th class="span3"><a ng-click="setSortCriterion('lastName')">Nom</a></th>
-            <th class="span3"><a ng-click="setSortCriterion('firstName')">Prénom</a></th>
-            <th class="span3"><a ng-click="setSortCriterion('orientation')">Orientation</a></th>
-            <th class="span2"><a ng-click="setSortCriterion('latestResidence.endDateSortOrder')">Fin de domiciliation</a></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="r in filteredPersons = (allPersons | filter:searchPersonCriterion | orderBy:tableSortPredicate:tableSortReverse)">
-            <td><a ng-href="#/person/{{r.id}}"><i class="icon-eye-open"></i></a></td>
-            <td>{{r.lastName}}</td>
-            <td>{{r.firstName}}</td>
-            <td>{{r.orientation}}</td>
-            <td>
-                <span residence-progress="r.residenceProgress">
-                    {{r.latestResidence.endDate | localDate}}
-                </span>
-            </td>
-        </tr>
-        </tbody>
-    </table>
 </div>
+
+<table class="table table-striped" ng-show="filteredPersons.length">
+    <thead>
+    <tr>
+        <th class="span1"></th>
+        <th class="span3"><a ng-click="setSortCriterion('lastName')">Nom</a></th>
+        <th class="span3"><a ng-click="setSortCriterion('firstName')">Prénom</a></th>
+        <th class="span3"><a ng-click="setSortCriterion('orientation')">Orientation</a></th>
+        <th class="span2"><a ng-click="setSortCriterion('latestResidence.endDateSortOrder')">Fin de domiciliation</a></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="r in filteredPersons = (allPersons | filter:searchPersonCriterion | orderBy:tableSortPredicate:tableSortReverse)">
+        <td><a ng-href="#/person/{{r.id}}"><i class="icon-eye-open"></i></a></td>
+        <td>{{r.lastName}}</td>
+        <td>{{r.firstName}}</td>
+        <td>{{r.orientation}}</td>
+        <td>
+            <span residence-progress="r.residenceProgress">
+                {{r.latestResidence.endDate | localDate}}
+            </span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
