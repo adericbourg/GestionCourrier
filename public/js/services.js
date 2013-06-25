@@ -103,6 +103,11 @@ angular.module('gestionCourrierServices', []).
                 return $http.get('/json/residence/endOfResidenceResidents').then(function (response) {
                     return response.data;
                 });
+            },
+            noResidencePersons: function () {
+                return $http.get('/json/residence/noResidencePersons').then(function (response) {
+                    return response.data;
+                });
             }
         };
     }).

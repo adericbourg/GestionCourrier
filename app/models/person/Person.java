@@ -152,12 +152,13 @@ public class Person extends Model {
     }
 
     public static List<Person> findEndOfResidencePersons() {
-        LocalDate upperBound = LocalDate.now().plusMonths(3);
+        LocalDate lowerBound = LocalDate.now();
+        LocalDate upperBound = lowerBound.plusMonths(3);
         return FINDER.fetch("residences").orderBy("residences.startDate DESC").where()
                 .between("residences.endDate", LocalDate.now(), upperBound).findList();
     }
 
-    public static List<Person> noResidencePersons() {
+    public static List<Person> findNoResidencePersons() {
         return Collections.emptyList();
     }
 }

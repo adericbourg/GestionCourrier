@@ -44,6 +44,23 @@ function EndOfResidenceCtrl($scope, residenceService) {
     };
 }
 
+function NoResidencePersonsCtrl($scope, residenceService) {
+
+    $scope.residents = residenceService.noResidencePersons();
+
+    $scope.tableSortPredicate = "lastName";
+    $scope.tableSortReverse = false;
+
+    $scope.setSortCriterion = function (sortCriterion) {
+        if (sortCriterion == $scope.tableSortPredicate) {
+            $scope.tableSortReverse = !$scope.tableSortReverse;
+        } else {
+            $scope.tableSortPredicate = sortCriterion;
+            $scope.tableSortReverse = false;
+        }
+    };
+}
+
 function NewResidenceCtrl($scope, dialog, personId, personService, referenceListService) {
 
     $scope.personId = personId;
