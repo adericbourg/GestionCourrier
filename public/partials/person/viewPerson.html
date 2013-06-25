@@ -7,12 +7,23 @@
 <alert ng-repeat="alert in messages" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
 
 <p>
-    <a ng-href="#/person/{{person.id}}/edit"><i class="icon-edit"></i> Modifier la fiche</a>
-
+    <a ng-href="#/person/{{person.id}}/edit"><i class="icon-edit icon-fixed-width"></i> Modifier la fiche</a>
 </p>
+
+
 
 <div class="row-fluid">
     <div class="span8">
+
+        <ul class="unstyled">
+            <li>
+                <i class="icon-envelope icon-fixed-width"></i> Courriers en attente de retrait&nbsp;: <strong>{{person.mailCount}}</strong>
+            </li>
+            <li ng-show="person.mailCount">
+                <i class="icon-fixed-width"></i> Plus ancien courrier non-retiré : <strong>{{person.oldestMailArrivalDate | localDate}}</strong>
+            </li>
+        </ul>
+
         <h2>Domiciliation</h2>
 
         <div ng-show="person.currentResidence">
