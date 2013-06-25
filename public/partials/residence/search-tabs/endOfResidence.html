@@ -1,11 +1,12 @@
 <div ng-controller="EndOfResidenceCtrl">
-    La domiciliation des personnes suivantes expire dans moins de trois mois.
-
+    <blockquote>
+        La domiciliation des personnes suivantes expire dans moins de trois mois.
+    </blockquote>
     <div class="alert alert-info">
         Nombre de personnes en fin de domiciliation : <strong>{{residents.length}}</strong>
     </div>
-    <div class="well">
-        <table class="table table-striped" ng-show="residents.length">
+    <div class="well" ng-show="residents.length">
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th class="span1"></th>
