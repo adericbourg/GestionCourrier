@@ -59,10 +59,10 @@
     </div>
     <div ng-show="person.forwardAddressActive && person.forwardAddress">
         <button class="btn btn-link" ng-show="forwardAddressCollapse" ng-click="forwardAddressCollapse = false">
-            <i class="icon-caret-right"></i> Afficher l'adresse de suivi du courrier
+            <i class="icon-chevron-right"></i> Afficher l'adresse de suivi du courrier
         </button>
         <button class="btn btn-link" ng-hide="forwardAddressCollapse" ng-click="forwardAddressCollapse = true">
-            <i class="icon-caret-down"></i> Masquer l'adresse de suivi du courrier
+            <i class="icon-chevron-down"></i> Masquer l'adresse de suivi du courrier
         </button>
         <div collapse="forwardAddressCollapse">
             <pre>{{person.forwardAddress}}</pre>
