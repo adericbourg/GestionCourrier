@@ -72,7 +72,8 @@ public class Residences extends Controller {
         // TODO Move this part of code into "business" package.
         for (Residence existingResidence : person.residences) {
             if (existingResidence.startDate.isBefore(residence.startDate) && existingResidence.endDate.isAfter(residence.startDate)
-                    || existingResidence.startDate.isBefore(residence.endDate) && existingResidence.endDate.isAfter(residence.endDate)) {
+                    || existingResidence.startDate.isBefore(residence.endDate) && existingResidence.endDate.isAfter(residence.endDate)
+                    || existingResidence.endDate.equals(residence.startDate)) {
                 throw new ResidenceAlreadyDefinedException();
             }
         }
