@@ -18,9 +18,8 @@ import org.joda.time.LocalDate;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
-import com.avaje.ebean.Expr;
-import com.avaje.ebean.Expression;
-import com.avaje.ebean.ExpressionList;
+import com.avaje.ebean.*;
+import com.avaje.ebean.Query;
 import com.google.common.base.Strings;
 import core.io.serialization.JodaLocalDateDeserializer;
 
@@ -180,6 +179,9 @@ public class Person extends Model {
     }
 
     public static List<Person> findNoResidencePersons() {
-        return Collections.emptyList();
+        String q = "find * fetch residences where residences.startDate > :today or residences.endDate < :today or residences.id is null";
+        Query<Person> query = Ebean.createQuery(Person.class, q);
+        query.setParameter("today", LocalDate.now());
+        return query.findList();
     }
 }
