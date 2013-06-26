@@ -120,10 +120,8 @@ public class Persons extends Controller {
     /**
      * Renew residence for specified person.
      * <ul>
-     * <li>If the latest residence already expired, starts new residence on
-     * current day.</li>
-     * <li>If the latest residence ends in the future, starts the new residence
-     * the following day the previous one ends.</li>
+     * <li>If the latest residence already expired, starts new residence on current day.</li>
+     * <li>If the latest residence ends in the future, starts the new residence the following day the previous one ends.</li>
      * </ul>
      * 
      * @param personId Person id.
@@ -155,8 +153,8 @@ public class Persons extends Controller {
 
         // TODO Move this part of code into "business" package.
         for (Residence existingResidence : person.residences) {
-            if (existingResidence.startDate.isBefore(residence.startDate)
-                    && existingResidence.endDate.isAfter(residence.startDate)) {
+            if (existingResidence.startDate.isBefore(residence.startDate) && existingResidence.endDate.isAfter(residence.startDate)
+                    || existingResidence.startDate.isBefore(residence.endDate) && existingResidence.endDate.isAfter(residence.endDate)) {
                 throw new ResidenceAlreadyDefinedException();
             }
         }
