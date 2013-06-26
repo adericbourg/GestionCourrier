@@ -18,8 +18,8 @@ POST    /json/person/:id/unfollow                   controllers.Persons.unfollow
 
 # Residence
 
-POST    /json/person/:id/addResidence               controllers.Persons.addResidence(id: Long)
-POST    /json/person/:id/renewResidence             controllers.Persons.renewResidence(id: Long)
+POST    /json/person/:id/addResidence               controllers.Residences.addResidence(id: Long)
+POST    /json/person/:id/renewResidence             controllers.Residences.renewResidence(id: Long)
 
 GET     /json/residence/allResidents                controllers.Residences.allResidents()
 GET     /json/residence/endOfResidenceResidents     controllers.Residences.endOfResidenceResidents()
