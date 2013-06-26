@@ -1,9 +1,9 @@
 <div ng-controller="NoResidencePersonsCtrl">
     <blockquote>
-        Les personnes suivantes ne sont plus domiciliées.
+        Les personnes suivantes ne sont pas domiciliées à ce jour.
     </blockquote>
     <div class="alert alert-info">
-        Nombre de personnes anciennement domiciliées : <strong>{{residents.length}}</strong>
+        Nombre de personnes non-domiciliées : <strong>{{residents.length}}</strong>
     </div>
     <table class="table table-hover" ng-show="residents.length">
         <thead>
