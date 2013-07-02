@@ -8,8 +8,12 @@ describe('filter', function () {
 
         it('should convert local date to french formatted date',
             inject(function (localDateFilter) {
-                expect(undefined).toBe(undefined);
+                expect(localDateFilter(undefined)).toBe('');
+                expect(localDateFilter('some dummy')).toBe('');
+                expect(localDateFilter('')).toBe('');
+                expect(localDateFilter([2013, 42, 22])).toBe('');
                 expect(localDateFilter([2013, 5, 12])).toBe('12/05/2013');
+                expect(localDateFilter([2013, 5, 12], 'YYYY DD MM')).toBe('2013 12 05');
             }));
     });
 
@@ -21,6 +25,7 @@ describe('filter', function () {
                 expect(staticListFilter({key: 'A'})).toBe('');
                 expect(staticListFilter({value: 'B'})).toBe('B');
                 expect(staticListFilter({key: 'A', value: 'B'})).toBe('B');
+                expect(staticListFilter({key: {a: 'A'}, value: 'B'})).toBe('B');
             }));
     });
 });

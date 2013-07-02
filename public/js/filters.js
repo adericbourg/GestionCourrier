@@ -18,7 +18,11 @@ angular.module('gestionCourrierFilters', []).
             };
 
             var value = text[0] + '-' + pad(text[1], 2) + '-' + pad(text[2], 2);
-            return moment(value, 'YYYY-MM-DD').format(format);
+            var date = moment(value, 'YYYY-MM-DD');
+            if (!date.isValid()) {
+                return '';
+            }
+            return date.format(format);
         };
     }).
     filter('staticList', function () {
