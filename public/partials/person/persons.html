@@ -29,7 +29,10 @@
     </thead>
     <tbody>
     <tr ng-repeat="r in filteredPersons = (allPersons | filter:searchPersonCriterion | orderBy:tableSortPredicate:tableSortReverse)">
-        <td><a ng-href="#/person/{{r.id}}"><i class="icon-eye-open"></i></a></td>
+        <td>
+            <a class="pull-right" ng-href="#/person/{{r.id}}"><i class="icon-eye-open"></i></a>
+            <i class="icon-lock " ng-hide="r.isFollowed" title="Cette personne n'est pas suivie par l'association" ></i>
+        </td>
         <td>{{r.lastName}}</td>
         <td>{{r.firstName}}</td>
         <td>{{r.orientation}}</td>
