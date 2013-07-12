@@ -1,5 +1,6 @@
 package models.person;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -61,11 +62,11 @@ public class Person extends Model {
     public Boolean forwardAddressActive = false;
 
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
-    public List<Residence> residences;
+    public List<Residence> residences = new ArrayList<Residence>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL)
-    public List<Mail> mail;
+    public List<Mail> mail = new ArrayList<Mail>();
 
     //
 
