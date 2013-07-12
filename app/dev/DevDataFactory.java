@@ -119,7 +119,7 @@ public class DevDataFactory {
         person.isFollowed = true;
         person.residences = new ArrayList<Residence>();
 
-        LocalDate residenceStartDate = LocalDate.now().minusYears(25);
+        LocalDate residenceStartDate = LocalDate.now().minusYears(25).minusWeeks(4);
         while (LocalDate.now().isAfter(residenceStartDate)) {
             person.residences.add(createResidence(residenceStartDate, ResidenceType.STATE_MEDICAL_SUPPORT));
             residenceStartDate = residenceStartDate.plusYears(1);
