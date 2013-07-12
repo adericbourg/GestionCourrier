@@ -25,7 +25,10 @@
         <div class="span4">
             <ul class="unstyled">
                 <li>
-                    <i class="icon-fixed-width icon-user"></i> Date de naissance : {{person.birthDate | localDate}}
+                    <i class="icon-fixed-width icon-female" title="Femme" ng-show="person.gender.key == 'FEMALE'"></i>
+                    <i class="icon-fixed-width icon-male" title="Homme" ng-show="person.gender.key == 'MALE'"></i>
+                    <i class="icon-fixed-width icon-user" ng-hide="person.gender"></i> <!-- Theorically useless -->
+                    Date de naissance : {{person.birthDate | localDate}}
                 </li>
                 <li>
                     <i class="icon-fixed-width"></i> Pôle : {{person.followingDepartment | staticList}}
