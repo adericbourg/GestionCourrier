@@ -69,7 +69,7 @@ function NewPersonCtrl($scope, dialog, personService, referenceListService) {
                 });
             }).
             error(function (data, status, headers, config) {
-                $scope.messages.push({type: 'error', msg: "Erreur de création : " + status + " (" + config.method + ":" + config.url + ")."});
+                $scope.handleError($scope, data, status, headers, config);
             });
     };
 
@@ -143,7 +143,7 @@ function ViewPersonCtrl($scope, $dialog, $routeParams, personService) {
             }).
             error(function (data, status, headers, config) {
                 $scope.messages = [];
-                $scope.messages.push({type: 'error', msg: "Erreur technique : " + status + " (" + config.method + ":" + config.url + ")."});
+                $scope.handleError($scope, data, status, headers, config);
             });
     };
 
@@ -154,7 +154,7 @@ function ViewPersonCtrl($scope, $dialog, $routeParams, personService) {
             }).
             error(function (data, status, headers, config) {
                 $scope.messages = [];
-                $scope.messages.push({type: 'error', msg: "Erreur technique : " + status + " (" + config.method + ":" + config.url + ")."});
+                $scope.handleError($scope, data, status, headers, config);
             });
     };
 
@@ -208,7 +208,7 @@ function EditPersonCtrl($scope, $location, $routeParams, personService, referenc
             }).
             error(function (data, status, headers, config) {
                 $scope.messages = [];
-                $scope.messages.push({type: 'error', msg: "Erreur de mise-à-jour : " + status + " (" + config.method + ":" + config.url + ")."});
+                $scope.handleError($scope, data, status, headers, config);
             });
     };
 

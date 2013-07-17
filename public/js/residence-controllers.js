@@ -76,7 +76,7 @@ function NewResidenceCtrl($scope, dialog, personId, personService, referenceList
                 dialog.close({type: 'success', msg: "Domiciliation ajoutée"});
             }).
             error(function (data, status, headers, config) {
-                $scope.messages.push({type: 'error', msg: "Erreur de création de la domiciliation : " + status + " (" + config.method + ":" + config.url + ")."});
+                $scope.handleError($scope, data, status, headers, config);
             });
     };
 
@@ -103,7 +103,7 @@ function RenewResidenceCtrl($scope, personService, dialog, person) {
                 dialog.close({type: 'success', msg: "Domiciliation renouvelée"});
             }).
             error(function (data, status, headers, config) {
-                $scope.messages.push({type: 'error', msg: "Erreur de renouvellement de la domiciliation : " + status + " (" + config.method + ":" + config.url + ")."});
+                $scope.handleError($scope, data, status, headers, config);
             });
     };
 

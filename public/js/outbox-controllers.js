@@ -52,7 +52,7 @@ function WithdrawMailCtrl($scope, mailService, dialog, mail) {
                 dialog.close({type: 'success', msg: "Courrier remis"});
             }).
             error(function (data, status, headers, config) {
-                dialog.close({type: 'error', msg: "Erreur de remise du courrier : " + status + " (" + config.method + ":" + config.url + ")."});
+                $scope.handleError($scope, data, status, headers, config);
             });
     };
 }

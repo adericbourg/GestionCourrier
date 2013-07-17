@@ -8,12 +8,14 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import core.controller.CatchBusinessException;
 
 /**
  * Person controller. Handles all I/O for persons.
  * 
  * @author adericbourg
  */
+@CatchBusinessException
 public class Persons extends Controller {
 
     public static Result allPersons() {

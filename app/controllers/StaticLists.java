@@ -10,14 +10,15 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 import controllers.model.Item;
+import core.controller.CatchBusinessException;
 import core.io.serialization.StaticList;
 
 /**
- * Controller for static lists. Serves all static lists sorted by displayed
- * value.
+ * Controller for static lists. Serves all static lists sorted by displayed value.
  * 
  * @author adericbourg
  */
+@CatchBusinessException
 public class StaticLists extends Controller {
 
     private static final Comparator<? super Item<String, String>> ITEM_COMPARATOR = new Comparator<Item<String, String>>() {
@@ -60,8 +61,7 @@ public class StaticLists extends Controller {
     private static <T extends StaticList> Result toJson(T[] values) {
         List<Item<String, String>> returnList = new ArrayList<Item<String, String>>();
         for (T item : values) {
-            returnList.add(new Item<String, String>(item.name(), item
-                    .getMeaning()));
+            returnList.add(new Item<String, String>(item.name(), item.getMeaning()));
         }
         Collections.sort(returnList, ITEM_COMPARATOR);
         return ok(Json.toJson(returnList));

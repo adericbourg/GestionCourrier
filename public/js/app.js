@@ -14,6 +14,27 @@ var app = angular.module('gestionCourrier', ['gestionCourrierFilters', 'gestionC
     });
 
 /**
+ * Utility functions available in any controller.
+ */
+app.run(function ($rootScope) {
+    /**
+     * Handle $http errors and populate message.
+     * @param scope Current scope.
+     * @param data Response data.
+     * @param status Response status.
+     * @param headers Response headers.
+     * @param config Response configuration.
+     */
+    $rootScope.handleError = function (scope, data, status, headers, config) {
+        if (data) {
+            scope.messages.push(data);
+        } else {
+            scope.messages.push({type: 'error', msg: "Erreur non-gérée : " + status + " (" + config.method + ":" + config.url + ")."});
+        }
+    }
+});
+
+/**
  * Navigation controller.
  * The function identifies if the route comes from the supplied identification group and returns proper CSS class
  * when appropriate.

@@ -7,10 +7,12 @@ import org.joda.time.LocalDate;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import core.controller.CatchBusinessException;
 
 /**
  * @author alban
  */
+@CatchBusinessException
 public class Outbox extends Controller {
 
     /**

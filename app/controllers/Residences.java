@@ -12,12 +12,14 @@ import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
 import business.residence.ResidenceAlreadyDefinedException;
+import core.controller.CatchBusinessException;
 
 /**
  * Residences controller.
  * 
  * @author adericbourg
  */
+@CatchBusinessException
 public class Residences extends Controller {
 
     /**

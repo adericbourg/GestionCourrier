@@ -6,33 +6,29 @@ import org.codehaus.jackson.JsonNode;
 
 import play.libs.Json;
 import play.mvc.BodyParser;
+import play.mvc.Controller;
 import play.mvc.Result;
 import business.inbox.MandatoryForwardMailException;
-import core.controller.CommonController;
-import core.controller.WorkWrapper;
+import core.controller.CatchBusinessException;
 
 /**
  * @author adericbourg
  */
-public class Inbox extends CommonController {
+@CatchBusinessException
+public class Inbox extends Controller {
 
     @BodyParser.Of(BodyParser.Json.class)
     public static Result registerMail() {
-        return wrapVoid(new WorkWrapper<Void>() {
-            @Override
-            public Void execute() {
-                JsonNode json = request().body().asJson();
+        JsonNode json = request().body().asJson();
 
-                Mail mail = Json.fromJson(json, Mail.class);
+        Mail mail = Json.fromJson(json, Mail.class);
 
-                if (mail.recipient.isMailForwardMandatory()) {
-                    throw new MandatoryForwardMailException();
-                }
+        if (mail.recipient.isMailForwardMandatory()) {
+            throw new MandatoryForwardMailException();
+        }
 
-                mail.save();
+        mail.save();
 
-                return null;
-            }
-        });
+        return ok();
     }
 }
