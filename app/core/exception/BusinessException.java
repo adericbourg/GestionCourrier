@@ -7,7 +7,7 @@ public abstract class BusinessException extends RuntimeException {
 
     private final String message;
 
-    public BusinessException(String message) {
+    protected BusinessException(String message) {
         this.message = message;
     }
 

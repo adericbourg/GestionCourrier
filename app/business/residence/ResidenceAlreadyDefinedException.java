@@ -10,10 +10,6 @@ import core.exception.BusinessException;
 public class ResidenceAlreadyDefinedException extends BusinessException {
 
     public ResidenceAlreadyDefinedException() {
-        this("Une domiciliation a déjà été enregistrée sur cette période.");
-    }
-
-    public ResidenceAlreadyDefinedException(String message) {
-        super(message);
+        super("Une domiciliation a déjà été enregistrée sur cette période.");
     }
 }

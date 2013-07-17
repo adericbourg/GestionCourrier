@@ -10,10 +10,6 @@ import core.exception.BusinessException;
 public class MandatoryForwardMailException extends BusinessException {
 
     public MandatoryForwardMailException() {
-        this("Une adresse de suivi est définie pour cette personne. Merci d'y faire suivre tout le courrier.");
-    }
-
-    public MandatoryForwardMailException(String message) {
-        super(message);
+        super("Une adresse de suivi est définie pour cette personne. Merci d'y faire suivre tout le courrier.");
     }
 }

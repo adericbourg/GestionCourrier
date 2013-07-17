@@ -2,7 +2,6 @@ package core.controller;
 
 import play.libs.Json;
 import play.mvc.Action;
-import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 import core.exception.BusinessException;
@@ -26,7 +25,7 @@ public class CatchBusinessExceptionAction extends Action<CatchBusinessException>
         try {
             return delegate.call(ctx);
         } catch (BusinessException ex) {
-            return Controller.badRequest(Json.toJson(new ErrorMessageResult(ex.getMessage())));
+            return badRequest(Json.toJson(new ErrorMessageResult(ex.getMessage())));
         }
     }
 }
