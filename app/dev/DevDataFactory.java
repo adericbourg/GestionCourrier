@@ -12,6 +12,8 @@ import models.residence.ResidenceType;
 
 import org.joda.time.LocalDate;
 
+import services.PersonService;
+
 import com.google.common.collect.Lists;
 
 /**
@@ -20,7 +22,7 @@ import com.google.common.collect.Lists;
 public class DevDataFactory {
 
     public static void createData() {
-        if (!Person.findAll().isEmpty()) {
+        if (!PersonService.findAll().isEmpty()) {
             return;
         }
 
@@ -36,7 +38,7 @@ public class DevDataFactory {
         createPerson7();
         createPerson8();
 
-        List<Person> persons = Person.findAll();
+        List<Person> persons = PersonService.findAll();
 
         // Register mail.
         Mail mail;

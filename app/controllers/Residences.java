@@ -11,6 +11,7 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import services.PersonService;
 import business.residence.ResidenceAlreadyDefinedException;
 import core.controller.CatchBusinessException;
 
@@ -48,7 +49,7 @@ public class Residences extends Controller {
      * @return 200 when success, 400 when no person exists for specified id.
      */
     public static Result renewResidence(long personId) {
-        Residence latestResidence = first(Person.byId(personId).residences);
+        Residence latestResidence = first(PersonService.byId(personId).residences);
         if (latestResidence == null) {
             return badRequest();
         }
@@ -69,7 +70,7 @@ public class Residences extends Controller {
         // Auto-fill the end date.
         residence.endDate = residence.startDate.plusYears(1).minusDays(1);
 
-        Person person = Person.byId(personId);
+        Person person = PersonService.byId(personId);
 
         // TODO Move this part of code into "business" package.
         for (Residence existingResidence : person.residences) {
@@ -90,7 +91,7 @@ public class Residences extends Controller {
      * @return List of all current residents.
      */
     public static Result allResidents() {
-        return ok(Json.toJson(Person.findAllResidents()));
+        return ok(Json.toJson(PersonService.findAllResidents()));
     }
 
     /**
@@ -99,7 +100,7 @@ public class Residences extends Controller {
      * @return All residenced persons whose residence is about to expire.
      */
     public static Result endOfResidenceResidents() {
-        return ok(Json.toJson(Person.findEndOfResidencePersons()));
+        return ok(Json.toJson(PersonService.findEndOfResidencePersons()));
     }
 
     /**
@@ -108,6 +109,6 @@ public class Residences extends Controller {
      * @return All persons that are no longer residenced (or that never were).
      */
     public static Result noResidencePersons() {
-        return ok(Json.toJson(Person.findNoResidencePersons()));
+        return ok(Json.toJson(PersonService.findNoResidencePersons()));
     }
 }

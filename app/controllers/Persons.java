@@ -8,6 +8,7 @@ import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
+import services.PersonService;
 import core.controller.CatchBusinessException;
 
 /**
@@ -19,7 +20,7 @@ import core.controller.CatchBusinessException;
 public class Persons extends Controller {
 
     public static Result allPersons() {
-        return ok(Json.toJson(Person.findAll()));
+        return ok(Json.toJson(PersonService.findAll()));
     }
 
     /**
@@ -29,7 +30,7 @@ public class Persons extends Controller {
      * @return Person detail.
      */
     public static Result person(Long personId) {
-        return ok(Json.toJson(Person.byId(personId)));
+        return ok(Json.toJson(PersonService.byId(personId)));
     }
 
     /**
@@ -56,7 +57,7 @@ public class Persons extends Controller {
         JsonNode json = request().body().asJson();
         Person updatedPerson = Json.fromJson(json, Person.class);
 
-        Person basePerson = Person.byId(personId);
+        Person basePerson = PersonService.byId(personId);
         basePerson.gender = updatedPerson.gender;
         basePerson.firstName = updatedPerson.firstName;
         basePerson.lastName = updatedPerson.lastName;
@@ -93,7 +94,7 @@ public class Persons extends Controller {
     }
 
     private static Result setFollowing(long personId, boolean following) {
-        Person person = Person.byId(personId);
+        Person person = PersonService.byId(personId);
         person.isFollowed = following;
         person.save();
 
@@ -106,6 +107,6 @@ public class Persons extends Controller {
      * @return Persons matching search criteria.
      */
     public static Result search(String query) {
-        return ok(Json.toJson(Person.find(query)));
+        return ok(Json.toJson(PersonService.find(query)));
     }
 }
