@@ -1,7 +1,10 @@
 package controllers;
 
 import java.text.Collator;
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
 
 import models.person.Department;
 import models.person.Gender;
@@ -9,7 +12,9 @@ import models.residence.ResidenceType;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
-import controllers.model.Item;
+
+import com.google.common.collect.Lists;
+
 import core.controller.CatchBusinessException;
 import core.io.serialization.StaticList;
 
@@ -21,13 +26,13 @@ import core.io.serialization.StaticList;
 @CatchBusinessException
 public class StaticLists extends Controller {
 
-    private static final Comparator<? super Item<String, String>> ITEM_COMPARATOR = new Comparator<Item<String, String>>() {
+    private static final Comparator<StaticList> ITEM_COMPARATOR = new Comparator<StaticList>() {
         @Override
-        public int compare(Item<String, String> o1, Item<String, String> o2) {
+        public int compare(StaticList o1, StaticList o2) {
             Collator collator = Collator.getInstance(Locale.FRENCH);
             collator.setStrength(Collator.SECONDARY);
             collator.setDecomposition(Collator.FULL_DECOMPOSITION);
-            return collator.compare(o1.value, o2.value);
+            return collator.compare(o1.getMeaning(), o2.getMeaning());
         }
     };
 
@@ -59,10 +64,7 @@ public class StaticLists extends Controller {
     }
 
     private static <T extends StaticList> Result toJson(T[] values) {
-        List<Item<String, String>> returnList = new ArrayList<Item<String, String>>();
-        for (T item : values) {
-            returnList.add(new Item<String, String>(item.getClass().getCanonicalName() + ":" + item.name(), item.getMeaning()));
-        }
+        List<T> returnList = Lists.newArrayList(values);
         Collections.sort(returnList, ITEM_COMPARATOR);
         return ok(Json.toJson(returnList));
     }
