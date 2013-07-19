@@ -61,7 +61,7 @@ public class StaticLists extends Controller {
     private static <T extends StaticList> Result toJson(T[] values) {
         List<Item<String, String>> returnList = new ArrayList<Item<String, String>>();
         for (T item : values) {
-            returnList.add(new Item<String, String>(item.name(), item.getMeaning()));
+            returnList.add(new Item<String, String>(item.getClass().getCanonicalName() + ":" + item.name(), item.getMeaning()));
         }
         Collections.sort(returnList, ITEM_COMPARATOR);
         return ok(Json.toJson(returnList));

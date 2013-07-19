@@ -1,17 +1,17 @@
 package models.person;
 
-import core.io.serialization.StaticListSerializer;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
-
-import core.io.serialization.GenderDeserializer;
-import core.io.serialization.StaticList;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import core.io.serialization.StaticList;
+import core.io.serialization.StaticListDeserializer;
+import core.io.serialization.StaticListSerializer;
 
 /**
  * @author adericbourg
  */
 @JsonSerialize(using = StaticListSerializer.class)
-@JsonDeserialize(using = GenderDeserializer.class)
+@JsonDeserialize(using = StaticListDeserializer.class)
 public enum Gender implements StaticList {
 
     MALE("Homme"),
@@ -25,5 +25,13 @@ public enum Gender implements StaticList {
 
     public String getMeaning() {
         return meaning;
+    }
+
+    public boolean isMale() {
+        return MALE.equals(this);
+    }
+
+    public boolean isFemale() {
+        return FEMALE.equals(this);
     }
 }

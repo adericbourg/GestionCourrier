@@ -1,19 +1,19 @@
 package models.residence;
 
-import core.io.serialization.StaticListSerializer;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import com.avaje.ebean.annotation.EnumValue;
 
-import core.io.serialization.ResidenceTypeDeserializer;
 import core.io.serialization.StaticList;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
+import core.io.serialization.StaticListDeserializer;
+import core.io.serialization.StaticListSerializer;
 
 /**
  * @author adericbourg
  */
 @JsonSerialize(using = StaticListSerializer.class)
-@JsonDeserialize(using = ResidenceTypeDeserializer.class)
+@JsonDeserialize(using = StaticListDeserializer.class)
 public enum ResidenceType implements StaticList {
 
     @EnumValue("AME")
