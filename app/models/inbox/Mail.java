@@ -6,13 +6,14 @@ import javax.persistence.ManyToOne;
 
 import models.person.Person;
 
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
-import org.codehaus.jackson.map.ext.JodaSerializers;
 import org.joda.time.LocalDate;
 
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.joda.ser.LocalDateSerializer;
 import core.io.serialization.JodaLocalDateDeserializer;
 
 /**
@@ -30,11 +31,11 @@ public class Mail extends Model {
 
     public String sender;
 
-    @JsonSerialize(using = JodaSerializers.LocalDateSerializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = JodaLocalDateDeserializer.class)
     public LocalDate arrivalDate;
 
-    @JsonSerialize(using = JodaSerializers.LocalDateSerializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = JodaLocalDateDeserializer.class)
     public LocalDate withdrawalDate;
 }

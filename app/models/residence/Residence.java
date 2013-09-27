@@ -4,16 +4,17 @@ import javax.persistence.*;
 
 import models.person.Person;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
-import org.codehaus.jackson.map.ext.JodaSerializers;
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
 
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.joda.ser.LocalDateSerializer;
 import core.io.serialization.JodaLocalDateDeserializer;
 
 /**
@@ -30,12 +31,12 @@ public class Residence extends Model {
     public ResidenceType residenceType;
 
     @Constraints.Required
-    @JsonSerialize(using = JodaSerializers.LocalDateSerializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = JodaLocalDateDeserializer.class)
     public LocalDate startDate;
 
     @Constraints.Required
-    @JsonSerialize(using = JodaSerializers.LocalDateSerializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = JodaLocalDateDeserializer.class)
     public LocalDate endDate;
 

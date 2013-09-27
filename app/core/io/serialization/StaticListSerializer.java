@@ -4,9 +4,9 @@ import java.io.IOException;
 
 import models.person.Gender;
 
-import org.codehaus.jackson.JsonGenerator;
-import org.codehaus.jackson.map.JsonSerializer;
-import org.codehaus.jackson.map.SerializerProvider;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
 
 /**
  * Generic {@link StaticList} serializer.
@@ -16,7 +16,8 @@ import org.codehaus.jackson.map.SerializerProvider;
 public class StaticListSerializer extends JsonSerializer<StaticList> {
 
     @Override
-    public void serialize(StaticList staticList, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+    public void serialize(StaticList staticList, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) 
+            throws IOException {
         jsonGenerator.writeStartObject();
         jsonGenerator.writeFieldName("key");
         jsonGenerator.writeString(staticList.getClass().getCanonicalName() + ":" + staticList.name());

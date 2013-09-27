@@ -2,11 +2,11 @@ package core.io.serialization;
 
 import java.io.IOException;
 
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.ObjectCodec;
-import org.codehaus.jackson.map.DeserializationContext;
-import org.codehaus.jackson.map.JsonDeserializer;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.ObjectCodec;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
 
 /**
  * Generic {@link StaticList} deserializer.
@@ -16,7 +16,8 @@ import org.codehaus.jackson.map.JsonDeserializer;
 public class StaticListDeserializer extends JsonDeserializer<StaticList> {
 
     @Override
-    public final StaticList deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
+    public final StaticList deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
+            throws IOException {
         ObjectCodec objectCodec = jsonParser.getCodec();
         JsonNode node = objectCodec.readTree(jsonParser);
 
@@ -27,10 +28,10 @@ public class StaticListDeserializer extends JsonDeserializer<StaticList> {
         String key;
         if (node.has("key")) {
             // { key: "className:name", value: "" }
-            key = node.get("key").getTextValue();
+            key = node.get("key").textValue();
         } else {
             // { "name" }
-            key = node.getTextValue();
+            key = node.textValue();
         }
         return convertKeyToEnum(key);
     }

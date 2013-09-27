@@ -8,16 +8,16 @@ import javax.persistence.*;
 import models.inbox.Mail;
 import models.residence.Residence;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
-import org.codehaus.jackson.map.ext.JodaSerializers;
 import org.joda.time.LocalDate;
 
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.joda.ser.LocalDateSerializer;
 import com.google.common.base.Strings;
 import core.io.serialization.JodaLocalDateDeserializer;
 
@@ -38,7 +38,7 @@ public class Person extends Model {
 
     public String maidenName;
 
-    @JsonSerialize(using = JodaSerializers.LocalDateSerializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = JodaLocalDateDeserializer.class)
     public LocalDate birthDate;
 

@@ -1,9 +1,8 @@
 package models.residence;
 
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
-
 import com.avaje.ebean.annotation.EnumValue;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import core.io.serialization.StaticList;
 import core.io.serialization.StaticListDeserializer;

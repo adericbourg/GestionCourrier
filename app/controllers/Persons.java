@@ -1,14 +1,13 @@
 package controllers;
 
 import models.person.Person;
-
-import org.codehaus.jackson.JsonNode;
-
 import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
 import play.mvc.Result;
 import services.PersonService;
+
+import com.fasterxml.jackson.databind.JsonNode;
 import core.controller.CatchBusinessException;
 
 /**

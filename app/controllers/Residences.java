@@ -1,10 +1,10 @@
 package controllers;
 
 import static core.util.Collections.first;
+
 import models.person.Person;
 import models.residence.Residence;
 
-import org.codehaus.jackson.JsonNode;
 import org.joda.time.LocalDate;
 
 import play.libs.Json;
@@ -13,6 +13,8 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import services.PersonService;
 import business.residence.ResidenceAlreadyDefinedException;
+
+import com.fasterxml.jackson.databind.JsonNode;
 import core.controller.CatchBusinessException;
 
 /**

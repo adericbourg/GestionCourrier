@@ -10,7 +10,9 @@ object ApplicationBuild extends Build {
     // Add your project dependencies here,
     javaCore,
     javaJdbc,
-    javaEbean
+    javaEbean,
+
+    "com.fasterxml.jackson.datatype" % "jackson-datatype-joda" % "2.2.2"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
