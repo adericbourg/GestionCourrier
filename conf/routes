@@ -3,41 +3,40 @@
 # ~~~~
 
 # Home page
-GET     /                                           controllers.Assets.at(path="/public", file="index.html")
+GET         /                                              controllers.Assets.at(path="/public", file="index.html")
 
 # Persons
-GET     /json/persons                               controllers.Persons.allPersons()
+GET         /json/persons                                  controllers.Persons.allPersons()
 
-GET     /json/person/:id                            controllers.Persons.person(id: Long)
-GET     /json/person/find/:query                    controllers.Persons.search(query: String)
-POST    /json/person/create                         controllers.Persons.create()
-POST    /json/person/:id/update                     controllers.Persons.update(id: Long)
+GET         /json/person/:id                               controllers.Persons.person(id: Long)
+GET         /json/person/find/:query                       controllers.Persons.search(query: String)
+POST        /json/person/create                            controllers.Persons.create()
+POST        /json/person/:id/update                        controllers.Persons.update(id: Long)
 
-POST    /json/person/:id/follow                     controllers.Persons.follow(id: Long)
-POST    /json/person/:id/unfollow                   controllers.Persons.unfollow(id: Long)
+POST        /json/person/:id/follow                        controllers.Persons.follow(id: Long)
+POST        /json/person/:id/unfollow                      controllers.Persons.unfollow(id: Long)
 
 # Residence
 
-POST    /json/person/:id/addResidence               controllers.Residences.addResidence(id: Long)
-POST    /json/person/:id/renewResidence             controllers.Residences.renewResidence(id: Long)
+POST        /json/person/:id/addResidence                  controllers.Residences.addResidence(id: Long)
+POST        /json/person/:id/renewResidence                controllers.Residences.renewResidence(id: Long)
 
-GET     /json/residence/allResidents                controllers.Residences.allResidents()
-GET     /json/residence/endOfResidenceResidents     controllers.Residences.endOfResidenceResidents()
-GET     /json/residence/noResidencePersons          controllers.Residences.noResidencePersons()
+GET         /json/residence/allResidents                   controllers.Residences.allResidents()
+GET         /json/residence/endOfResidenceResidents        controllers.Residences.endOfResidenceResidents()
+GET         /json/residence/noResidencePersons             controllers.Residences.noResidencePersons()
 
 
 #Inbox
-POST    /json/inbox/register                        controllers.Inbox.registerMail()
+POST        /json/inbox/register                           controllers.Inbox.registerMail()
 
 # Outbox
-GET     /json/outbox/mails                          controllers.Outbox.mails()
-POST    /json/outbox/withdraw/:mailId               controllers.Outbox.withdraw(mailId: Long)
+GET         /json/outbox/mails                             controllers.Outbox.mails()
+POST        /json/outbox/withdraw/:mailId                  controllers.Outbox.withdraw(mailId: Long)
 
 # Reference lists
-GET     /json/departments                           controllers.StaticLists.departments()
-GET     /json/residencetypes                        controllers.StaticLists.residenceTypes()
-GET     /json/genders                               controllers.StaticLists.genders()
+GET         /json/departments                              controllers.StaticLists.departments()
+GET         /json/residencetypes                           controllers.StaticLists.residenceTypes()
+GET         /json/genders                                  controllers.StaticLists.genders()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file                               controllers.Assets.at(path="/public", file)
-GET     /public/*file                               controllers.Assets.at(path="/public", file)
+GET         /assets/*file                                  controllers.Assets.at(path="/public", file)
