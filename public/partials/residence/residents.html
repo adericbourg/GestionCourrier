@@ -1,11 +1,15 @@
 <h1>Domiciliés</h1>
 
-<div class="">
-    <tabs>
-        <pane active="pane.active"
-              heading="{{pane.title}}"
-              ng-repeat="pane in panes">
-            <div ng-include="pane.content"></div>
-        </pane>
-    </tabs>
+<div>
+    <tabset>
+        <tab ng-repeat="pane in panes"
+              active="pane.active"
+              heading="{{pane.title}}">
+
+            <div ng-include="pane.content"
+                 ng-controller="pane.controller">
+            </div>
+
+        </tab>
+    </tabset>
 </div>

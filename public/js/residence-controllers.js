@@ -3,9 +3,22 @@
 function ResidentTabsCtrl($scope) {
 
     $scope.panes = [
-        { title: "Tous les domiciliés", content: "assets/partials/residence/search-tabs/allResidents.html", active: true },
-        { title: "Fin de domiciliation", content: "assets/partials/residence/search-tabs/endOfResidence.html" },
-        { title: "Personnes non-domiciliées", content: "assets/partials/residence/search-tabs/noResidencePersons.html" }
+        {
+            title: "Tous les domiciliés",
+            controller: AllResidentsCtrl,
+            content: "assets/partials/residence/search-tabs/allResidents.html",
+            active: true
+        },
+        {
+            title: "Fin de domiciliation",
+            controller: EndOfResidenceCtrl,
+            content: "assets/partials/residence/search-tabs/endOfResidence.html"
+        },
+        {
+            title: "Personnes non-domiciliées",
+            controller: NoResidencePersonsCtrl,
+            content: "assets/partials/residence/search-tabs/noResidencePersons.html"
+        }
     ];
 
 }
