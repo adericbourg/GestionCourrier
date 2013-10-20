@@ -79,7 +79,7 @@
 <div ng-show="person.currentResidence">
     La domiciliation en cours se termine dans {{person.currentResidence.monthsToEnd}} mois
     ({{person.currentResidence.endDate | localDate}}).
-    <progress value="residenceProgress"></progress>
+    <progress percent="residenceProgress"></progress>
 </div>
 
 <div class="well" ng-hide="person.residences.length">
