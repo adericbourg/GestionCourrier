@@ -1,5 +1,6 @@
 package controllers;
 
+import core.controller.Timed;
 import models.inbox.Mail;
 import play.libs.Json;
 import play.mvc.BodyParser;
@@ -13,6 +14,7 @@ import core.controller.CatchBusinessException;
 /**
  * @author adericbourg
  */
+@Timed
 @CatchBusinessException
 public class Inbox extends Controller {
 

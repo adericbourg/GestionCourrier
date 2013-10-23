@@ -1,5 +1,6 @@
 package controllers;
 
+import core.controller.Timed;
 import models.inbox.Mail;
 
 import org.joda.time.LocalDate;
@@ -13,6 +14,7 @@ import core.controller.CatchBusinessException;
 /**
  * @author alban
  */
+@Timed
 @CatchBusinessException
 public class Outbox extends Controller {
 

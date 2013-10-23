@@ -10,7 +10,6 @@ public class Global extends GlobalSettings {
     @Override
     public void onStart(Application app) {
         super.onStart(app);
-
         if (Play.isDev()) {
             // Create test data.
             DevDataFactory.createData();

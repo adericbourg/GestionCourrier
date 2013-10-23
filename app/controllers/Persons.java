@@ -1,5 +1,6 @@
 package controllers;
 
+import core.controller.Timed;
 import models.person.Person;
 import play.libs.Json;
 import play.mvc.BodyParser;
@@ -15,6 +16,7 @@ import core.controller.CatchBusinessException;
  * 
  * @author adericbourg
  */
+@Timed
 @CatchBusinessException
 public class Persons extends Controller {
 

@@ -12,7 +12,8 @@ object ApplicationBuild extends Build {
     javaJdbc,
     javaEbean,
 
-    "com.fasterxml.jackson.datatype" % "jackson-datatype-joda" % "2.2.2"
+    "com.fasterxml.jackson.datatype" % "jackson-datatype-joda" % "2.2.2",
+    "com.codahale.metrics" % "metrics-core" % "3.0.1"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(

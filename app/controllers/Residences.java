@@ -2,6 +2,7 @@ package controllers;
 
 import static core.util.Collections.first;
 
+import core.controller.Timed;
 import models.person.Person;
 import models.residence.Residence;
 
@@ -22,6 +23,7 @@ import core.controller.CatchBusinessException;
  * 
  * @author adericbourg
  */
+@Timed
 @CatchBusinessException
 public class Residences extends Controller {
 

@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
+import core.controller.Timed;
 import models.person.Department;
 import models.person.Gender;
 import models.residence.ResidenceType;
@@ -23,6 +24,7 @@ import core.io.serialization.StaticList;
  * 
  * @author adericbourg
  */
+@Timed
 @CatchBusinessException
 public class StaticLists extends Controller {
 
